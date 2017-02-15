@@ -1,4 +1,3 @@
 <?php
-    echo("File doesnt exist");
-
+    echo("Error! File does not exist");
 ?>
