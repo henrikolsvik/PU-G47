@@ -7,3 +7,5 @@ WE WILL MAKE DRUMPF PROUD
 
 
 Navjot
+
+Slett
