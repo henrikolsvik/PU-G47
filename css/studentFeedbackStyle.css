@@ -10,14 +10,24 @@ h1{
     align-self: center;
     margin: 0 auto;
     float:center; 
-    background:#888;
+    background: darkgray;
 }
 
 #divComment{
     overflow: hidden;
-    background: green;
+    background: lightgray;
     height: calc(40%); 
     width: calc(80%);
+    align-self: center;
+    margin: 0 auto;
+    float:center; 
+}   
+
+#divTextFieldAndButton{
+    overflow: hidden;
+    background: darkslategray;
+    height: calc(60%); 
+    width: calc(60%);
     align-self: center;
     margin: 0 auto;
     float:center; 
@@ -35,5 +45,5 @@ img{
     align-self: center;
     margin: 0 auto;
     float:center;
-    background:blue;
+    background:gray;
 }

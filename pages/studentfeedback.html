@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <!-- Made by Henrik on 15.02.17 --> 
+         <link rel="stylesheet" type="text/css" href="../css/studentFeedbackStyle.css">
+    </head>
+    <body>
+        <h1>Welcome</h1>
+        <div id="divDifficulty" >
+            <h1> How difficult do you feel the lecture is right now? </h1>
+            <center>
+            <img src="../graphicalAssets/veryEasyRect.png"/>
+            <img src="../graphicalAssets/easyRect.png"/>
+            <img src="../graphicalAssets/okRect.png"/>
+            <img src="../graphicalAssets/hardRect.png"/>
+            <img src="../graphicalAssets/veryHardRect.png"/>
+            </center>
+        </div>
+
+        <div id="divSpeed">
+            <h1> How fast do you feel the lecture is progressing right now? </h1>
+            <center>
+            <form action="submitSpeed.php" method="POST">
+            <input type="image" src="../graphicalAssets/verySlowRect.png" name="speedValue" value="0">
+            <input type="image" src="../graphicalAssets/slowRect.png" name="speedValue" value="1">
+            <input type="image" src="../graphicalAssets/okRect.png" name="speedValue" value="2">
+            <input type="image" src="../graphicalAssets/fastRect.png" name="speedValue" value="3">
+            <input type="image" src="../graphicalAssets/veryFastRect.png" name="speedValue" value="4">
+            </form>
+            </center>
+        </div>
+        
+        <div id="divComment">
+            <h1> Do you have any comments or questions?  </h1>
+            <div id="divTextFieldAndButton">
+            <form action="submitText.php" method="POST">
+            <input type="text" name="textFeedback">
+
+            <br>
+            <br>
+            <button type="button"> Submit </button>
+            </form>
+            </div>
+        </div>
+        <div>
+        </div>
+    </body>
+</html>

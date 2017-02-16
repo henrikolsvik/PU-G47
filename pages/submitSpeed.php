@@ -1,0 +1,1 @@
+Hi <?php echo (int)($_POST['speedValue']);?> is the speed you think the lecture is progressing at. 
