@@ -5,7 +5,4 @@ THE BEST AMERICAN PRODUCT.
 THE BEST MURICAN PRODUCT
 WE WILL MAKE DRUMPF PROUD
 
-
-Navjot
-
-Slett
+Database must be set up.
