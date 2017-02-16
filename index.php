@@ -1,4 +1,5 @@
 <?php
+    //This is the connection file
     include("includes/config.php");
 
     //Write this to search for a page: http://localhost/index.php?page=<only page name here>
