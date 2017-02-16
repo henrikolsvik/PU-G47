@@ -20,4 +20,7 @@
             }
         }
     }
+
+    //<td><a class="btn btn-start" href="http://localhost/index.php?page=scene&edit=' . $row["Id"] .'" >Endre</a></td>
+    //if (isset($_GET["delete"]))
 ?>
