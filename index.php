@@ -4,11 +4,11 @@
     //This is the connection file
     include("includes/config.php");
 
-    //Write this to search for a page: http://localhost/index.php?page=<only page name here>
+    //Write this to search for a page: http://localhost/index.php?page=<page name><.html or .php>
     if (isset($_GET['page'])) {
         //If we know the page
-        if (file_exists("pages/" . $_GET['page'] . ".php")) {
-            include("pages/" . $_GET['page'] . ".php");
+        if (file_exists("pages/" . $_GET['page'])) {
+            include("pages/" . $_GET['page']);
         }
         //If we know the page but it does not exist
         else {
@@ -17,6 +17,6 @@
     }
     //If we do not know the page send to main page
     else {
-        include("pages/main.php");
+        include("pages/studentfeedback.html");
     }
 ?>
