@@ -1,3 +1,5 @@
+<!-- Made by Navjot on 16.02.17 --> 
+
 <?php
     //This is the connection file
     include("includes/config.php");
