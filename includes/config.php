@@ -1,3 +1,5 @@
+<!-- Made by Navjot on 16.02.17 --> 
+
 <?php
     //Setting up connection
     $host = "localhost";

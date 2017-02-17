@@ -1,6 +1,6 @@
-Hi <?php echo (int)($_POST['speedValue']);?> is the speed you think the lecture is progressing at. 
+<!-- Made by Henrik on 15.02.17 --> 
 
- <!-- Made by Henrik on 15.02.17 --> 
+Hi <?php echo (int)($_POST['speedValue']);?> is the speed you think the lecture is progressing at. 
 
 <?php
     $valueToSend = (int)($_POST['speedValue']);

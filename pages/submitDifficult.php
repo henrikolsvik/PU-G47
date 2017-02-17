@@ -1,4 +1,4 @@
- <!-- Made by Henrik on 16.02.17 --> 
+<!-- Made by Henrik on 16.02.17 --> 
 
 Hi <?php echo (int)($_POST['difficultyValue']);?> is the speed you think the lecture is progressing at. 
 

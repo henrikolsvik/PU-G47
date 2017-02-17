@@ -1,3 +1,5 @@
+<!-- Made by Navjot on 16.02.17 --> 
+
 <?php
     //Getting the table from the DB
     global $conn;
@@ -20,4 +22,8 @@
             }
         }
     }
+
+    //This is needed later for the buttons
+    //<td><a class="btn btn-start" href="http://localhost/index.php?page=scene&edit=' . $row["Id"] .'" >Endre</a></td>
+    //if (isset($_GET["delete"]))
 ?>
