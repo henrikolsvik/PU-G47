@@ -1,14 +1,14 @@
-
  <!-- Made by Henrik on 16.02.17 --> 
-Hi <?php echo (int)($_POST['textFeedback']);?> is the speed you think the lecture is progressing at. 
+
+Hi <?php echo (int)($_POST['difficultyValue']);?> is the speed you think the lecture is progressing at. 
 
 <?php
-    $valueToSend = htmlspecialchars($_POST['textFeedback']);
-    echo($valueToSend);
+    $valueToSend = (int)($_POST['difficultyValue']);
+     
     //Getting the table from the DB
     global $conn;
-    $sql = "INSERT INTO Comment (comment, feedbackId)
-    VALUES ('$valueToSend' , 2)";
+    $sql = "INSERT INTO Feedback (speed, difficulty, time, lectureId)
+    VALUES (2, $valueToSend,2017-03-11,2)";
     
     echo($sql);
 
