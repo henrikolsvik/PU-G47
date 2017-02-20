@@ -1,8 +1,8 @@
 <!-- Made by Henrik on 15.02.17 --> 
 
-Hi <?php echo (int)($_POST['speedValue']);?> is the speed you think the lecture is progressing at. 
-
 <?php
+    isset($_POST['speedValue']);
+    echo("Hi" . (int)($_POST['speedValue']) . "is the speed you think the lecture is progressing at.");
     $valueToSend = (int)($_POST['speedValue']);
      
     //Getting the table from the DB
@@ -29,6 +29,4 @@ Hi <?php echo (int)($_POST['speedValue']);?> is the speed you think the lecture 
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 
-    
-    
 ?>
