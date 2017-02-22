@@ -7,7 +7,7 @@
             die("Connection failed: " . mysqli_connect_error());
         }
     
-        echo("Hi! ". $_POST['textFeedback'] . " is the text.<br>");  
+        echo("Hi! " . $_POST['textFeedback'] . " is the text.<br>");  
         $valueToSend = htmlspecialchars($_POST['textFeedback']);
 
         //Getting the table from the DB

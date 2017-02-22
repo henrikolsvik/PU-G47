@@ -33,7 +33,7 @@
         <div id="divComment">
             <h1>Do you have any comments or questions?</h1>
             <div id="divTextFieldAndButton">
-                <form action="index.php?page=submitText" method="POST">
+                <form action="index.php?page=submitText" method="POST" target="target">
                     <textarea name="textFeedback" rows="3" cols="30">The cat was playing in the garden.</textarea><br><br>
                     <input type="submit" value="Submit">
                 </form>

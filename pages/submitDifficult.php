@@ -7,7 +7,7 @@
             die("Connection failed: " . mysqli_connect_error());
         }
 
-        echo("Hi! ". (int)($_POST['difficultyValue']) . " is the difficulty you think the lecture has.<br>");  
+        echo("Hi! " . (int)($_POST['difficultyValue']) . " is the difficulty you think the lecture has.<br>");  
         $valueToSend = (int)($_POST['difficultyValue']);
         
         //Getting the table from the DB
