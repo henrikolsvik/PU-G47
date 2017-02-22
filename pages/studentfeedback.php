@@ -9,7 +9,7 @@
         <div id="divDifficulty" >
             <h1>How difficult do you feel the lecture is right now?</h1>
             <center>
-                <form action="index.php?page=submitSpeed" method="POST">
+                <form action="index.php?page=submitDifficult" method="POST">
                     <button type="submit" name="difficultyValue" value="0"><img src="img/verySlowRect.png" alt="Submit"></button>
                     <button type="submit" name="difficultyValue" value="1"><img src="img/slowRect.png" alt="Submit"></button>
                     <button type="submit" name="difficultyValue" value="2"><img src="img/okRect.png" alt="Submit"></button>
@@ -33,7 +33,7 @@
         <div id="divComment">
             <h1>Do you have any comments or questions?</h1>
             <div id="divTextFieldAndButton">
-                <form action="index.php?page=submitSpeed" method="POST" target="target">
+                <form action="index.php?page=submitText" method="POST" target="target">
                     <textarea name="textFeedback" rows="3" cols="30">The cat was playing in the garden.</textarea><br><br>
                     <input type="submit" value="Submit">
                 </form>
