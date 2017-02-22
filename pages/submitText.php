@@ -12,7 +12,7 @@
 
         //Getting the table from the DB
         global $conn;
-        $sql = "INSERT INTO CommentFB (comment, feedbackId)
+        $sql = "INSERT INTO CommentFB (comment, lectureId)
                 VALUES ('$valueToSend' , 3)";
         echo($sql);
 
