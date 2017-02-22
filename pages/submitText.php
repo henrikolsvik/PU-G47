@@ -9,11 +9,12 @@
     
         echo("Hi! " . $_POST['textFeedback'] . " is the text.<br>");  
         $valueToSend = htmlspecialchars($_POST['textFeedback']);
+        $lectureIDToSet = ($_POST['lecID']);
 
         //Getting the table from the DB
         global $conn;
         $sql = "INSERT INTO CommentFB (comment, lectureId)
-                VALUES ('$valueToSend' , 3)";
+                VALUES ('$valueToSend' , $lectureIDToSet)";
         echo($sql);
 
         if (mysqli_query($conn, $sql)) {

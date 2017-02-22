@@ -9,11 +9,12 @@
 
         echo("Hi! " . (int)($_POST['speedValue']) . " is the speed you think the lecture is progressing at.");
         $valueToSend = (int)($_POST['speedValue']);
+        $lectureIDToSet = ($_POST['lecID']);
         
         //Getting the table from the DB
         global $conn;
         $sql = "INSERT INTO Feedback (speed, difficulty, time, lectureId)
-                VALUES ($valueToSend, NULL,NOW(),1)";
+                VALUES ($valueToSend, NULL,NOW(),$lectureIDToSet)";
         echo($sql);
 
         if (mysqli_query($conn, $sql)) {
