@@ -4,7 +4,7 @@
     //This is the connection file
     include("includes/config.php");
 
-    //Write this to search for a page: http://localhost/index.php?page=<page name><.html or .php>
+    //Write this to search for a page: http://localhost/index.php?page=<only page name>
     if (isset($_GET['page'])) {
         //If we know the page
         if (file_exists("pages/" . $_GET['page'] . ".php")) {
