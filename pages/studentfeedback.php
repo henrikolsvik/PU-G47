@@ -6,14 +6,38 @@ $lectureID = $_POST['lectureToFeedback'];
 
 <html>
     <head>
+
         <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script>
+
+function changeColor(){
+    color="green";
+    document.body.style.background = color;
+    setTimeout(function(){ 
+        color = "white";
+        document.body.style.background = color; 
+        }, 500);
+    return true;
+}
+
+function textEffect(){
+    document.getElementById('statusSend').innerHTML = 'Feedback Sent!';
+    document.getElementById('statusSend').style.color = 'green';
+    setTimeout(function(){ 
+        document.getElementById('statusSend').innerHTML = 'Please submit your feedback';
+        document.getElementById('statusSend').style.color = 'black';
+        }, 500);
+    return true; 
+}
+
+</script>
     </head>
     <body>
-        <h1>Welcome</h1>
+        <h1 id="statusSend">Please submit your feedback</h1>
             <div id="divDifficulty" >
             <h1>How difficult do you feel the lecture is right now?</h1>
             <center>
-                <form action="index.php?page=submitDifficult" method="POST">
+                <form action="index.php?page=submitDifficult" onsubmit="return changeColor()" method="POST" target="target">
                     <input type=hidden name="lecID" value=<?php echo $lectureID ?> >
                     <button type="submit" name="difficultyValue" value="0"><img src="img/verySlowRect.png" alt="Submit"></button>
                     <button type="submit" name="difficultyValue" value="1"><img src="img/slowRect.png" alt="Submit"></button>
@@ -26,7 +50,7 @@ $lectureID = $_POST['lectureToFeedback'];
         <div id="divSpeed">
             <h1>How fast do you feel the lecture is progressing right now?</h1>
             <center>
-                <form action="index.php?page=submitSpeed" method="POST">
+                <form action="index.php?page=submitSpeed" method="POST" target="target" onSubmit="return changeColor()">
                     <input type=hidden name="lecID" value=<?php echo $lectureID ?> >
                     <button type="submit" name="speedValue" value="0"><img src="img/verySlowRect.png" alt="Submit"></button>
                     <button type="submit" name="speedValue" value="1"><img src="img/slowRect.png" alt="Submit"></button>
@@ -39,9 +63,9 @@ $lectureID = $_POST['lectureToFeedback'];
         <div id="divComment">
             <h1>Do you have any comments or questions?</h1>
             <div id="divTextFieldAndButton">
-                <form action="index.php?page=submitText" method="POST" target="target">
+                <form action="index.php?page=submitText" method="POST" target="target" onSubmit="return textEffect()">
                     <input type=hidden name="lecID" value=<?php echo $lectureID ?>>
-                    <textarea name="textFeedback" rows="3" cols="30">The cat was memeing in the car.</textarea><br><br>
+                    <textarea id="commmentField" name="textFeedback" rows="3" cols="30">The cat was memeing in the car.</textarea><br><br>
                     <input type="submit" value="Submit">
                 </form>
             </div>
