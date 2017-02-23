@@ -5,29 +5,41 @@
         <link rel="stylesheet" type="text/css" href="../css/style.css">
     <?php 
     global $conn;
-    $sql = "SELECT * FROM Feedback";
-    $result = mysqli_query($conn, $sql);
+    $sqlFeed = "SELECT * FROM Feedback";
+    $resultFeed = mysqli_query($conn, $sqlFeed);
+    $sqlLect = "SELECT * FROM Lecture";
+    $resultLect = mysqli_query($conn, $sqlLect);
+    $foreleser = "SELECT lecturerName FROM Lecture JOIN Lecturer ON Lecture.lecturerId = Lecturer.lecturerId WHERE lectureId = '2'";
+
     //forteller hvilken lecture det er (er satt til 2 som eksempel)
     $lectureId = 2;
+
+    while ($rowLect = mysqli_fetch_assoc($resultLect)) {
+      if ($rowLect["lectureId"] == $lectureId) {
+        $lectureName = $rowLect["lectureName"];
+      }
+    }
+    
     //variabler for å ha oversikt over verdiene på lecture
     $speedScore = 0;
     $speedCount = 0;
     $difficultyScore = 0;
     $difficultyCount = 0;
     //sjekker at innholdet er der
-    if (!$result) {
+    if (!$resultFeed) {
         echo(mysqli_error($conn));
     } else {
-      if (mysqli_fetch_assoc($result) > 0) {
+      if (mysqli_fetch_assoc($resultFeed) > 0) {
         //itererer gjennom Feedback-entiteten etter lecturer med id 2 og samler speed- og difficultyverdier
-        while ($row = mysqli_fetch_assoc($result)) {
-          if ($row["lectureId"] == $lectureId) 
+        while ($row = mysqli_fetch_assoc($resultFeed)) {
+          if ($row["lectureId"] == $lectureId) {
             if (!($row["speed"] == NULL)) {
               $speedScore = $speedScore + $row["speed"];
               $speedCount = $speedCount + 1;
             } else if (!($row["difficulty"] == NULL)) {
               $difficultyScore = $difficultyScore + $row["difficulty"];
               $difficultyCount = $difficultyCount + 1;
+              }
             }
           }
         }
@@ -78,8 +90,8 @@
 	</head>  
     <body>
         <div id="info">
-            <h1>fra database: navn på forelesning/fagkode</h1>
-            <h2>fra database: dato for forelesning/eventuelt dagen i dag.</h2>
+            <h1>Emne: <?php echo ($lectureName) ?> </h1>
+            <h2>Foreleser: <?php echo ($foreleser) ?> </h2>
         </div>
         <div id="main">
             
@@ -94,13 +106,13 @@
             
             <?php 
             global $conn;
-            $sql = "SELECT * FROM CommentFB";
-            $result = mysqli_query($conn, $sql);
-            if (!$result) {
+            $sqlComm = "SELECT * FROM CommentFB";
+            $resultComm = mysqli_query($conn, $sqlComm);
+            if (!$resultComm) {
               echo(mysqli_error($conn));
             } else {
-              if (mysqli_fetch_assoc($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
+              if (mysqli_fetch_assoc($resultComm) > 0) {
+                while ($row = mysqli_fetch_assoc($resultComm)) {
                   if ($row["lectureId"] == 2) {
                     echo ($row["comment"] . "<br>");
                   }
