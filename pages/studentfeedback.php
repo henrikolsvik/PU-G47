@@ -2,8 +2,10 @@
  
 <?php
     $lectureID = $_POST['lectureToFeedback'];
+    //Using this variable to show the lecture name on the feedback site
     $lectureName = "ERROR";
     global $conn;
+    //Getting lecture name using lecture id from database
     $sql = "SELECT lectureName FROM Lecture WHERE lectureId='$lectureID'";
     $result = mysqli_query($conn, $sql);
     while($row = mysqli_fetch_assoc($result)) {
