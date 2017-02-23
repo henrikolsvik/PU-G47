@@ -10,6 +10,7 @@
         echo("Hi! " . (int)($_POST['difficultyValue']) . " is the difficulty you think the lecture has.<br>");  
         $valueToSend = (int)($_POST['difficultyValue']);
         $lectureIDToSet = ($_POST['lecID']);
+        
         //Getting the table from the DB
         global $conn;
         $sql = "INSERT INTO Feedback (speed, difficulty, time, lectureId)

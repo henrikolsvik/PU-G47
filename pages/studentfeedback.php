@@ -1,36 +1,29 @@
 <!-- Made by Henrik on 15.02.17 --> 
  
-<?php 
-$lectureID = $_POST['lectureToFeedback'];
-?>
-
+<?php $lectureID = $_POST['lectureToFeedback']; ?>
 <html>
     <head>
-
         <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script>
-
-function changeColor(){
-    color="green";
-    document.body.style.background = color;
-    setTimeout(function(){ 
-        color = "white";
-        document.body.style.background = color; 
-        }, 500);
-    return true;
-}
-
-function textEffect(){
-    document.getElementById('statusSend').innerHTML = 'Feedback Sent!';
-    document.getElementById('statusSend').style.color = 'green';
-    setTimeout(function(){ 
-        document.getElementById('statusSend').innerHTML = 'Please submit your feedback';
-        document.getElementById('statusSend').style.color = 'black';
-        }, 500);
-    return true; 
-}
-
-</script>
+        <script>
+            function changeColor(){
+                color="green";
+                document.body.style.background = color;
+                setTimeout(function(){ 
+                    color = "white";
+                    document.body.style.background = color; 
+                    }, 500);
+                return true;
+            }
+            function textEffect(){
+                document.getElementById('statusSend').innerHTML = 'Feedback Sent!';
+                document.getElementById('statusSend').style.color = 'green';
+                setTimeout(function(){ 
+                    document.getElementById('statusSend').innerHTML = 'Please submit your feedback';
+                    document.getElementById('statusSend').style.color = 'black';
+                    }, 500);
+                return true; 
+            }
+        </script>
     </head>
     <body>
         <h1 id="statusSend">Please submit your feedback</h1>
