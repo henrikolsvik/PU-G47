@@ -29,7 +29,7 @@
                 document.getElementById('statusSend').innerHTML = 'Feedback Sent!';
                 document.getElementById('statusSend').style.color = 'green';
                 setTimeout(function(){ 
-                    document.getElementById('statusSend').innerHTML = 'Please submit your feedback';
+                    document.getElementById('statusSend').innerHTML = 'Please submit your feedback for lecture: <?php echo($lectureName) ?>';
                     document.getElementById('statusSend').style.color = 'black';
                     }, 500);
                 return true; 
