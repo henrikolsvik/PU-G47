@@ -29,7 +29,7 @@
                 document.getElementById('statusSend').innerHTML = 'Feedback Sent!';
                 document.getElementById('statusSend').style.color = 'green';
                 setTimeout(function(){ 
-                    document.getElementById('statusSend').innerHTML = 'Please submit your feedback';
+                    document.getElementById('statusSend').innerHTML = 'Please submit your feedback for lecture: <?php echo($lectureName) ?>';
                     document.getElementById('statusSend').style.color = 'black';
                     }, 500);
                 return true; 
@@ -43,11 +43,11 @@
             <center>
                 <form action="index.php?page=submitDifficult" onsubmit="return changeColor()" method="POST" target="target">
                     <input type=hidden name="lecID" value=<?php echo($lectureID) ?> >
-                    <button type="submit" name="difficultyValue" value="0"><img src="img/verySlowRect.png" alt="Submit"></button>
-                    <button type="submit" name="difficultyValue" value="1"><img src="img/slowRect.png" alt="Submit"></button>
+                    <button type="submit" name="difficultyValue" value="0"><img src="img/veryEasyRect.png" alt="Submit"></button>
+                    <button type="submit" name="difficultyValue" value="1"><img src="img/easyRect.png" alt="Submit"></button>
                     <button type="submit" name="difficultyValue" value="2"><img src="img/okRect.png" alt="Submit"></button>
-                    <button type="submit" name="difficultyValue" value="3"><img src="img/fastRect.png" alt="Submit"></button>
-                    <button type="submit" name="difficultyValue" value="4"><img src="img/veryFastRect.png" alt="Submit"></button>
+                    <button type="submit" name="difficultyValue" value="3"><img src="img/hardRect.png" alt="Submit"></button>
+                    <button type="submit" name="difficultyValue" value="4"><img src="img/veryHardRect.png" alt="Submit"></button>
                 </form>
             </center>
         </div>
