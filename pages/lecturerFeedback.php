@@ -115,27 +115,28 @@
             </div>
             <div id="chart_div" style="width: 400px; height: 120px;"></div>
 
-            <div class="alert">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                Kommentarer: <br> <br>
-
-                <?php 
-                    global $conn;
-                    $sqlComm = "SELECT * FROM CommentFB";
-                    $resultComm = mysqli_query($conn, $sqlComm);
-                    if (!$resultComm) {
-                        echo(mysqli_error($conn));
-                    } else {
-                        if (mysqli_fetch_assoc($resultComm) > 0) {
-                            while ($row = mysqli_fetch_assoc($resultComm)) {
-                                if ($row["lectureId"] == $lectureId) {
-                                    echo ($row["comment"] . "<br>");
-                                }
+            Kommentarer: <br> <br>
+            <?php 
+                global $conn;
+                $sqlComm = "SELECT * FROM CommentFB";
+                $resultComm = mysqli_query($conn, $sqlComm);
+                if (!$resultComm) {
+                    echo(mysqli_error($conn));
+                } else {
+                    if (mysqli_fetch_assoc($resultComm) > 0) {
+                        while ($row = mysqli_fetch_assoc($resultComm)) {
+                            if ($row["lectureId"] == $lectureId) {
+                                $onclick = "this.parentElement.style.display='none';";
+                                echo ("<div class='alert'>
+                                    <span class='closebtn' onclick=" . $onclick . ">&times;</span> " .
+                                    $row["comment"] . "<br>"
+                                    . "</div>"
+                                );
                             }
                         }
                     }
-                ?>
-            </div>
+                }
+            ?>
         </div>
     </body>
 </html>
