@@ -5,14 +5,18 @@
         <link rel="stylesheet" type="text/css" href="../css/style.css">
     <?php 
     global $conn;
+    $lectureId = $_POST['lectureToFeedback'];
     $sqlFeed = "SELECT * FROM Feedback";
     $resultFeed = mysqli_query($conn, $sqlFeed);
     $sqlLect = "SELECT * FROM Lecture";
     $resultLect = mysqli_query($conn, $sqlLect);
-    $foreleser = "SELECT lecturerName FROM Lecture JOIN Lecturer ON Lecture.lecturerId = Lecturer.lecturerId WHERE lectureId = '2'";
-
-    //forteller hvilken lecture det er (er satt til 2 som eksempel)
-    $lectureId = 2;
+    $sqlForeleser = "SELECT lecturerName, lecture.lecturerId, lecture.lectureId FROM lecture JOIN lecturer ON lecture.lecturerId = lecturer.lecturerId WHERE lectureId = '$lectureId'";
+    //$sqlForeleser = "SELECT lecturerName FROM Lecture JOIN Lecturer ON Lecture.lecturerId = Lecturer.lecturerId WHERE lectureId = echo$lectureId'";
+    $resultForeleser = mysqli_query($conn, $sqlForeleser);
+    
+    while($rowForeleser = mysqli_fetch_assoc($resultForeleser)){
+      $foreleser = $rowForeleser["lecturerName"];
+    }
 
     while ($rowLect = mysqli_fetch_assoc($resultLect)) {
       if ($rowLect["lectureId"] == $lectureId) {
@@ -21,10 +25,10 @@
     }
     
     //variabler for å ha oversikt over verdiene på lecture
-    $speedScore = 0;
-    $speedCount = 0;
-    $difficultyScore = 0;
-    $difficultyCount = 0;
+    $speedScore = 2;
+    $speedCount = 1;
+    $difficultyScore = 2;
+    $difficultyCount = 1;
     //sjekker at innholdet er der
     if (!$resultFeed) {
         echo(mysqli_error($conn));
@@ -36,9 +40,21 @@
             if (!($row["speed"] == NULL)) {
               $speedScore = $speedScore + $row["speed"];
               $speedCount = $speedCount + 1;
-            } else if (!($row["difficulty"] == NULL)) {
-              $difficultyScore = $difficultyScore + $row["difficulty"];
-              $difficultyCount = $difficultyCount + 1;
+              }
+            }
+          }
+        }
+      }
+    $resultFeed = mysqli_query($conn, $sqlFeed);
+    if (!$resultFeed) {
+        echo(mysqli_error($conn));
+    } else {
+      if (mysqli_fetch_assoc($resultFeed) > 0) {
+        while ($row = mysqli_fetch_assoc($resultFeed)) {
+        if ($row["lectureId"] == $lectureId) {
+          if (!($row["difficulty"] == NULL)) {
+            $difficultyScore = $difficultyScore + $row["difficulty"];
+            $difficultyCount = $difficultyCount + 1;
               }
             }
           }
@@ -46,6 +62,7 @@
         //regner ut gjennomsnittsscorene
         $speedScore = $speedScore / $speedCount;
         $difficultyScore = $difficultyScore / $difficultyCount;
+
     }
     ?>
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -81,7 +98,7 @@
           chart.draw(data, options);
         }, 100);
         setInterval(function() {
-          data.setValue(1, 1, 50);
+          data.setValue(1, 1, vanskelig);
           chart.draw(data, options);
         }, 100);
       }
@@ -113,7 +130,7 @@
             } else {
               if (mysqli_fetch_assoc($resultComm) > 0) {
                 while ($row = mysqli_fetch_assoc($resultComm)) {
-                  if ($row["lectureId"] == 2) {
+                  if ($row["lectureId"] == $lectureId) {
                     echo ($row["comment"] . "<br>");
                   }
                 }
