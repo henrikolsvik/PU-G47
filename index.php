@@ -17,6 +17,6 @@
     }
     //If we do not know the page send to main page
     else {
-        include("pages/lectureSet.php");
+        include("pages/mainPage.php");
     }
 ?>
