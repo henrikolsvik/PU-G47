@@ -67,9 +67,17 @@
     ?>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
+
+        var fart;
+        var vanskelig;
+
         google.charts.load('current', {'packages':['gauge']});
         google.charts.setOnLoadCallback(drawChart);
+
+        //Function for å oppdatere metere
         function drawChart() {
+
+            //Grafikk og verdi beskrivelser
             var data = google.visualization.arrayToDataTable([
                 ['Label', 'Value'],
                 ['Fart', 10],
@@ -83,14 +91,17 @@
                 greenFrom:33, greenTo: 66,
                 minorTicks: 2
             };
-
+            
             var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
 
-            var fart = ( <?php echo( $speedScore ) ?> /4)*100; //regner ut verdien til farten
-            var vanskelig = (<?php echo( $difficultyScore ) ?> /4)*100; //regner ut verdien til vanskelighetsgraden
+            //Oppsett av verdier
+            fart = ( <?php echo( $speedScore ) ?> /4)*100; //regner ut verdien til farten
+            vanskelig = (<?php echo( $difficultyScore ) ?> /4)*100; //regner ut verdien til vanskelighetsgraden
+            
 
             chart.draw(data, options);
 
+            //Regelmessig oppdatering av metere
             setInterval(function() {
                 data.setValue(0, 1, fart);
                 chart.draw(data, options);
@@ -100,10 +111,51 @@
                 chart.draw(data, options);
             }, 100);
         }
+
+        //Oppdaterer verdiene som meterene settes til
+        function updateMeterValues(meterValues){
+
+            var fartNum = (parseInt(meterValues[1]) + 2);
+            var hardNum = (parseInt(meterValues[3]) + 2);
+            var fartCount = (parseInt(meterValues[2]) + 1 );
+            var hardCount = (parseInt(meterValues[4]) + 1 );
+            
+            fart = ((fartNum / fartCount)/4)*100; 
+            vanskelig = ((hardNum / hardCount)/4)*100;
+
+        }
+
+        //Function to update the difficulty and speed meters
+        function updatesMeters(){
+            //Obtaining Lecture ID to pass on
+            var lectureID = "<?php echo $lectureId ?>";
+            //Ajax magic (set connection to script and run)
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            var data = "lectureID=" + lectureID;
+            xhttp.open("POST", "index.php?page=updateLecturerRatings", true);
+            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhttp.send(data);
+            xhttp.onreadystatechange = function(){
+                if (xhttp.readyState == 4) {  
+                    if (xhttp.status == 200) { 
+                        //String pharsing using € as divider to exclude unneeded headers
+                        var meterValues = xhttp.responseText.split("€");
+                        updateMeterValues(meterValues);
+                    } else {  
+                    alert('There was a problem with the request.');  
+                    }  
+                }
+            }
+        }
+        
+
+        window.setInterval(function(){updatesMeters();}, 5000);
+    
     </script>
     <title>Actifeed</title>
     </head>  
-    <body>
+    <body> 
         <div id="info">
             <h1>Emne: <?php echo ($lectureName) ?> </h1>
             <h2>Foreleser: <?php echo ($foreleser) ?> </h2>
