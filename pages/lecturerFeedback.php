@@ -117,6 +117,7 @@
 
             Kommentarer: <br> <br>
             <?php 
+                //Connecting to the database and getting the comments
                 global $conn;
                 $sqlComm = "SELECT * FROM CommentFB";
                 $resultComm = mysqli_query($conn, $sqlComm);
@@ -126,6 +127,7 @@
                     if (mysqli_fetch_assoc($resultComm) > 0) {
                         while ($row = mysqli_fetch_assoc($resultComm)) {
                             if ($row["lectureId"] == $lectureId) {
+                                //Printing out the comments in separate alert divs
                                 $onclick = "this.parentElement.style.display='none';";
                                 echo ("<div class='alert'>
                                     <span class='closebtn' onclick=" . $onclick . ">&times;</span> " .
