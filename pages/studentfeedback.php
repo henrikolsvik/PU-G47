@@ -27,11 +27,12 @@
             }
             function textEffect(){
                 document.getElementById('statusSend').innerHTML = 'Feedback Sent!';
-                document.getElementById('statusSend').style.color = 'green';
+                document.getElementById('statusSend').style.color = 'black';
                 setTimeout(function(){ 
                     document.getElementById('statusSend').innerHTML = 'Please submit your feedback for lecture: <?php echo($lectureName) ?>';
                     document.getElementById('statusSend').style.color = 'black';
                     }, 500);
+                changeColor();
                 return true; 
             }
         </script>
@@ -69,7 +70,7 @@
             <div id="divTextFieldAndButton">
                 <form action="index.php?page=submitText" method="POST" target="target" onSubmit="return textEffect()">
                     <input type=hidden name="lecID" value=<?php echo($lectureID) ?>>
-                    <textarea id="commmentField" name="textFeedback" rows="3" cols="30">The cat was memeing in the car.</textarea><br><br>
+                    <textarea id="commmentField" name="textFeedback" rows="3" cols="30">Comment here</textarea><br><br>
                     <input type="submit" value="Submit">
                 </form>
             </div>
