@@ -32,7 +32,6 @@
                     document.getElementById('statusSend').innerHTML = 'Please submit your feedback for lecture: <?php echo($lectureName) ?>';
                     document.getElementById('statusSend').style.color = 'black';
                     }, 500);
-                document.getElementById('commmentField').value= "";
                 changeColor();
                 return true; 
             }
