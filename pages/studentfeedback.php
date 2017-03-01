@@ -11,7 +11,7 @@
     while($row = mysqli_fetch_assoc($result)) {
         $lectureName = $row["lectureName"];
     }
-    include("response.php");
+    include("studentFeedbackResponse.php");
 ?>
 <html>
     <head>
