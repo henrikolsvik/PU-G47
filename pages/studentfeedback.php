@@ -11,6 +11,7 @@
     while($row = mysqli_fetch_assoc($result)) {
         $lectureName = $row["lectureName"];
     }
+    include("studentFeedbackResponse.php");
 ?>
 <html>
     <head>
@@ -130,7 +131,7 @@
             <div id="divTextFieldAndButton">
                 <form id="comment" action="index.php?page=submitText" method="POST" target="target" onSubmit="return textEffect(this)">
                     <input type=hidden name="lecID" value=<?php echo($lectureID) ?>>
-                    <textarea id="commmentField" name="textFeedback" rows="3" cols="30">The cat was memeing in the car.</textarea><br><br>
+                    <textarea id="commmentField" name="textFeedback" rows="3" cols="30">Comment here</textarea><br><br>
                     <input type="submit" value="Submit">
                 </form>
             </div>
