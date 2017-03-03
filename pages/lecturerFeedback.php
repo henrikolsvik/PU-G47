@@ -31,7 +31,6 @@
         var fart;
         var vanskelig;
 
-        
         google.charts.load('current', {'packages':['gauge']});
         google.charts.setOnLoadCallback(drawChart);
 
@@ -60,7 +59,6 @@
             //Oppsett av verdier
             //fart = ( <?php echo( $speedScore ) ?> /4)*100; //regner ut verdien til farten
             //vanskelig = (<?php echo( $difficultyScore ) ?> /4)*100; //regner ut verdien til vanskelighetsgraden
-            
 
             chart.draw(data, options);
 
@@ -112,9 +110,9 @@
                 }
             }
         }
-        
-        window.setInterval(function(){updatesMeters();}, 5000);
 
+        window.setInterval(function(){updatesMeters();}, 5000);
+    
     </script>
     <title>Actifeed</title>
     </head>  

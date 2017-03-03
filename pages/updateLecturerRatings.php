@@ -8,7 +8,7 @@
     
     $sqlFeed = "SELECT * FROM Feedback";
     $resultFeed = mysqli_query($conn, $sqlFeed);
-    
+
     //Valid Time Period
     $minutesToInclude = 10;
 
@@ -48,7 +48,7 @@
                             $weight = ((60*$minutesToInclude - ($currentTime - $thisTime))/(60*$minutesToInclude));
                             $difficultyScore = $difficultyScore + ($row["difficulty"]*$weight);
                             $difficultyCount = $difficultyCount + (1*$weight);
-                        }   
+                        } 
                     }
                 }
             }
