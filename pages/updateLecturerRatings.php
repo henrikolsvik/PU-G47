@@ -8,27 +8,21 @@
     
     $sqlFeed = "SELECT * FROM Feedback";
     $resultFeed = mysqli_query($conn, $sqlFeed);
+
+    //Valid Time Period
+    $minutesToInclude = 10;
+
+    //Time stamps for comparison
+    $timeToCheck = date("U") + 60*60;
+    $timeToCheck = $timeToCheck - 60*$minutesToInclude;
+    $currentTime = date("U") + 60*60;
     
-    
-    //Getting results from individual row, ignoring empty ones and adding together valid ones
-    if (!$resultFeed) {
-        echo(mysqli_error($conn));
-    } else {
-        if (mysqli_fetch_assoc($resultFeed) > 0) {
-            while ($row = mysqli_fetch_assoc($resultFeed)) {
-                if ($row["lectureId"] == $lectureId) {
-                    if (!($row["speed"] == NULL)) {
-                        $speedScore = $speedScore + $row["speed"];
-                        $speedCount = $speedCount + 1;
-                        }
-                    }
-                }
-            }
-        }
-    
-    //Reset resultFeed (is emptied during mysqli_fetch_assoc)
-    $sqlFeed = "SELECT * FROM Feedback";
-    $resultFeed = mysqli_query($conn, $sqlFeed);
+
+    //Variable declaration speed and difficulty
+    $speedScore = 0;
+    $speedCount = 0;
+    $difficultyScore = 0;
+    $difficultyCount = 0;
 
     //Getting results from individual row, ignoring empty ones and adding together valid ones
     if (!$resultFeed) {
@@ -37,15 +31,30 @@
         if (mysqli_fetch_assoc($resultFeed) > 0) {
             while ($row = mysqli_fetch_assoc($resultFeed)) {
                 if ($row["lectureId"] == $lectureId) {
-                    if (!($row["difficulty"] == NULL)) {
-                        $difficultyScore = $difficultyScore + $row["difficulty"];
-                        $difficultyCount = $difficultyCount + 1;
+                    //Fetches values and treats them
+                    if (!($row["speed"] == NULL)) {
+                        $thisTime = strtotime($row["time"]);
+                        if($thisTime > $timeToCheck){
+                            //Gives percentage weighting based on timeperiod
+                            $weight = ((60*$minutesToInclude - ($currentTime - $thisTime))/(60*$minutesToInclude));
+                            $speedScore = $speedScore + ($row["speed"]*$weight);
+                            $speedCount = $speedCount + 1*$weight;
+                            }
+                        }
+                     else if (!($row["difficulty"] == NULL)) {
+                        $thisTime = strtotime($row["time"]);
+                        if($thisTime > $timeToCheck){
+                            //Gives percentage weighting based on timeperiod
+                            $weight = ((60*$minutesToInclude - ($currentTime - $thisTime))/(60*$minutesToInclude));
+                            $difficultyScore = $difficultyScore + ($row["difficulty"]*$weight);
+                            $difficultyCount = $difficultyCount + (1*$weight);
+                        } 
                     }
                 }
             }
         }
     }
-
+    
     //Sending relevant variables through ajax.
     echo "€".$speedScore;
     echo "€".$speedCount;
