@@ -85,8 +85,8 @@
             //Grafikk og verdi beskrivelser
             var data = google.visualization.arrayToDataTable([
                 ['Label', 'Value'],
-                ['Fart', 10],
-                ['Vanskelighetsgrad', 10]
+                ['Fart', 50],
+                ['Vanskelighetsgrad', 50]
             ]);
 
             var options = {
@@ -99,10 +99,11 @@
             
             var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
 
+            updatesMeters();
+
             //Oppsett av verdier
-            fart = ( <?php echo( $speedScore ) ?> /4)*100; //regner ut verdien til farten
-            vanskelig = (<?php echo( $difficultyScore ) ?> /4)*100; //regner ut verdien til vanskelighetsgraden
-            
+            //fart = ( <?php echo( $speedScore ) ?> /4)*100; //regner ut verdien til farten
+            //vanskelig = (<?php echo( $difficultyScore ) ?> /4)*100; //regner ut verdien til vanskelighetsgraden
 
             chart.draw(data, options);
 
@@ -110,20 +111,20 @@
             setInterval(function() {
                 data.setValue(0, 1, fart);
                 chart.draw(data, options);
-            }, 100);
+            }, 1000);
             setInterval(function() {
                 data.setValue(1, 1, vanskelig);
                 chart.draw(data, options);
-            }, 100);
+            }, 1000);
         }
 
         //Oppdaterer verdiene som meterene settes til
         function updateMeterValues(meterValues){
 
-            var fartNum = (parseInt(meterValues[1]) + 2);
-            var hardNum = (parseInt(meterValues[3]) + 2);
-            var fartCount = (parseInt(meterValues[2]) + 1 );
-            var hardCount = (parseInt(meterValues[4]) + 1 );
+            var fartNum = (parseFloat(meterValues[1]) + 2);
+            var hardNum = (parseFloat(meterValues[3]) + 2);
+            var fartCount = (parseFloat(meterValues[2]) + 1 );
+            var hardCount = (parseFloat(meterValues[4]) + 1 );
             
             fart = ((fartNum / fartCount)/4)*100; 
             vanskelig = ((hardNum / hardCount)/4)*100;
@@ -146,6 +147,7 @@
                     if (xhttp.status == 200) { 
                         //String pharsing using € as divider to exclude unneeded headers
                         var meterValues = xhttp.responseText.split("€");
+                        //alert(xhttp.responseText);
                         updateMeterValues(meterValues);
                     } else {
                         alert('There was a problem with the request.');  
