@@ -64,12 +64,17 @@
             $speedScore = $speedScore / $speedCount;
             $difficultyScore = $difficultyScore / $difficultyCount;
         }
+
+        //keep track of latest comment
+        $oldComment = "";
     ?>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
 
         var fart;
         var vanskelig;
+        //keep track of latest comment
+        var oldComment;
 
         google.charts.load('current', {'packages':['gauge']});
         google.charts.setOnLoadCallback(drawChart);
@@ -142,15 +147,53 @@
                         //String pharsing using € as divider to exclude unneeded headers
                         var meterValues = xhttp.responseText.split("€");
                         updateMeterValues(meterValues);
-                    } else {  
-                    alert('There was a problem with the request.');  
+                    } else {
+                        alert('There was a problem with the request.');  
                     }  
                 }
             }
         }
-        
-
         window.setInterval(function(){updatesMeters();}, 5000);
+
+        //Function to add the latest comment in commentField if it does not exist
+        function updateCommentfield(comment) {
+            var comments = comment[1];
+            //Choosing the right div
+            var div = document.getElementById('commentField');
+            //Check if comment already exist. This will not allow you to spam the same comment over and over again, itzz a verry naice ;)
+            var subString = comments.substring(comments.lastIndexOf("</span>")+8,comments.lastIndexOf("<br>"));
+            if (subString != oldComment) {
+                div.innerHTML = div.innerHTML + comments;
+                oldComment = subString;
+            }
+        }
+
+        //Function to update the comments
+        function checkComments(){
+            //Obtaining Lecture ID to pass on
+            var lectureID = "<?php echo $lectureId ?>";
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            var data = "lectureID=" + lectureID;
+            xhttp.open("POST", "index.php?page=updateLecturerComments", true);
+            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhttp.send(data);
+            xhttp.onreadystatechange = function(){
+                if (xhttp.readyState == 4) {  
+                    if (xhttp.status == 200) { 
+                        //String pharsing using € as divider to exclude unneeded headers
+                        var comments = xhttp.responseText.split("€");
+                        //Updating comment field
+                        updateCommentfield(comments);
+                    } else {  
+                        //Commented this away. This will show up everytime because of the comment refresh speed  
+                        //alert('There was a problem with the request.');  
+                    }  
+                }
+            }
+        }
+        //Updates very fast, it's called LIVE COMMENTING
+        window.setInterval(function(){checkComments();}, 10);
     
     </script>
     <title>Actifeed</title>
@@ -168,29 +211,35 @@
             <div id="chart_div" style="width: 400px; height: 120px;"></div>
 
             Kommentarer: <br> <br>
-            <?php 
-                //Connecting to the database and getting the comments
-                global $conn;
-                $sqlComm = "SELECT * FROM CommentFB";
-                $resultComm = mysqli_query($conn, $sqlComm);
-                if (!$resultComm) {
-                    echo(mysqli_error($conn));
-                } else {
-                    if (mysqli_fetch_assoc($resultComm) > 0) {
-                        while ($row = mysqli_fetch_assoc($resultComm)) {
-                            if ($row["lectureId"] == $lectureId) {
-                                //Printing out the comments in separate alert divs
-                                $onclick = "this.parentElement.style.display='none';";
-                                echo ("<div class='alert'>
-                                    <span class='closebtn' onclick=" . $onclick . ">&times;</span> " .
-                                    $row["comment"] . "<br>"
-                                    . "</div>"
-                                );
+            <div id="commentField">
+                <?php 
+                    //Connecting to the database and getting the comments
+                    global $conn;
+                    $sqlComm = "SELECT * FROM CommentFB";
+                    $resultComm = mysqli_query($conn, $sqlComm);
+                    if (!$resultComm) {
+                        echo(mysqli_error($conn));
+                    } else {
+                        if (mysqli_fetch_assoc($resultComm) > 0) {
+                            while ($row = mysqli_fetch_assoc($resultComm)) {
+                                if ($row["lectureId"] == $lectureId) {
+                                    //Printing out the comments in separate alert divs
+                                    $onclick = "this.parentElement.style.display='none';";
+                                    echo ("<div class='alert'>
+                                        <span class='closebtn' onclick=" . $onclick . ">&times;</span> " .
+                                        $row["comment"] . "<br>"
+                                        . "</div>"
+                                    );
+                                    //Saving latest comment
+                                    $oldComment = $row["comment"];
+                                }
                             }
                         }
                     }
-                }
-            ?>
+                ?>
+                <!-- Transfers the latest comment from PHP to JavaScript -->
+                <script> oldComment = "<?php echo($oldComment) ?>" </script>
+            </div>
         </div>
     </body>
 </html>
