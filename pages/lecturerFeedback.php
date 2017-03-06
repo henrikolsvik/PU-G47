@@ -15,7 +15,7 @@
         //$sqlForeleser = "SELECT lecturerName FROM Lecture JOIN Lecturer ON Lecture.lecturerId = Lecturer.lecturerId WHERE lectureId = echo$lectureId'";
         $resultForeleser = mysqli_query($conn, $sqlForeleser);
 
-        while($rowForeleser = mysqli_fetch_assoc($resultForeleser)){
+        while($rowForeleser = mysqli_fetch_assoc($resultForeleser)) {
             $foreleser = $rowForeleser["lecturerName"];
         }
 
@@ -37,7 +37,7 @@
             if (mysqli_fetch_assoc($resultFeed) > 0) {
                 //itererer gjennom Feedback-entiteten etter lecturer med id 2 og samler speed- og difficultyverdier
                 while ($row = mysqli_fetch_assoc($resultFeed)) {
-                if ($row["lectureId"] == $lectureId) {
+                    if ($row["lectureId"] == $lectureId) {
                         if (!($row["speed"] == NULL)) {
                             $speedScore = $speedScore + $row["speed"];
                             $speedCount = $speedCount + 1;
@@ -119,7 +119,7 @@
         }
 
         //Oppdaterer verdiene som meterene settes til
-        function updateMeterValues(meterValues){
+        function updateMeterValues(meterValues) {
 
             var fartNum = (parseFloat(meterValues[1]) + 2);
             var hardNum = (parseFloat(meterValues[3]) + 2);
@@ -132,7 +132,7 @@
         }
 
         //Function to update the difficulty and speed meters
-        function updatesMeters(){
+        function updatesMeters() {
             //Obtaining Lecture ID to pass on
             var lectureID = "<?php echo $lectureId ?>";
             //Ajax magic (set connection to script and run)
@@ -171,7 +171,7 @@
         }
 
         //Function to update the comments
-        function checkComments(){
+        function checkComments() {
             //Obtaining Lecture ID to pass on
             var lectureID = "<?php echo $lectureId ?>";
             var xhttp;
