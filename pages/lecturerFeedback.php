@@ -193,7 +193,7 @@
             }
         }
         //Updates very fast, it's called LIVE COMMENTING
-        window.setInterval(function(){checkComments();}, 10);
+        window.setInterval(function(){checkComments();}, 100);
     
     </script>
     <title>Actifeed</title>
