@@ -15,7 +15,7 @@
         //$sqlForeleser = "SELECT lecturerName FROM Lecture JOIN Lecturer ON Lecture.lecturerId = Lecturer.lecturerId WHERE lectureId = echo$lectureId'";
         $resultForeleser = mysqli_query($conn, $sqlForeleser);
 
-        while($rowForeleser = mysqli_fetch_assoc($resultForeleser)){
+        while($rowForeleser = mysqli_fetch_assoc($resultForeleser)) {
             $foreleser = $rowForeleser["lecturerName"];
         }
 
@@ -37,7 +37,7 @@
             if (mysqli_fetch_assoc($resultFeed) > 0) {
                 //itererer gjennom Feedback-entiteten etter lecturer med id 2 og samler speed- og difficultyverdier
                 while ($row = mysqli_fetch_assoc($resultFeed)) {
-                if ($row["lectureId"] == $lectureId) {
+                    if ($row["lectureId"] == $lectureId) {
                         if (!($row["speed"] == NULL)) {
                             $speedScore = $speedScore + $row["speed"];
                             $speedCount = $speedCount + 1;
@@ -85,8 +85,8 @@
             //Grafikk og verdi beskrivelser
             var data = google.visualization.arrayToDataTable([
                 ['Label', 'Value'],
-                ['Fart', 10],
-                ['Vanskelighetsgrad', 10]
+                ['Fart', 50],
+                ['Vanskelighetsgrad', 50]
             ]);
 
             var options = {
@@ -99,10 +99,11 @@
             
             var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
 
+            updatesMeters();
+
             //Oppsett av verdier
-            fart = ( <?php echo( $speedScore ) ?> /4)*100; //regner ut verdien til farten
-            vanskelig = (<?php echo( $difficultyScore ) ?> /4)*100; //regner ut verdien til vanskelighetsgraden
-            
+            //fart = ( <?php echo( $speedScore ) ?> /4)*100; //regner ut verdien til farten
+            //vanskelig = (<?php echo( $difficultyScore ) ?> /4)*100; //regner ut verdien til vanskelighetsgraden
 
             chart.draw(data, options);
 
@@ -110,20 +111,20 @@
             setInterval(function() {
                 data.setValue(0, 1, fart);
                 chart.draw(data, options);
-            }, 100);
+            }, 1000);
             setInterval(function() {
                 data.setValue(1, 1, vanskelig);
                 chart.draw(data, options);
-            }, 100);
+            }, 1000);
         }
 
         //Oppdaterer verdiene som meterene settes til
-        function updateMeterValues(meterValues){
+        function updateMeterValues(meterValues) {
 
-            var fartNum = (parseInt(meterValues[1]) + 2);
-            var hardNum = (parseInt(meterValues[3]) + 2);
-            var fartCount = (parseInt(meterValues[2]) + 1 );
-            var hardCount = (parseInt(meterValues[4]) + 1 );
+            var fartNum = (parseFloat(meterValues[1]) + 2);
+            var hardNum = (parseFloat(meterValues[3]) + 2);
+            var fartCount = (parseFloat(meterValues[2]) + 1 );
+            var hardCount = (parseFloat(meterValues[4]) + 1 );
             
             fart = ((fartNum / fartCount)/4)*100; 
             vanskelig = ((hardNum / hardCount)/4)*100;
@@ -131,7 +132,7 @@
         }
 
         //Function to update the difficulty and speed meters
-        function updatesMeters(){
+        function updatesMeters() {
             //Obtaining Lecture ID to pass on
             var lectureID = "<?php echo $lectureId ?>";
             //Ajax magic (set connection to script and run)
@@ -146,6 +147,7 @@
                     if (xhttp.status == 200) { 
                         //String pharsing using € as divider to exclude unneeded headers
                         var meterValues = xhttp.responseText.split("€");
+                        //alert(xhttp.responseText);
                         updateMeterValues(meterValues);
                     } else {
                         alert('There was a problem with the request.');  
@@ -169,7 +171,7 @@
         }
 
         //Function to update the comments
-        function checkComments(){
+        function checkComments() {
             //Obtaining Lecture ID to pass on
             var lectureID = "<?php echo $lectureId ?>";
             var xhttp;
