@@ -15,7 +15,7 @@
 ?>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
         <script>
             
             //Controls how many seconds may pass between each type of feedback
