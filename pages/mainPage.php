@@ -58,13 +58,17 @@
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
     </head>
     <body>
+        <div id="logo">
+            <img src="img/ActiFeedback.svg">
+        </div>
         <center>
             <form id="formToValid" action="" onsubmit="return checkNull()" method="POST">
-                <input id="selectLectureID" type="number" name="lectureToFeedback" value="" style="width: 5em; max=5; height:1em; font-size:128px; margin-top:calc(17%);"/>
-                </br>
-                </br>
-                <input id="studentButton" type="submit" onclick="return setGotoStudent(this)" name="studentIS" value="student"/>
-                <input id="lecturerButton" type="submit" onclick="return setGotoLecturer(this)" name="lecturerIS" value="lecturer"/>
+                <div id="form"> 
+                    <input id="selectLectureID" type="number" name="lectureToFeedback" value=""> 
+                    </br> 
+                    <input class="submitButton" type="submit" onclick="return setGotoStudent(this)" name="studentIS" value="ENTER"> 
+                </div> 
+                <input id="lecturerButton" type="submit" onclick="return setGotoLecturer(this)" name="lecturerIS" value="LOG IN"> 
             </form>
         </center>
     </body>
