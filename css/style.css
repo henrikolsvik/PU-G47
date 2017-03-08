@@ -17,6 +17,7 @@ body {
     margin: auto;
     margin-top: 100px;
 }
+
 /* logo in div */
 #logo img {
     display: block;
@@ -32,7 +33,7 @@ body {
    margin-top: calc(5%);
 }
 
-/* enter studentside knapp */
+/* Enter button */
 #studentButton {
     font-size: 30px;
     height: 2em;
