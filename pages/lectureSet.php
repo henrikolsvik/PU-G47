@@ -72,7 +72,7 @@ function setGotoLecturer(){
                 <div id="form">
                     <input id="selectLectureID" type="number" name="lectureToFeedback" value="">
                     </br>
-                    <input id="studentButton" type="submit" onclick="return setGotoStudent(this)" name="studentIS" value="ENTER">
+                    <input class="submitButton" type="submit" onclick="return setGotoStudent(this)" name="studentIS" value="ENTER">
                 </div>
                 <input id="lecturerButton" type="submit" onclick="return setGotoLecturer(this)" name="lecturerIS" value="LOG IN">
             </form>
