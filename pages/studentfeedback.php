@@ -135,7 +135,7 @@
                 <form id="comment" action="index.php?page=submitText" method="POST" target="target" onSubmit="return textEffect(this)">
                     <input type=hidden name="lecID" value=<?php echo($lectureID) ?>> 
                     <center>
-                    <input id="commentField" type="text" name="textFeedback" placeholder="Comment..."><br>
+                    <input class="commentField" type="text" name="textFeedback" placeholder="Comment..."><br>
                     <input class="aButton" type="submit" value="SEND COMMENT">
                     </center>
                 </form>
