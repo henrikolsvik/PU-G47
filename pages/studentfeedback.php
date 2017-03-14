@@ -136,7 +136,7 @@
                     <input type=hidden name="lecID" value=<?php echo($lectureID) ?>> 
                     <center>
                     <input id="commentField" type="text" name="textFeedback" placeholder="Comment..."><br>
-                    <input class="aButton" type="submit" value="SEND COMMENT" style="float: right">
+                    <input class="aButton" type="submit" value="SEND COMMENT">
                     </center>
                 </form>
             </div>
