@@ -14,6 +14,7 @@ div.logo {
     text-align: center;
 }
 
+/** Tabs start **/
 div.main {
     margin: auto;
     text-align: center;
@@ -64,6 +65,7 @@ div.tab button:active {
     from {opacity: 0;}
     to {opacity: 1;}
 }
+/** Tabs end **/
 
 .aButton {
     margin: auto;
