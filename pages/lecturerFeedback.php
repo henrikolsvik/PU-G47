@@ -211,7 +211,8 @@
                 <div id="chart_div" style="width: 400px; height: 120px;"></div>
             </div>
             <div id="chart_div" style="width: 400px; height: 120px;"></div>
-
+            
+            <center>
             Kommentarer: <br> <br>
             <div id="commentField">
                 <?php 
@@ -242,6 +243,7 @@
                 <!-- Transfers the latest comment from PHP to JavaScript -->
                 <script> oldComment = "<?php echo($oldComment) ?>" </script>
             </div>
+            </center>
         </div>
     </body>
 </html>
