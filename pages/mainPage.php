@@ -1,5 +1,4 @@
 <!-- Made by Henrik on 22.02.17 --> 
-<!-- <input type="submit" name="update" value=" Apply " style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;" hidefocus="true" tabindex="-1"/> -->
 
 <?php
     //getting valid lectureIDs from database
