@@ -98,41 +98,44 @@
             }
         </script>
     </head>
-    <body>
-        <h1 id="statusSend">Please submit your feedback for lecture: <?php echo($lectureName) ?></h1>
-            <div id="divDifficulty" >
-            <h1>How difficult do you feel the lecture is right now?</h1>
+    <body> 
+        <div id="logo">  
+            <img src="img/ActiFeedBack.svg"> 
+        </div> 
+        <h1 id="statusSend">Lecture: <?php echo($lectureName) ?></h1> 
+            <div class="divQuestion" > 
+            <h2>HOW DIFFICULT IS THE LECTURE NOW?</h2> 
             <center>
                 <form id="difficulty" action="index.php?page=submitDifficult" onsubmit="return changeColor(this)" method="POST" target="target">
-                    <input type=hidden name="lecID" value=<?php echo($lectureID) ?> >
-                    <button type="submit" name="difficultyValue" value="0"><img src="img/veryEasyRect.png" alt="Submit"></button>
-                    <button type="submit" name="difficultyValue" value="1"><img src="img/easyRect.png" alt="Submit"></button>
-                    <button type="submit" name="difficultyValue" value="2"><img src="img/okRect.png" alt="Submit"></button>
-                    <button type="submit" name="difficultyValue" value="3"><img src="img/hardRect.png" alt="Submit"></button>
-                    <button type="submit" name="difficultyValue" value="4"><img src="img/veryHardRect.png" alt="Submit"></button>
+                    <input type=hidden name="lecID" value=<?php echo($lectureID) ?> > 
+                    <input class="rateButton" type="submit" name="difficultyValue" value="0">  
+                    <input class="rateButton" type="submit" name="difficultyValue" value="1"> 
+                    <input class="rateButton" type="submit" name="difficultyValue" value="2"> 
+                    <input class="rateButton" type="submit" name="difficultyValue" value="3"> 
+                    <input class="rateButton" type="submit" name="difficultyValue" value="4"> 
                 </form>
             </center>
         </div>
-        <div id="divSpeed">
-            <h1>How fast do you feel the lecture is progressing right now?</h1>
+        <div class="divQuestion">  
+            <h2>HOW FAST IS THE LECTURE PROGRESSING?</h2> 
             <center>
                 <form id="speed" action="index.php?page=submitSpeed" method="POST" target="target" onSubmit="return changeColor(this)">
-                    <input type=hidden name="lecID" value=<?php echo($lectureID) ?> >
-                    <button type="submit" name="speedValue" value="0"><img src="img/verySlowRect.png" alt="Submit"></button>
-                    <button type="submit" name="speedValue" value="1"><img src="img/slowRect.png" alt="Submit"></button>
-                    <button type="submit" name="speedValue" value="2"><img src="img/okRect.png" alt="Submit"></button>
-                    <button type="submit" name="speedValue" value="3"><img src="img/fastRect.png" alt="Submit"></button>
-                    <button type="submit" name="speedValue" value="4"><img src="img/veryFastRect.png" alt="Submit"></button>
+                    <input type=hidden name="lecID" value=<?php echo($lectureID) ?> >    
+                    <input class="rateButton" type="submit" name="speedValue" value="0"> 
+                    <input class="rateButton" type="submit" name="speedValue" value="1"> 
+                    <input class="rateButton" type="submit" name="speedValue" value="2"> 
+                    <input class="rateButton" type="submit" name="speedValue" value="3"> 
+                    <input class="rateButton"type="submit" name="speedValue" value="4"> 
                 </form>
             </center>
         </div>
-        <div id="divComment">
-            <h1>Do you have any comments or questions?</h1>
-            <div id="divTextFieldAndButton">
+        <div class="divQuestion"> 
+            <h2>DO YOU HAVE ANY COMMENTS?</h2> 
+            <div id="divComment"> 
                 <form id="comment" action="index.php?page=submitText" method="POST" target="target" onSubmit="return textEffect(this)">
-                    <input type=hidden name="lecID" value=<?php echo($lectureID) ?>>
-                    <textarea id="commmentField" name="textFeedback" rows="3" cols="30">Comment here</textarea><br><br>
-                    <input type="submit" value="Submit">
+                    <input type=hidden name="lecID" value=<?php echo($lectureID) ?>> 
+                    <input id="commentField" type="text" name="textFeedback" placeholder="Insert comment here"><br> 
+                    <input class="submitButton" type="submit" value="SUBMIT"> 
                 </form>
             </div>
         </div>
