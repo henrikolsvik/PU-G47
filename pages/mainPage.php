@@ -56,20 +56,57 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <script type="text/javascript" src="js/tabController.js"></script>
     </head>
     <body>
-        <div id="logo">
+        <div class="logo">
             <img src="img/ActiFeedback.svg">
         </div>
-        <center>
-            <form id="formToValid" action="" onsubmit="return checkNull()" method="POST">
-                <div id="form"> 
-                    <input id="selectLectureID" type="number" name="lectureToFeedback" value=""> 
-                    </br> 
-                    <input class="submitButton" type="submit" onclick="return setGotoStudent(this)" name="studentIS" value="ENTER"> 
-                </div> 
-                <input id="lecturerButton" type="submit" onclick="return setGotoLecturer(this)" name="lecturerIS" value="LOG IN"> 
-            </form>
-        </center>
+        <div class="main">
+            <center>
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'Student')" id="defaultOpen"><img src="img/student_icon.png" height="60px" width="50px"/></button>
+                <button class="tablinks" onclick="openTab(event, 'Lecturer')"><img src="img/lecturer_icon.png" height="60px" width="60px"/></button>
+                <button class="tablinks" onclick="openTab(event, 'Faculty admin')"><img src="img/admin_icon.png" height="60px" width="50px"/></button>
+            </div>
+            </center>
+            <center>
+                <div id="Student" class="tabcontent">
+                    <form id="formToValid" action="" onsubmit="return checkNull()" method="POST">
+                        <div id="formStudent"> 
+                            <input class="textInput" id="selectLectureID" type="number" name="lectureToFeedback" value="" placeholder="Lecture ID"/> 
+                            </br> 
+                            <input class="aButton" type="submit" onclick="return setGotoStudent(this)" name="studentIS" value="ENTER"/> 
+                        </div> 
+                    </form>
+                </div>
+                <div id="Lecturer" class="tabcontent">
+                    <form id="formToValid" action="" onsubmit="return checkNull()" method="POST">
+                        <div id="formLecturer"> 
+                            <!-- Change type to text -->
+                            <input class="textInput" id="username" type="number" name="lecturer" value="" placeholder="Username"/>
+                            </br>
+                            <input class="textInput" id="password" type="text" name="lecturer" value="" placeholder="Password"/> 
+                            </br>
+                            <input class="aButton" id="lecturerButton" type="submit" onclick="return setGotoLecturer(this)" name="lecturerIS" value="LOG IN"/>  
+                        </div>
+                    </form>
+                </div>
+                <div id="Faculty admin" class="tabcontent">
+                    <form id="formToValid" action="" onsubmit="return checkNull()" method="POST">
+                        <div id="formAdmin"> 
+                            <input class="textInput" id="username" type="text" name="admin" value="" placeholder="Username"/> 
+                            </br>
+                            <input class="textInput" id="password" type="text" name="admin" value="" placeholder="Password"/> 
+                            </br>
+                            <input class="aButton" id="lecturerButton" type="submit" onclick="return setGotoLecturer(this)" name="lecturerIS" value="LOG IN"/>  
+                        </div>
+                    </form>
+                </div>
+            </center>
+        </div>
     </body>
 </html>
+
+<!-- Open student tab as default -->
+<script> document.getElementById("defaultOpen").click(); </script>
