@@ -213,7 +213,7 @@
             <div id="chart_div" style="width: 400px; height: 120px;"></div>
             
             <center>
-            Kommentarer: <br> <br>
+            <h2>Kommentarer:</h2>
             <div id="commentField">
                 <?php 
                     //Connecting to the database and getting the comments

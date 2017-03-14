@@ -107,9 +107,10 @@ div.logo {
 #commentField {
     display: block;
     width: 600px;
-    height: 2em;
+    height: 15em;
     font-size: 20px;
     text-align: center;
+    overflow: auto;
 }
 
 img{
