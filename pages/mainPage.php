@@ -28,9 +28,35 @@
     ?>
 
     //Checking valid id for lecture for now this means not null
-    function checkNull(){
+    function checkNullStudent(){
         if(document.getElementById("selectLectureID").value == ""){
-            alert("you need to enter an id, my dude!");
+            alert("You need to enter an valid id!");
+            return false;
+        }
+        if((idArray.indexOf(document.getElementById("selectLectureID").value)) == -1){
+            alert("There is no lecture by this id");
+            return false;
+        }
+        return true;
+    }
+
+    //Checking valid id for lecture for now this means not null
+    function checkNullLecturer(){
+        if(document.getElementById("usernameL").value == ""/*|| document.getElementById("passwordL").value == ""*/){
+            alert("You need to enter both username and password!");
+            return false;
+        }
+        if((idArray.indexOf(document.getElementById("usernameL").value)) == -1){
+            alert("There is no lecture by this id");
+            return false;
+        }
+        return true;
+    }
+    
+    //Checking valid id for lecture for now this means not null
+    function checkNullAdmin(){
+        if(document.getElementById("usernameA").value == ""/*|| document.getElementById("passwordA").value == ""*/){
+            alert("You need to enter both username and password!");
             return false;
         }
         if((idArray.indexOf(document.getElementById("selectLectureID").value)) == -1){
@@ -42,13 +68,13 @@
 
     //Setting action atrib to refer user to studentfeedback
     function setGotoStudent(){
-        document.getElementById("formToValid").action = "index.php?page=studentFeedback";
+        document.getElementById("formToValidS").action = "index.php?page=studentFeedback";
         return true;
     }
 
     //Setting action atrib to refer user to lecturerfeedback
     function setGotoLecturer(){
-        document.getElementById("formToValid").action = "index.php?page=lecturerFeedback";
+        document.getElementById("formToValidL").action = "index.php?page=lecturerFeedback";
         return true;
     }
 </script>
@@ -72,7 +98,7 @@
             </center>
             <center>
                 <div id="Student" class="tabcontent">
-                    <form id="formToValid" action="" onsubmit="return checkNull()" method="POST">
+                    <form id="formToValidS" action="" onsubmit="return checkNullStudent()" method="POST">
                         <div id="formStudent"> 
                             <input class="textInput" id="selectLectureID" type="number" name="lectureToFeedback" value="" placeholder="Lecture ID"/> 
                             </br> 
@@ -81,23 +107,23 @@
                     </form>
                 </div>
                 <div id="Lecturer" class="tabcontent">
-                    <form id="formToValid" action="" onsubmit="return checkNull()" method="POST">
+                    <form id="formToValidL" action="" onsubmit="return checkNullLecturer()" method="POST">
                         <div id="formLecturer"> 
-                            <!-- Change type to text -->
-                            <input class="textInput" id="username" type="number" name="lecturer" value="" placeholder="Username"/>
+                            <!-- Change type to text and uncomement password -->
+                            <input class="textInput" id="usernameL" type="number" name="lectureToFeedback" value="" placeholder="Username"/>
                             </br>
-                            <input class="textInput" id="password" type="text" name="lecturer" value="" placeholder="Password"/> 
+                            <!--<input class="textInput" id="passwordL" type="text" name="lectureToFeedback" value="" placeholder="Password"/>-->
                             </br>
                             <input class="aButton" id="lecturerButton" type="submit" onclick="return setGotoLecturer(this)" name="lecturerIS" value="LOG IN"/>  
                         </div>
                     </form>
                 </div>
                 <div id="Faculty admin" class="tabcontent">
-                    <form id="formToValid" action="" onsubmit="return checkNull()" method="POST">
+                    <form id="formToValidA" action="" onsubmit="return checkNullAdmin()" method="POST">
                         <div id="formAdmin"> 
-                            <input class="textInput" id="username" type="text" name="admin" value="" placeholder="Username"/> 
+                            <input class="textInput" id="usernameA" type="text" name="lectureToFeedback" value="" placeholder="Username"/> 
                             </br>
-                            <input class="textInput" id="password" type="text" name="admin" value="" placeholder="Password"/> 
+                            <input class="textInput" id="passwordA" type="text" name="lectureToFeedback" value="" placeholder="Password"/> 
                             </br>
                             <input class="aButton" id="lecturerButton" type="submit" onclick="return setGotoLecturer(this)" name="lecturerIS" value="LOG IN"/>  
                         </div>
