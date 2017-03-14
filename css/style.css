@@ -1,3 +1,7 @@
+body {
+    background-color: #67BAB2;
+}
+
 h1{
     text-align: center;
     font-family: Helvetica, Arial, sans-serif;
@@ -11,29 +15,17 @@ h2{
     font-family: Helvetica, Arial, sans-serif;
 }
 
-body {
-    background-color: #67BAB2;
-}
-
-div.logo {
-    padding-top: 30px;
-    margin: auto;
-    text-align: center;
-}
-
 /** Tabs start **/
 div.main {
     margin: auto;
     text-align: center;
 }
-
 div.tab {
     overflow: hidden;
     margin: auto;
     margin-top: 60px;
     max-width: 360px;
 }
-
 div.tab button {
     float: left;
     background-color: inherit;
@@ -45,15 +37,12 @@ div.tab button {
     cursor: pointer;
     transition: 0.3s;
 }
-
 div.tab button:hover {
     background-color: #ddd;
 }
-
 div.tab button:active {
     background-color: #ccc;
 }
-
 .tabcontent {
     text-align: center;
     width: 80%;
@@ -62,20 +51,36 @@ div.tab button:active {
     -webkit-animation: fadeEffect 1s;
     animation: fadeEffect 1s;
 }
-
+/* Animation for the tabs */
 @-webkit-keyframes fadeEffect {
     from {opacity: 0;}
     to {opacity: 1;}
 }
-
 @keyframes fadeEffect {
     from {opacity: 0;}
     to {opacity: 1;}
 }
 /** Tabs end **/
 
-.aButton {
+/* For the logo */
+div.logo {
+    padding-top: 20px;
+    margin: auto;
+    text-align: center;
+}
 
+/* For the buttons */
+.aButton {
+    margin: auto;
+    font-size: 25px;
+    height: 2em;
+    width: 9em;
+    margin-top: 20px;
+    border: 3px solid gray;
+    background-color: palegreen;
+}
+
+/* For the text inputs */
 .textInput {
     width: 9em; 
     height: 1em; 
@@ -86,9 +91,13 @@ div.tab button:active {
 
 /* Questions on the studentFeedback site */
 .divQuestion {
-    padding-bottom: 40px;
+    padding-bottom: 10px;
     width: 80%;
     margin: auto;
+}
+
+#divComment {
+    max-width: 600px;
 }
 
 /* The buttons you rate with */
@@ -99,12 +108,9 @@ div.tab button:active {
     background-color: palegreen;
     border: 2px solid gray;
 }
-#divComment {
-    margin-left: 20%;
-}
 #commentField {
     display: block;
-    width: 70%;
+    width: 600px;
     height: 2em;
     font-size: 20px;
     text-align: center;
