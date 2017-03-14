@@ -8,20 +8,79 @@ h2{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#selectLectureID{
-   width: 5em; 
-   max:5; 
-   height:1em; 
-   font-size:128px; 
-   margin-top:calc(17%);
+div.logo {
+    padding-top: 30px;
+    margin: auto;
+    text-align: center;
 }
 
-#onEnterSubmit{
-    position: absolute; 
-    height: 0px;
-    width: 0px; 
-    border: none; 
-    padding: 0px;
+div.main {
+    margin: auto;
+    text-align: center;
+}
+
+div.tab {
+    overflow: hidden;
+    margin: auto;
+    margin-top: 60px;
+    max-width: 360px;
+}
+
+div.tab button {
+    float: left;
+    background-color: inherit;
+    color: black;
+    padding: 18px 30px;
+    border: none;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+div.tab button:active {
+    background-color: #ccc;
+}
+
+.tabcontent {
+    text-align: center;
+    width: 80%;
+    border-top: none;
+    height: 300px;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+}
+
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.aButton {
+    margin: auto;
+    font-size: 30px;
+    height: 2em;
+    width: 4em;
+    margin-top: 20px;
+    border: 3px solid gray;
+    background-color: palegreen;
+}
+
+.textInput {
+    width: 9em; 
+    height: 1em; 
+    font-size: 50px; 
+    border: 3px solid gray;
+    margin-top: calc(5%);
 }
 
 #divSpeed{
