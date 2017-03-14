@@ -55,7 +55,7 @@
                 <form id="comment" action="index.php?page=submitText" method="POST" target="target" onSubmit="return changeColor(this)">
                     <input type=hidden name="lecID" value=<?php echo($lectureID) ?>> 
                     <center>
-                    <input class="commentField" type="text" name="textFeedback" placeholder="Make a change! Comment here"><br>
+                    <input class="commentField" type="text" name="textFeedback" placeholder="Let everybody know what you think!"><br>
                     <input class="aButton" type="submit" value="SEND COMMENT">
                     </center>
                 </form>
