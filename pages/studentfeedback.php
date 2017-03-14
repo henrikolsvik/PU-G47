@@ -75,7 +75,7 @@
                     color="green";
                     document.body.style.background = color;
                     setTimeout(function(){ 
-                        color = "white";
+                        color = "#67BAB2";
                         document.body.style.background = color; 
                         }, 500);
                 }
@@ -99,7 +99,7 @@
         </script>
     </head>
     <body> 
-        <div id="logo">  
+        <div class="logo">  
             <img src="img/ActiFeedBack.svg"> 
         </div> 
         <h1 id="statusSend">Lecture: <?php echo($lectureName) ?></h1> 
@@ -134,8 +134,10 @@
             <div id="divComment"> 
                 <form id="comment" action="index.php?page=submitText" method="POST" target="target" onSubmit="return textEffect(this)">
                     <input type=hidden name="lecID" value=<?php echo($lectureID) ?>> 
-                    <input id="commentField" type="text" name="textFeedback" placeholder="Insert comment here"><br> 
-                    <input class="submitButton" type="submit" value="SUBMIT"> 
+                    <center>
+                    <input id="commentField" type="text" name="textFeedback" placeholder="Comment..."><br>
+                    <input class="aButton" type="submit" value="SEND COMMENT">
+                    </center>
                 </form>
             </div>
         </div>
