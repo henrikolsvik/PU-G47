@@ -101,9 +101,9 @@
                     <form id="formToValidL" action="" onsubmit="return checkNullLecturer()" method="POST">
                         <div id="formLecturer"> 
                             <!-- Change type to text and uncomement password -->
-                            <input class="textInput" id="usernameL" type="text" value="" placeholder="Username"/>
+                            <input class="textInput" id="usernameL" type="text" name="lectureToFeedback" value="" placeholder="Username"/>
                             </br>
-                            <input class="textInput" id="passwordL" type="text" value="" placeholder="Password"/>
+                            <input class="textInput" id="passwordL" type="password" value="" placeholder="Password"/>
                             </br>
                             <input class="aButton" id="lecturerButton" type="submit" onclick="return setGotoLecturer(this)" name="lecturerIS" value="LOG IN"/>  
                         </div>

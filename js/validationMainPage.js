@@ -17,6 +17,7 @@ function checkNullLecturer(){
         alert("You need to enter both username and password!");
         return false;
     }
+    console.log(nameArray);
     if((nameArray.indexOf(document.getElementById("usernameL").value)) == -1){
         alert("There is no lecturer by this name");
         return false;
@@ -37,7 +38,7 @@ function checkNullAdmin(){
         return false;
     }
     if((idArray.indexOf(document.getElementById("selectLectureID").value)) == -1){
-        alert("There is no lecture by  id");
+        alert("There is no lecture by this id");
         return false;
     }
     return true;
