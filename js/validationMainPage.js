@@ -13,14 +13,20 @@ function checkNullStudent(){
 
 //Checking valid id for lecture for now this means not null
 function checkNullLecturer(){
-    if(document.getElementById("usernameL").value == ""/*|| document.getElementById("passwordL").value == ""*/){
+    if(document.getElementById("usernameL").value == "" || document.getElementById("passwordL").value == ""){
         alert("You need to enter both username and password!");
         return false;
     }
-    if((idArray.indexOf(document.getElementById("usernameL").value)) == -1){
-        alert("There is no lecture by this id");
+    if((nameArray.indexOf(document.getElementById("usernameL").value)) == -1){
+        alert("There is no lecturer by this name");
         return false;
     }
+    /*
+    if (!checkValidPassword(this)) {
+        alert("Wrong password");
+        return false;
+    }
+    */
     return true;
 }
 
@@ -31,7 +37,7 @@ function checkNullAdmin(){
         return false;
     }
     if((idArray.indexOf(document.getElementById("selectLectureID").value)) == -1){
-        alert("There is no lecture by this id");
+        alert("There is no lecture by  id");
         return false;
     }
     return true;

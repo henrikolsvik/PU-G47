@@ -3,27 +3,72 @@
 <?php
     //getting valid lectureIDs from database
     global $conn;
-    $sql = "SELECT lectureId FROM lecture";
-    $result = mysqli_query($conn, $sql);
+    $sqlLID = "SELECT lectureId FROM lecture";
+    $resultLID = mysqli_query($conn, $sqlLID);
 
     //Show error if there are no data in the table
-    if (!$result) {
+    if (!$resultLID) {
         echo(mysqli_error($conn));
     } else {
         //Print out data using while loop
-        if (mysqli_fetch_assoc($result) > 0) {
-            $stack = array();
-            while($row = mysqli_fetch_assoc($result)) {
-                array_push($stack, $row["lectureId"]);
+        if (mysqli_fetch_assoc($resultLID) > 0) {
+            $stackLID = array();
+            while($row = mysqli_fetch_assoc($resultLID)) {
+                array_push($stackLID, $row["lectureId"]);
             }
         }
     }
+
+    //getting valid lecturer names from database
+    $sqlLName = "SELECT lecturerName FROM lecturer";
+    $resultLName = mysqli_query($conn, $sqlLName);
+
+    //Show error if there are no data in the table
+    if (!$resultLName) {
+        echo(mysqli_error($conn));
+    } else {
+        //Print out data using while loop
+        if (mysqli_fetch_assoc($resultLName) > 0) {
+            $stackLName = array();
+            while($row = mysqli_fetch_assoc($resultLName)) {
+                array_push($stackLName, $row["lecturerName"]);
+            }
+        }
+    }
+
 ?>
-<script><?php
-    //php array to javascript array
-    $js_array = json_encode($stack);
-    echo("var idArray = ". $js_array . ";\n");
-?></script>
+<script>
+    <?php
+        //php array to javascript array
+        $js_arrayLID = json_encode($stackLID);
+        echo("var idArray = ". $js_arrayLID . ";\n");
+
+        $js_arrayLName = json_encode($stackLName);
+        echo("var nameArray = ". $js_arrayLName . ";\n");
+    ?>
+    
+    function checkValidPassword() {
+        <?php
+            /*echo($_POST["passwordL"]);
+            //getting valid lecturer names from database
+            $sqlLName = "SELECT lecturerPassword FROM lecturer WHERE lecturerPassword=" . $_POST["passwordL"];
+            $resultLName = mysqli_query($conn, $sqlLName);
+
+            //Show error if there are no data in the table
+            if (!$resultLName) {
+                echo(mysqli_error($conn));
+            } else {
+                //Print out data using while loop
+                if (mysqli_fetch_assoc($resultLName) > 0) {
+                    $stackLName = array();
+                    while($row = mysqli_fetch_assoc($resultLName)) {
+                        array_push($stackLName, $row["lecturerName"]);
+                    }
+                }
+            }*/
+        ?>
+    }
+</script>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
@@ -56,9 +101,9 @@
                     <form id="formToValidL" action="" onsubmit="return checkNullLecturer()" method="POST">
                         <div id="formLecturer"> 
                             <!-- Change type to text and uncomement password -->
-                            <input class="textInput" id="usernameL" type="number" name="lectureToFeedback" value="" placeholder="Username"/>
+                            <input class="textInput" id="usernameL" type="text" value="" placeholder="Username"/>
                             </br>
-                            <!--<input class="textInput" id="passwordL" type="text" name="lectureToFeedback" value="" placeholder="Password"/>-->
+                            <input class="textInput" id="passwordL" type="text" value="" placeholder="Password"/>
                             </br>
                             <input class="aButton" id="lecturerButton" type="submit" onclick="return setGotoLecturer(this)" name="lecturerIS" value="LOG IN"/>  
                         </div>
