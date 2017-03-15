@@ -2,7 +2,7 @@
 
     //Made by Henrik on 01.03.17
 
-    include('../includes/config.php');
+    include('includes/config.php');
     global $conn;
     $lectureId = $_POST['lectureID'];
     
