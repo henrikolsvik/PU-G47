@@ -47,26 +47,31 @@
         echo("var nameArray = ". $js_arrayLName . ";\n");
     ?>
     
-    function checkValidPassword() {
+    //STUCKKKKKKK HEREEEEEEE, make inputN and inputP to PHP values
+    function checkValidPassword(valuesToCheck1) {
+        alert("value1" + valuesToCheck1);
+        var access = false;
         <?php
-            /*echo($_POST["passwordL"]);
+            $inN = $_POST['lectureToFeedback'];
+            $inP = $_POST['passwordL'];
             //getting valid lecturer names from database
-            $sqlLName = "SELECT lecturerPassword FROM lecturer WHERE lecturerPassword=" . $_POST["passwordL"];
-            $resultLName = mysqli_query($conn, $sqlLName);
+            $sqlLNP = "SELECT lecturerName FROM lecturer WHERE lecturerName='$inN' AND lecturerPassword='$inP'";
+            $resultLNP = mysqli_query($conn, $sqlLNP);
 
             //Show error if there are no data in the table
-            if (!$resultLName) {
+            if (!$resultLNP) {
                 echo(mysqli_error($conn));
             } else {
                 //Print out data using while loop
-                if (mysqli_fetch_assoc($resultLName) > 0) {
-                    $stackLName = array();
-                    while($row = mysqli_fetch_assoc($resultLName)) {
-                        array_push($stackLName, $row["lecturerName"]);
-                    }
+                if (mysqli_fetch_assoc($resultLNP) > 0) {
+                    $access = true;
+                    echo("access = ". $access . ";");
                 }
-            }*/
+            }
         ?>
+        //remove this
+        access = true;
+        return access;
     }
 </script>
 <html>
@@ -103,7 +108,7 @@
                             <!-- Change type to text and uncomement password -->
                             <input class="textInput" id="usernameL" type="text" name="lectureToFeedback" value="" placeholder="Username"/>
                             </br>
-                            <input class="textInput" id="passwordL" type="password" value="" placeholder="Password"/>
+                            <input class="textInput" id="passwordL" type="password" name="passwordL" value="" placeholder="Password"/>
                             </br>
                             <input class="aButton" id="lecturerButton" type="submit" onclick="return setGotoLecturer(this)" name="lecturerIS" value="LOG IN"/>  
                         </div>

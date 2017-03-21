@@ -17,17 +17,10 @@ function checkNullLecturer(){
         alert("You need to enter both username and password!");
         return false;
     }
-    console.log(nameArray);
     if((nameArray.indexOf(document.getElementById("usernameL").value)) == -1){
         alert("There is no lecturer by this name");
         return false;
     }
-    /*
-    if (!checkValidPassword(this)) {
-        alert("Wrong password");
-        return false;
-    }
-    */
     return true;
 }
 
@@ -52,6 +45,9 @@ function setGotoStudent(){
 
 //Setting action atrib to refer user to lecturerfeedback
 function setGotoLecturer(){
-    document.getElementById("formToValidL").action = "index.php?page=lecturerFeedback";
-    return true;
+    if (checkValidPassword(this)) {
+        document.getElementById("formToValidL").action = "index.php?page=lecturerFeedback";
+        return true;
+    }
+    return false;
 }
