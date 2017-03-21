@@ -49,7 +49,6 @@
     
     //STUCKKKKKKK HEREEEEEEE, make inputN and inputP to PHP values
     function checkValidPassword(valuesToCheck1) {
-        alert("value1" + valuesToCheck1);
         var access = false;
         <?php
             $inN = $_POST['lectureToFeedback'];
