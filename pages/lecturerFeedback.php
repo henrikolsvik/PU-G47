@@ -6,17 +6,19 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <?php 
         global $conn;
-        $lectureId = $_POST['lectureToFeedback'];
+        $lectureId = null;
+        $lecturerName = $_POST['lectureToFeedback'];
+        $foreleser = $lecturerName;
         $sqlFeed = "SELECT * FROM Feedback";
         $resultFeed = mysqli_query($conn, $sqlFeed);
         $sqlLect = "SELECT * FROM Lecture";
         $resultLect = mysqli_query($conn, $sqlLect);
-        $sqlForeleser = "SELECT lecturerName, lecture.lecturerId, lecture.lectureId FROM lecture JOIN lecturer ON lecture.lecturerId = lecturer.lecturerId WHERE lectureId = '$lectureId'";
-        //$sqlForeleser = "SELECT lecturerName FROM Lecture JOIN Lecturer ON Lecture.lecturerId = Lecturer.lecturerId WHERE lectureId = echo$lectureId'";
-        $resultForeleser = mysqli_query($conn, $sqlForeleser);
 
-        while($rowForeleser = mysqli_fetch_assoc($resultForeleser)) {
-            $foreleser = $rowForeleser["lecturerName"];
+        $sqlId = "SELECT lectureId FROM lecture JOIN lecturer ON lecture.lecturerId = lecturer.lecturerId WHERE lecturerName = '$lecturerName'";
+        $resultId = mysqli_query($conn, $sqlId);
+
+        while($rowId = mysqli_fetch_assoc($resultId)) {
+            $lectureId = $rowId["lectureId"];
         }
 
         while ($rowLect = mysqli_fetch_assoc($resultLect)) {
@@ -211,8 +213,9 @@
                 <div id="chart_div" style="width: 400px; height: 120px;"></div>
             </div>
             <div id="chart_div" style="width: 400px; height: 120px;"></div>
-
-            Kommentarer: <br> <br>
+            
+            <center>
+            <h2>Kommentarer:</h2>
             <div id="commentField">
                 <?php 
                     //Connecting to the database and getting the comments
@@ -242,6 +245,7 @@
                 <!-- Transfers the latest comment from PHP to JavaScript -->
                 <script> oldComment = "<?php echo($oldComment) ?>" </script>
             </div>
+            </center>
         </div>
     </body>
 </html>
