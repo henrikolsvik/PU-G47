@@ -26,12 +26,13 @@ function checkNullLecturer(){
 
 //Checking valid id for lecture for now this means not null
 function checkNullAdmin(){
-    if(document.getElementById("usernameA").value == ""/*|| document.getElementById("passwordA").value == ""*/){
+    console.log(adminArray);
+    if(document.getElementById("usernameA").value == "" || document.getElementById("passwordA").value == ""){
         alert("You need to enter both username and password!");
         return false;
     }
-    if((idArray.indexOf(document.getElementById("selectLectureID").value)) == -1){
-        alert("There is no lecture by this id");
+    if((adminArray.indexOf(document.getElementById("usernameA").value)) == -1){
+        alert("There is no admin by this name");
         return false;
     }
     return true;
@@ -44,10 +45,17 @@ function setGotoStudent(){
 }
 
 //Setting action atrib to refer user to lecturerfeedback
-function setGotoLecturer(){
-    if (checkValidPassword(this)) {
-        document.getElementById("formToValidL").action = "index.php?page=lecturerFeedback";
-        return true;
-    }
-    return false;
+function setGotoLecturer(value1, value2){
+    document.getElementById("formToValidL").action = "index.php?page=lecturerFeedback";
+    document.getElementById("usernameL").value = value1;
+    document.getElementById("passwordL").value = value2;
+    document.getElementById("formToValidL").submit();
+}
+
+//Setting action atrib to refer user to adminSite
+function setGotoAdmin(value1, value2){
+    document.getElementById("formToValidA").action = "index.php?page=adminSite";
+    document.getElementById("usernameA").value = value1;
+    document.getElementById("passwordA").value = value2;
+    document.getElementById("formToValidA").submit();
 }
