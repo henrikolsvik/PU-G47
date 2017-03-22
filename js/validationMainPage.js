@@ -26,7 +26,6 @@ function checkNullLecturer(){
 
 //Checking valid id for lecture for now this means not null
 function checkNullAdmin(){
-    console.log(adminArray);
     if(document.getElementById("usernameA").value == "" || document.getElementById("passwordA").value == ""){
         alert("You need to enter both username and password!");
         return false;
