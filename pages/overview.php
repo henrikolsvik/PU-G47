@@ -19,7 +19,7 @@
 
     <?php
     //getting valid lectureIDs from database
-    $lecID = 2;
+    $lecID = 0;
     
     $lecName = $_POST["lecturerToFeedback"]; //Få tilsendt foreleser id fra innloggingssiden;
     global $conn;
@@ -31,7 +31,7 @@
     }
     
 
-    $sql = "SELECT lectureName, lectureDate, lectureRating, lectureAvgSpeed, lectureAvgDifficulty FROM Lecture WHERE lecturerId = '$lecID'";
+    $sql = "SELECT lectureName, lectureDate, lectureRating, lectureAvgSpeed, lectureAvgDifficulty FROM Lecture WHERE lecturerId = $lecID";
     $result = mysqli_query($conn, $sql);
 
     //Show error if there are no data in the table
