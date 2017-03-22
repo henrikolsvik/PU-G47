@@ -1,62 +1,83 @@
 <!-- Made by Henrik on 22.02.17 --> 
-<!-- <input type="submit" name="update" value=" Apply " style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;" hidefocus="true" tabindex="-1"/> -->
 
 <?php
     //getting valid lectureIDs from database
     global $conn;
-    $sql = "SELECT lectureId FROM lecture";
-    $result = mysqli_query($conn, $sql);
+    $sqlLID = "SELECT lectureId FROM lecture";
+    $resultLID = mysqli_query($conn, $sqlLID);
 
     //Show error if there are no data in the table
-    if (!$result) {
+    if (!$resultLID) {
         echo(mysqli_error($conn));
     } else {
         //Print out data using while loop
-        if (mysqli_fetch_assoc($result) > 0) {
-            $stack = array();
-            while($row = mysqli_fetch_assoc($result)) {
-                array_push($stack, $row["lectureId"]);
+        if (mysqli_fetch_assoc($resultLID) > 0) {
+            $stackLID = array();
+            while($row = mysqli_fetch_assoc($resultLID)) {
+                array_push($stackLID, $row["lectureId"]);
             }
         }
     }
+
+    //getting valid lecturer names from database
+    $sqlLName = "SELECT lecturerName FROM lecturer";
+    $resultLName = mysqli_query($conn, $sqlLName);
+
+    //Show error if there are no data in the table
+    if (!$resultLName) {
+        echo(mysqli_error($conn));
+    } else {
+        //Print out data using while loop
+        if (mysqli_fetch_assoc($resultLName) > 0) {
+            $stackLName = array();
+            while($row = mysqli_fetch_assoc($resultLName)) {
+                array_push($stackLName, $row["lecturerName"]);
+            }
+        }
+    }
+
 ?>
 <script>
-    //php array to javascript array
     <?php
-        $js_array = json_encode($stack);
-        echo("var idArray = ". $js_array . ";\n");
+        //php array to javascript array
+        $js_arrayLID = json_encode($stackLID);
+        echo("var idArray = ". $js_arrayLID . ";\n");
+
+        $js_arrayLName = json_encode($stackLName);
+        echo("var nameArray = ". $js_arrayLName . ";\n");
     ?>
+    
+    //STUCKKKKKKK HEREEEEEEE, make inputN and inputP to PHP values
+    function checkValidPassword(valuesToCheck1) {
+        var access = false;
+        <?php
+            $inN = $_POST['lectureToFeedback'];
+            $inP = $_POST['passwordL'];
+            //getting valid lecturer names from database
+            $sqlLNP = "SELECT lecturerName FROM lecturer WHERE lecturerName='$inN' AND lecturerPassword='$inP'";
+            $resultLNP = mysqli_query($conn, $sqlLNP);
 
-    //Checking valid id for lecture for now this means not null
-    function checkNull(){
-        if(document.getElementById("selectLectureID").value == ""){
-            alert("you need to enter an id, my dude!");
-            return false;
-        }
-        if((idArray.indexOf(document.getElementById("selectLectureID").value)) == -1){
-            alert("There is no lecture by this id");
-            return false;
-        }
-        return true;
-    }
-
-    //Setting action atrib to refer user to studentfeedback
-    function setGotoStudent(){
-        document.getElementById("formToValid").action = "index.php?page=studentFeedback";
-        return true;
-    }
-
-    //Setting action atrib to refer user to lecturerfeedback
-    function setGotoLecturer(){
-        document.getElementById("formToValid").action = "index.php?page=lecturerFeedback";
-        return true;
+            //Show error if there are no data in the table
+            if (!$resultLNP) {
+                echo(mysqli_error($conn));
+            } else {
+                //Print out data using while loop
+                if (mysqli_fetch_assoc($resultLNP) > 0) {
+                    $access = true;
+                    echo("access = ". $access . ";");
+                }
+            }
+        ?>
+        //remove this
+        access = true;
+        return access;
     }
 </script>
-
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
         <script type="text/javascript" src="js/tabController.js"></script>
+        <script type="text/javascript" src="js/validationMainPage.js"></script>
     </head>
     <body>
         <div class="logo">
@@ -72,7 +93,7 @@
             </center>
             <center>
                 <div id="Student" class="tabcontent">
-                    <form id="formToValid" action="" onsubmit="return checkNull()" method="POST">
+                    <form id="formToValidS" action="" onsubmit="return checkNullStudent()" method="POST">
                         <div id="formStudent"> 
                             <input class="textInput" id="selectLectureID" type="number" name="lectureToFeedback" value="" placeholder="Lecture ID"/> 
                             </br> 
@@ -81,23 +102,23 @@
                     </form>
                 </div>
                 <div id="Lecturer" class="tabcontent">
-                    <form id="formToValid" action="" onsubmit="return checkNull()" method="POST">
+                    <form id="formToValidL" action="" onsubmit="return checkNullLecturer()" method="POST">
                         <div id="formLecturer"> 
-                            <!-- Change type to text -->
-                            <input class="textInput" id="username" type="number" name="lecturer" value="" placeholder="Username"/>
+                            <!-- Change type to text and uncomement password -->
+                            <input class="textInput" id="usernameL" type="text" name="lectureToFeedback" value="" placeholder="Username"/>
                             </br>
-                            <input class="textInput" id="password" type="text" name="lecturer" value="" placeholder="Password"/> 
+                            <input class="textInput" id="passwordL" type="password" name="passwordL" value="" placeholder="Password"/>
                             </br>
                             <input class="aButton" id="lecturerButton" type="submit" onclick="return setGotoLecturer(this)" name="lecturerIS" value="LOG IN"/>  
                         </div>
                     </form>
                 </div>
                 <div id="Faculty admin" class="tabcontent">
-                    <form id="formToValid" action="" onsubmit="return checkNull()" method="POST">
+                    <form id="formToValidA" action="" onsubmit="return checkNullAdmin()" method="POST">
                         <div id="formAdmin"> 
-                            <input class="textInput" id="username" type="text" name="admin" value="" placeholder="Username"/> 
+                            <input class="textInput" id="usernameA" type="text" name="lectureToFeedback" value="" placeholder="Username"/> 
                             </br>
-                            <input class="textInput" id="password" type="text" name="admin" value="" placeholder="Password"/> 
+                            <input class="textInput" id="passwordA" type="text" name="lectureToFeedback" value="" placeholder="Password"/> 
                             </br>
                             <input class="aButton" id="lecturerButton" type="submit" onclick="return setGotoLecturer(this)" name="lecturerIS" value="LOG IN"/>  
                         </div>

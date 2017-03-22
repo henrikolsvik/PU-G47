@@ -107,9 +107,19 @@ div.logo {
 #commentField {
     display: block;
     width: 600px;
+    height: 12em;
+    font-size: 20px;
+    text-align: center;
+    overflow: auto;
+}
+
+.commentField {
+    display: block;
+    width: 600px;
     height: 2em;
     font-size: 20px;
     text-align: center;
+    overflow: auto;
 }
 
 img{
