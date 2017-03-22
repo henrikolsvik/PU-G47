@@ -19,16 +19,19 @@
 
     <?php
     //getting valid lectureIDs from database
-    $lecID = 0;
+    $lecID = 2;
+    
     $lecName = $_POST["lecturerToFeedback"]; //Få tilsendt foreleser id fra innloggingssiden;
     global $conn;
+    
     $lecID = "SELECT lecturerId FROM lecturer WHERE lecturerName = '$lecName'";
     $resultID = mysqli_query($conn, $lecID);
     while($rowId = mysqli_fetch_assoc($resultID)){
         $lecID = $rowId["lecturerId"];
     }
     
-    $sql = "SELECT lectureName, lectureDate, lectureRating, lectureAvgSpeed, lectureAvgDifficulty FROM lecture WHERE lecturerId = '$lecID'";
+
+    $sql = "SELECT lectureName, lectureDate, lectureRating, lectureAvgSpeed, lectureAvgDifficulty FROM Lecture WHERE lecturerId = '$lecID'";
     $result = mysqli_query($conn, $sql);
 
     //Show error if there are no data in the table
@@ -39,13 +42,13 @@
         if (mysqli_fetch_assoc($result) > 0) {
             $stack = array();
             while($row = mysqli_fetch_assoc($result)) {
-                array_push($stack, [$row["lectureName"],$row["lectureDate"],$row["lectureRating"],$row["lectureAvgSpeed"],$row["lectureAvgDifficulty"]]);
+                array_push($stack, [$row["lectureDate"],$row["lectureName"],$row["lectureAvgSpeed"],$row["lectureAvgDifficulty"],$row["lectureRating"]]);
             }
         }
     }
 ?>
         <h1>Feedback from previous lectures</h1>
-        <h2>Navn: <?php echo ($foreleser) ?> </h2>
+        <h2>Navn: <?php echo ($lecName) ?> </h2>
 
 <table class="tg" style="margin: 0px auto;">
 
