@@ -46,7 +46,7 @@ function setGotoStudent(){
 
 //Setting action atrib to refer user to lecturerfeedback
 function setGotoLecturer(value1, value2){
-    document.getElementById("formToValidL").action = "index.php?page=lecturerFeedback";
+    document.getElementById("formToValidL").action = "index.php?page=lecturerOverview";
     document.getElementById("usernameL").value = value1;
     document.getElementById("passwordL").value = value2;
     document.getElementById("formToValidL").submit();
