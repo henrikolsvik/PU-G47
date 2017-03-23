@@ -53,7 +53,7 @@ function setGotoLecturer(value1, value2){
 
 //Setting action atrib to refer user to adminSite
 function setGotoAdmin(value1, value2){
-    document.getElementById("formToValidA").action = "index.php?page=adminSite";
+    document.getElementById("formToValidA").action = "index.php?page=adminOverview";
     document.getElementById("usernameA").value = value1;
     document.getElementById("passwordA").value = value2;
     document.getElementById("formToValidA").submit();
