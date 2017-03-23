@@ -76,7 +76,7 @@ div.logo {
     height: 2em;
     width: 9em;
     margin-top: 20px;
-    border: 3px solid gray;
+    border: 0px solid gray;
     background-color: palegreen;
 }
 
@@ -85,7 +85,7 @@ div.logo {
     width: 9em; 
     height: 1em; 
     font-size: 50px; 
-    border: 3px solid gray;
+    border: 0px solid gray;
     margin-top: calc(5%);
 }
 
@@ -102,7 +102,7 @@ div.logo {
     height: 2em;
     width: 3em;
     background-color: palegreen;
-    border: 2px solid gray;
+    border: 0px solid gray;
 }
 #commentField {
     display: block;
@@ -151,4 +151,34 @@ img{
 /* When moving the mouse over the close button */
 .closebtn:hover {
     color: black;
+}
+
+/* Lecturer overview table style */
+.tg {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+.tg th {
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    font-weight:normal;
+    padding:10px 5px;
+    border-style:solid;
+    border-width:1px;
+    overflow:hidden;
+    word-break:normal;
+}
+.tg .tg-zd1f {
+    background-color:#c0c0c0;
+    color:#ffffff;
+    vertical-align:top
+}
+.tg .tg-yw4l { vertical-align:top }
+.lectureButton {
+    margin: auto;
+    font-size: 13px;
+    height: 2em;
+    width: 4.5em;
+    border: 0px solid gray;
+    background-color: palegreen;
 }

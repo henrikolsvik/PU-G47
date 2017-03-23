@@ -11,11 +11,9 @@
         echo(mysqli_error($conn));
     } else {
         //Print out data using while loop
-        if (mysqli_fetch_assoc($resultLID) > 0) {
-            $stackLID = array();
-            while($row = mysqli_fetch_assoc($resultLID)) {
-                array_push($stackLID, $row["lectureId"]);
-            }
+        $stackLID = array();
+        while($row = mysqli_fetch_assoc($resultLID)) {
+            array_push($stackLID, $row["lectureId"]);
         }
     }
 
@@ -28,11 +26,23 @@
         echo(mysqli_error($conn));
     } else {
         //Print out data using while loop
-        if (mysqli_fetch_assoc($resultLName) > 0) {
-            $stackLName = array();
-            while($row = mysqli_fetch_assoc($resultLName)) {
-                array_push($stackLName, $row["lecturerName"]);
-            }
+        $stackLName = array();
+        while($row = mysqli_fetch_assoc($resultLName)) {
+            array_push($stackLName, $row["lecturerName"]);
+        }
+    }
+
+    $sqlAName = "SELECT lecturerName FROM lecturer";
+    $resultAName = mysqli_query($conn, $sqlAName);
+
+    //Show error if there are no data in the table
+    if (!$resultAName) {
+        echo(mysqli_error($conn));
+    } else {
+        //Print out data using while loop
+        $stackAName = array();
+        while($row = mysqli_fetch_assoc($resultAName)) {
+            array_push($stackAName, $row["lecturerName"]);
         }
     }
 
@@ -43,35 +53,12 @@
         $js_arrayLID = json_encode($stackLID);
         echo("var idArray = ". $js_arrayLID . ";\n");
 
+        $js_arrayAName = json_encode($stackAName);
+        echo("var adminArray = ". $js_arrayAName . ";\n");
+
         $js_arrayLName = json_encode($stackLName);
         echo("var nameArray = ". $js_arrayLName . ";\n");
     ?>
-    
-    //STUCKKKKKKK HEREEEEEEE, make inputN and inputP to PHP values
-    function checkValidPassword(valuesToCheck1) {
-        var access = false;
-        <?php
-            $inN = $_POST['lectureToFeedback'];
-            $inP = $_POST['passwordL'];
-            //getting valid lecturer names from database
-            $sqlLNP = "SELECT lecturerName FROM lecturer WHERE lecturerName='$inN' AND lecturerPassword='$inP'";
-            $resultLNP = mysqli_query($conn, $sqlLNP);
-
-            //Show error if there are no data in the table
-            if (!$resultLNP) {
-                echo(mysqli_error($conn));
-            } else {
-                //Print out data using while loop
-                if (mysqli_fetch_assoc($resultLNP) > 0) {
-                    $access = true;
-                    echo("access = ". $access . ";");
-                }
-            }
-        ?>
-        //remove this
-        access = true;
-        return access;
-    }
 </script>
 <html>
     <head>
@@ -104,12 +91,11 @@
                 <div id="Lecturer" class="tabcontent">
                     <form id="formToValidL" action="" onsubmit="return checkNullLecturer()" method="POST">
                         <div id="formLecturer"> 
-                            <!-- Change type to text and uncomement password -->
                             <input class="textInput" id="usernameL" type="text" name="lectureToFeedback" value="" placeholder="Username"/>
                             </br>
                             <input class="textInput" id="passwordL" type="password" name="passwordL" value="" placeholder="Password"/>
                             </br>
-                            <input class="aButton" id="lecturerButton" type="submit" onclick="return setGotoLecturer(this)" name="lecturerIS" value="LOG IN"/>  
+                            <input class="aButton" id="lecturerButton" type="submit" name="lecturerIS" value="LOG IN"/>  
                         </div>
                     </form>
                 </div>
@@ -118,9 +104,9 @@
                         <div id="formAdmin"> 
                             <input class="textInput" id="usernameA" type="text" name="lectureToFeedback" value="" placeholder="Username"/> 
                             </br>
-                            <input class="textInput" id="passwordA" type="text" name="lectureToFeedback" value="" placeholder="Password"/> 
+                            <input class="textInput" id="passwordA" type="password" name="passwordA" value="" placeholder="Password"/> 
                             </br>
-                            <input class="aButton" id="lecturerButton" type="submit" onclick="return setGotoLecturer(this)" name="lecturerIS" value="LOG IN"/>  
+                            <input class="aButton" id="adminButton" type="submit" name="adminIS" value="LOG IN"/>  
                         </div>
                     </form>
                 </div>
@@ -131,3 +117,57 @@
 
 <!-- Open student tab as default -->
 <script> document.getElementById("defaultOpen").click(); </script>
+
+<?php
+    if ((isset($_POST['lectureToFeedback']) != "") && (isset($_POST['passwordL']) != "")) {
+        $inN = $_POST['lectureToFeedback'];
+        $inP = $_POST['passwordL'];
+
+        //getting valid lecturer names from database
+        $sqlLNP = "SELECT lecturerName FROM lecturer WHERE lecturerName='$inN' AND lecturerPassword='$inP'";
+        $resultLNP = mysqli_query($conn, $sqlLNP);
+
+        //Show error if there are no data in the table
+        if (!$resultLNP) {
+            echo(mysqli_error($conn));
+        } else {
+            //Print out data using while loop
+            if (mysqli_fetch_assoc($resultLNP) > 0) {
+                echo('<script type="text/javascript">' .
+                    'setGotoLecturer("'.$inN.'","'.$inP.'");' .
+                    '</script>');
+            } else {
+                echo('<script type="text/javascript">' .
+                    'alert("Invalid password!");' .
+                    '</script>');
+            }
+        }
+    }
+
+    if ((isset($_POST['lectureToFeedback']) != "") && (isset($_POST['passwordA']) != "")) {
+        $inN = $_POST['lectureToFeedback'];
+        $inP = $_POST['passwordA'];
+
+        //getting valid lecturer names from database
+        $sqlANP = "SELECT lecturerName FROM lecturer WHERE lecturerName='$inN' AND lecturerPassword='$inP'";
+        $resultANP = mysqli_query($conn, $sqlANP);
+
+        //Show error if there are no data in the table
+        if (!$resultANP) {
+            echo(mysqli_error($conn));
+        } else {
+            //Print out data using while loop
+            if (mysqli_fetch_assoc($resultANP) > 0) {
+                echo('<script type="text/javascript">' .
+                'console.log("te");' .
+                    'setGotoAdmin("'.$inN.'","'.$inP.'");' .
+                    '</script>');
+            } else {
+                echo('<script type="text/javascript">' .
+                'console.log("kaffe");' .
+                    'alert("Invalid password!");' .
+                    '</script>');
+            }
+        }
+    }
+?>
