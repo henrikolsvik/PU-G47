@@ -29,6 +29,10 @@
                     array_push($stack, [$row["lectureDate"],$row["lectureName"],$row["lectureAvgSpeed"],$row["lectureAvgDifficulty"],$row["lectureRating"]]);
                 }
             }
+
+            if (isset($_POST['addLecture'])) {
+                
+            }
         ?>
     </head>
     <body> 
@@ -53,13 +57,18 @@
                         echo("<th class='tg-yw4l'>".$stack[$i][$j]."</th>");
                     }
                     echo('<th class="tg-yw41">');
-                    echo('<form id="difficulty" action="index.php?page=lecturerFeedback" method="POST">');
+                    echo('<form id="enterLecture" action="index.php?page=lecturerFeedback" method="POST">');
                     echo('<input type="hidden" name="lectureDate" value="'.$stack[$i][0].'"/>');
                     echo('<button class="lectureButton" name="lectureToFeedback" value="'.$lecName.'" type="submit">ENTER</button></th>');
                     echo("</form></tr>");
                 }
             ?>
         </table>
+        <center>
+            <form id="addLecture" action="index.php?page=lecturerAddLecture" method="POST">
+                <button class="aButton" name="lectureToFeedback" value="<?php echo($lecName) ?>" type="submit">ADD LECTURE</button>
+            </form>
+        </center>
     </body>
 </html>
 
