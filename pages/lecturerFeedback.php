@@ -152,7 +152,7 @@
                             //alert(xhttp.responseText);
                             updateMeterValues(meterValues);
                         } else {
-                            alert('There was a problem with the request.');  
+                            //alert('There was a problem with the request.');  
                         }  
                     }
                 }
