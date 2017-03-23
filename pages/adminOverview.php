@@ -1,8 +1,8 @@
-<!-- Made by Helene on 14.03.17 --> 
+<!-- Made by Navjot on 23.03.2017 -->
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
         <?php
             global $conn;
             //getting valid lectureIDs from database
@@ -14,7 +14,7 @@
                 $lecID = $rowID["lecturerId"];
             }
             
-            $sql = "SELECT lectureName, lectureDate, lectureRating, lectureAvgSpeed, lectureAvgDifficulty FROM Lecture WHERE lecturerId='$lecID'";
+            $sql = "SELECT lecturerName, lectureDate, lectureName, lectureRating FROM Lecturer JOIN Lecture ON Lecturer.lecturerId = Lecture.lecturerId";
             $result = mysqli_query($conn, $sql);
             $numOfLectures = 0;
 
@@ -26,40 +26,40 @@
                 $stack = array();
                 while($row = mysqli_fetch_assoc($result)) {
                     $numOfLectures++;
-                    array_push($stack, [$row["lectureDate"],$row["lectureName"],$row["lectureAvgSpeed"],$row["lectureAvgDifficulty"],$row["lectureRating"]]);
+                    array_push($stack, [$row["lecturerName"],$row["lectureDate"],$row["lectureName"],$row["lectureRating"]]);
                 }
             }
         ?>
     </head>
-    <body> 
+    <body>
         <div class="logo">
             <img src="img/ActiFeedBack.svg">
         </div> 
-        <h1>Feedback from previous lectures</h1>
-        <h2>Lecturer: <?php echo ($lecName) ?> </h2>
+        <h1>Lecturer ratings</h1>
+        <h2>Admin: <?php echo ($lecName) ?> </h2>
         <table class="tg" style="margin: 0px auto;">
             <tr>
-                <th class="tg-zd1f">Date</th>
-                <th class="tg-zd1f">Course name</th>
-                <th class="tg-zd1f">Average speed </th>
-                <th class="tg-zd1f">Average difficulty</th>
-                <th class="tg-zd1f">Total rating</th>
-                <th class="tg-zd1f">Link to lecture</th>
+                <th class="tg-zd1f">Lecturer name</th>
+                <th class="tg-zd1f">Lecture date</th>
+                <th class="tg-zd1f">Lecture name </th>
+                <th class="tg-zd1f">Lecture rating</th>
             </tr>
             <?php
+                $old = "";
                 for ($i = 0; $i < $numOfLectures; $i++) {
-                    echo("<tr>" );
-                    for ($j = 0; $j < 5; $j++) {
+                    echo("<tr>");
+                    if ($old != $stack[$i][0]) {
+                        echo("<th class='tg-yw4l'>".$stack[$i][0]."</th>");
+                    } else {
+                        echo("<th class='tg-yw4l'></th>");
+                    }
+                    $old = $stack[$i][0];
+                    for ($j = 1; $j < 4; $j++) {
                         echo("<th class='tg-yw4l'>".$stack[$i][$j]."</th>");
                     }
-                    echo('<th class="tg-yw41">');
-                    echo('<form id="difficulty" action="index.php?page=lecturerFeedback" method="POST">');
-                    echo('<input type="hidden" name="lectureDate" value="'.$stack[$i][0].'"/>');
-                    echo('<button class="lectureButton" name="lectureToFeedback" value="'.$lecName.'" type="submit">ENTER</button></th>');
-                    echo("</form></tr>");
+                    echo("</tr>");
                 }
             ?>
         </table>
     </body>
 </html>
-
