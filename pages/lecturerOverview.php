@@ -29,6 +29,21 @@
                     array_push($stack, [$row["lectureDate"],$row["lectureName"],$row["lectureAvgSpeed"],$row["lectureAvgDifficulty"],$row["lectureRating"]]);
                 }
             }
+
+            if ((isset($_POST['lectureName'])) && (isset($_POST['lectureDate']))) {
+                $lectureName = $_POST['lectureName'];
+                $lecturerId = $_POST['lecturerID'];
+                $lectureDate = $_POST['lectureDate'];
+
+                $sql = "INSERT INTO Lecture (lectureName, lecturerId, lectureRating, lectureAvgSpeed, lectureAvgDifficulty, lectureDate)
+                VALUES ('$lectureName', '$lecturerId', 0, 0, 0, '$lectureDate')";
+
+                if (mysqli_query($conn, $sql)) {
+                    echo('<script type="text/javascript">alert("Success, you may refresh");</script>');
+                } else {
+                    echo('<script type="text/javascript">alert("Failed");</script>');
+                }
+            }
         ?>
     </head>
     <body> 
@@ -53,13 +68,18 @@
                         echo("<th class='tg-yw4l'>".$stack[$i][$j]."</th>");
                     }
                     echo('<th class="tg-yw41">');
-                    echo('<form id="difficulty" action="index.php?page=lecturerFeedback" method="POST">');
+                    echo('<form id="enterLecture" action="index.php?page=lecturerFeedback" method="POST">');
                     echo('<input type="hidden" name="lectureDate" value="'.$stack[$i][0].'"/>');
                     echo('<button class="lectureButton" name="lectureToFeedback" value="'.$lecName.'" type="submit">ENTER</button></th>');
                     echo("</form></tr>");
                 }
             ?>
         </table>
+        <center>
+            <form id="addLecture" action="index.php?page=lecturerAddLecture" method="POST">
+                <button class="aButton" name="lectureToFeedback" value="<?php echo($lecID) ?>" type="submit">ADD LECTURE</button>
+            </form>
+        </center>
     </body>
 </html>
 
