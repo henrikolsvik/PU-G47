@@ -30,8 +30,19 @@
                 }
             }
 
-            if ((isset($_POST['lectureID'])) && (isset($_POST['lecturerID'])) && (isset($_POST['lectureDate'])) {
-                
+            if ((isset($_POST['lectureName'])) && (isset($_POST['lectureDate']))) {
+                $lectureName = $_POST['lectureName'];
+                $lecturerId = $_POST['lecturerID'];
+                $lectureDate = $_POST['lectureDate'];
+
+                $sql = "INSERT INTO Lecture (lectureName, lecturerId, lectureRating, lectureAvgSpeed, lectureAvgDifficulty, lectureDate)
+                VALUES ('$lectureName', '$lecturerId', 0, 0, 0, '$lectureDate')";
+
+                if (mysqli_query($conn, $sql)) {
+                    echo('<script type="text/javascript">alert("Success, you may refresh");</script>');
+                } else {
+                    echo('<script type="text/javascript">alert("Failed");</script>');
+                }
             }
         ?>
     </head>
@@ -66,7 +77,7 @@
         </table>
         <center>
             <form id="addLecture" action="index.php?page=lecturerAddLecture" method="POST">
-                <button class="aButton" name="lectureToFeedback" value="<?php echo($lecName) ?>" type="submit">ADD LECTURE</button>
+                <button class="aButton" name="lectureToFeedback" value="<?php echo($lecID) ?>" type="submit">ADD LECTURE</button>
             </form>
         </center>
     </body>

@@ -6,12 +6,12 @@
         <?php
             global $conn;
             //getting valid lectureIDs from database
-            $lecID = null;
-            $lecName = $_POST["lectureToFeedback"]; //Få tilsendt foreleser id fra innloggingssiden;
-            $sqlID = "SELECT lecturerId FROM lecturer WHERE lecturerName='$lecName'";
-            $resultID = mysqli_query($conn, $sqlID);
-            while($rowID = mysqli_fetch_assoc($resultID)){
-                $lecID = $rowID["lecturerId"];
+            $lecID = $_POST["lectureToFeedback"];
+            $lecName = null; //Få tilsendt foreleser id fra innloggingssiden;
+            $sql = "SELECT lecturerName FROM lecturer WHERE lecturerId='$lecID'";
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result)){
+                $lecName = $row["lecturerName"];
             }
         ?>
     </head>
@@ -24,9 +24,11 @@
         <center>
             <div id="addLecture">
                 <form id="lectureForm" action="index.php?page=lecturerOverview" method="POST">
-                    <input type=hidden name="lecturerID" value=<?php echo($lecID) ?>>
-                    <input class="lectureField" type="text" name="textFeedback" placeholder="Let everybody know what you think!"><br>
-                    <input class="aButton" type="submit" value="SEND COMMENT">
+                    <input class="lectureField" type="text" name="lectureName" placeholder="The name of your lecture"><br>
+                    <input type=hidden name="lectureToFeedback" value="<?php echo($lecName) ?>">
+                    <input type=hidden name="lecturerID" value="<?php echo($lecID) ?>">
+                    <input class="lectureField" type="date" name="lectureDate" placeholder="When will it be"><br>
+                    <button class="aButton" type="submit" value="<?php echo($lecName) ?>">ADD LECTURE</button>
                 </form>
             </div>
         </center>

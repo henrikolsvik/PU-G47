@@ -159,12 +159,10 @@
             //Print out data using while loop
             if (mysqli_fetch_assoc($resultANP) > 0) {
                 echo('<script type="text/javascript">' .
-                'console.log("te");' .
                     'setGotoAdmin("'.$inN.'","'.$inP.'");' .
                     '</script>');
             } else {
                 echo('<script type="text/javascript">' .
-                'console.log("kaffe");' .
                     'alert("Invalid password!");' .
                     '</script>');
             }
