@@ -33,19 +33,11 @@
         ?>
     </head>
     <body> 
-        <style type="text/css">
-            .tg  {border-collapse:collapse;border-spacing:0;}
-            .tg td {font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-            .tg th {font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-            .tg .tg-baqh {text-align:center;vertical-align:top}
-            .tg .tg-zd1f {background-color:#c0c0c0;color:#ffffff;vertical-align:top}
-            .tg .tg-yw4l {vertical-align:top}
-        </style>  
         <div class="logo">
             <img src="img/ActiFeedBack.svg">
         </div> 
         <h1>Feedback from previous lectures</h1>
-        <h2>Navn: <?php echo ($lecName) ?> </h2>
+        <h2>Lecturer: <?php echo ($lecName) ?> </h2>
         <table class="tg" style="margin: 0px auto;">
             <tr>
                 <th class="tg-zd1f">Date</th>
@@ -53,6 +45,7 @@
                 <th class="tg-zd1f">Average speed </th>
                 <th class="tg-zd1f">Average difficulty</th>
                 <th class="tg-zd1f">Total rating</th>
+                <th class="tg-zd1f">Link to lecture</th>
             </tr>
             <?php
                 for ($i = 0; $i < $numOfLectures; $i++) {
@@ -61,7 +54,11 @@
                     for ($j = 0; $j < 5; $j++) {
                         echo("<th class='tg-yw4l'>".$stack[$i][$j]."</th>");
                     }
-                    echo("</tr>");
+                    echo('<th class="tg-yw41">');
+                    echo('<form id="difficulty" action="index.php?page=lecturerFeedback" method="POST">');
+                    echo('<input type="hidden" name="lectureDate" value="'.$stack[$i][0].'"/>');
+                    echo('<button class="lectureButton" name="lectureToFeedback" value="'.$lecName.'" type="submit">ENTER</button></th>');
+                    echo("</form></tr>");
                 }
             ?>
         </table>

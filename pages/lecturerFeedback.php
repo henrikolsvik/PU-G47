@@ -8,13 +8,14 @@
         global $conn;
         $lectureId = null;
         $lecturerName = $_POST['lectureToFeedback'];
+        $lectureDate = $_POST['lectureDate'];
         $foreleser = $lecturerName;
         $sqlFeed = "SELECT * FROM Feedback";
         $resultFeed = mysqli_query($conn, $sqlFeed);
         $sqlLect = "SELECT * FROM Lecture";
         $resultLect = mysqli_query($conn, $sqlLect);
 
-        $sqlId = "SELECT lectureId FROM lecture JOIN lecturer ON lecture.lecturerId = lecturer.lecturerId WHERE lecturerName = '$lecturerName'";
+        $sqlId = "SELECT lectureId FROM lecture JOIN lecturer ON lecture.lecturerId = lecturer.lecturerId WHERE lecturerName = '$lecturerName' AND lectureDate = '$lectureDate'";
         $resultId = mysqli_query($conn, $sqlId);
 
         while($rowId = mysqli_fetch_assoc($resultId)) {
@@ -204,7 +205,7 @@
     </head>  
     <body> 
         <div id="info">
-            <h1>Emne: <?php echo ($lectureName) ?> </h1>
+            <h1>Dato: <?php echo ($lectureDate) ?> Emne: <?php echo ($lectureName) ?> </h1>
             <h2>Foreleser: <?php echo ($foreleser) ?> </h2>
         </div>
         <div id="main">
