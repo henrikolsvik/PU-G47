@@ -23,9 +23,9 @@
         <h2>Lecturer: <?php echo ($lecName) ?> </h2>
         <center>
             <div id="addLecture">
-                <form id="comment" action="index.php?page=submitText" method="POST" target="target" onSubmit="return changeColor(this)">
-                    <input type=hidden name="lecID" value=<?php echo($lectureID) ?>> 
-                    <input class="commentField" type="text" name="textFeedback" placeholder="Let everybody know what you think!"><br>
+                <form id="lectureForm" action="index.php?page=lecturerOverview" method="POST">
+                    <input type=hidden name="lecturerID" value=<?php echo($lecID) ?>>
+                    <input class="lectureField" type="text" name="textFeedback" placeholder="Let everybody know what you think!"><br>
                     <input class="aButton" type="submit" value="SEND COMMENT">
                 </form>
             </div>

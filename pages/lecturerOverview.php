@@ -30,7 +30,7 @@
                 }
             }
 
-            if (isset($_POST['addLecture'])) {
+            if ((isset($_POST['lectureID'])) && (isset($_POST['lecturerID'])) && (isset($_POST['lectureDate'])) {
                 
             }
         ?>
