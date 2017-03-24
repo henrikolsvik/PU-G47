@@ -5,21 +5,13 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <?php 
             global $conn;
-            $lectureId = null;
+            $lectureId = $_POST['lectureId'];
             $lecturerName = $_POST['lectureToFeedback'];
-            $lectureDate = $_POST['lectureDate'];
             $foreleser = $lecturerName;
             $sqlFeed = "SELECT * FROM Feedback";
             $resultFeed = mysqli_query($conn, $sqlFeed);
             $sqlLect = "SELECT * FROM Lecture";
             $resultLect = mysqli_query($conn, $sqlLect);
-
-            $sqlId = "SELECT lectureId FROM lecture JOIN lecturer ON lecture.lecturerId = lecturer.lecturerId WHERE lecturerName = '$lecturerName' AND lectureDate = '$lectureDate'";
-            $resultId = mysqli_query($conn, $sqlId);
-
-            while($rowId = mysqli_fetch_assoc($resultId)) {
-                $lectureId = $rowId["lectureId"];
-            }
 
             while ($rowLect = mysqli_fetch_assoc($resultLect)) {
                 if ($rowLect["lectureId"] == $lectureId) {
