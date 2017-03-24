@@ -176,11 +176,15 @@ img{
     word-break:normal;
 }
 .tg .tg-zd1f {
-    background-color:#c0c0c0;
+    background-color:#808285;
     color:#ffffff;
     vertical-align:top
 }
-.tg .tg-yw4l { vertical-align:top }
+.tg .tg-yw4l { 
+    vertical-align:top;
+    background-color:#ffffff;
+    color:#808285;
+}
 .lectureButton {
     margin: auto;
     font-size: 13px;
