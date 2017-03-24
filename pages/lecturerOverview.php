@@ -69,10 +69,10 @@
                         echo("<th class='tg-yw4l'>".$stack[$i][$j]."</th>");
                     }
                     echo('<th class="tg-yw41">');
-                    echo('<form id="enterLecture" action="index.php?page=lecturerFeedback" method="POST">');
+                    echo('<div id="enter"><form id="enterLecture" action="index.php?page=lecturerFeedback" method="POST">');
                     echo('<input type="hidden" name="lectureDate" value="'.$stack[$i][0].'"/>');
-                    echo('<button class="lectureButton" name="lectureToFeedback" value="'.$lecName.'" type="submit">ENTER</button></th>');
-                    echo("</form></tr>");
+                    echo('<button class="lectureButton" name="lectureToFeedback" value="'.$lecName.'" type="submit">ENTER</button>');
+                    echo("</form></div></th></tr>");
                 }
             ?>
         </table>
