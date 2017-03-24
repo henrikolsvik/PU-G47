@@ -203,8 +203,8 @@
     </head>  
     <body> 
         <div id="info">
-            <h1>Dato: <?php echo ($lectureDate) ?> Emne: <?php echo ($lectureName) ?> </h1>
-            <h2>Foreleser: <?php echo ($foreleser) ?> </h2>
+            <h1>Id: <?php echo ($lectureId) ?> Subject: <?php echo ($lectureName) ?> </h1>
+            <h2>Lecturer: <?php echo ($foreleser) ?> </h2>
         </div>
         <div id="main">
 
