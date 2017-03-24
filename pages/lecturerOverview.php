@@ -14,7 +14,7 @@
                 $lecID = $rowID["lecturerId"];
             }
             
-            $sql = "SELECT lectureName, lectureDate, lectureRating, lectureAvgSpeed, lectureAvgDifficulty FROM Lecture WHERE lecturerId='$lecID'";
+            $sql = "SELECT lectureId, lectureName, lectureDate, lectureRating, lectureAvgSpeed, lectureAvgDifficulty FROM Lecture WHERE lecturerId='$lecID'";
             $result = mysqli_query($conn, $sql);
             $numOfLectures = 0;
 
@@ -26,7 +26,7 @@
                 $stack = array();
                 while($row = mysqli_fetch_assoc($result)) {
                     $numOfLectures++;
-                    array_push($stack, [$row["lectureDate"],$row["lectureName"],$row["lectureAvgSpeed"],$row["lectureAvgDifficulty"],$row["lectureRating"]]);
+                    array_push($stack, [$row["lectureId"],$row["lectureDate"],$row["lectureName"],$row["lectureAvgSpeed"],$row["lectureAvgDifficulty"],$row["lectureRating"]]);
                 }
             }
 
@@ -54,6 +54,7 @@
         <h2>Lecturer: <?php echo ($lecName) ?> </h2>
         <table class="tg" style="margin: 0px auto;">
             <tr>
+                <th class="tg-zd1f">Id</th>
                 <th class="tg-zd1f">Date</th>
                 <th class="tg-zd1f">Course name</th>
                 <th class="tg-zd1f">Average speed </th>
@@ -64,7 +65,7 @@
             <?php
                 for ($i = 0; $i < $numOfLectures; $i++) {
                     echo("<tr>" );
-                    for ($j = 0; $j < 5; $j++) {
+                    for ($j = 0; $j < 6; $j++) {
                         echo("<th class='tg-yw4l'>".$stack[$i][$j]."</th>");
                     }
                     echo('<th class="tg-yw41">');
