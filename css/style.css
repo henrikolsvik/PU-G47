@@ -1,5 +1,5 @@
 body {
-    background-color: #67BAB2;
+    background-color: #ace2dd;
 }
 
 h1{
@@ -100,7 +100,7 @@ div.logo {
 .rateButton {
     font-size: 20px;
     height: 2em;
-    width: 3em;
+    width: 7em;
     background-color: palegreen;
     border: 0px solid gray;
 }
@@ -120,6 +120,13 @@ div.logo {
     font-size: 20px;
     text-align: center;
     overflow: auto;
+}
+
+.lectureField {
+    display: block;
+    width: 300px;
+    height: 2em;
+    font-size: 20px;
 }
 
 img{
@@ -169,11 +176,15 @@ img{
     word-break:normal;
 }
 .tg .tg-zd1f {
-    background-color:#c0c0c0;
+    background-color:#808285;
     color:#ffffff;
     vertical-align:top
 }
-.tg .tg-yw4l { vertical-align:top }
+.tg .tg-yw4l { 
+    vertical-align:top;
+    background-color:#ffffff;
+    color:#808285;
+}
 .lectureButton {
     margin: auto;
     font-size: 13px;
@@ -181,4 +192,10 @@ img{
     width: 4.5em;
     border: 0px solid gray;
     background-color: palegreen;
+}
+#enter {
+    background-color: #ffffff;
+    margin: -10px;
+    padding-top: 10px;
+    height: 50px;
 }

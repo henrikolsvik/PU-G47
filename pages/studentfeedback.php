@@ -28,11 +28,11 @@
             <center>
                 <form id="difficulty" action="index.php?page=submitDifficult" onsubmit="return changeColor(this)" method="POST" target="target">
                     <input type=hidden name="lecID" value=<?php echo($lectureID) ?> > 
-                    <input class="rateButton" type="submit" name="difficultyValue" value="0">  
-                    <input class="rateButton" type="submit" name="difficultyValue" value="1"> 
-                    <input class="rateButton" type="submit" name="difficultyValue" value="2"> 
-                    <input class="rateButton" type="submit" name="difficultyValue" value="3"> 
-                    <input class="rateButton" type="submit" name="difficultyValue" value="4"> 
+                    <button class="rateButton" type="submit" name="difficultyValue" value="0">Very Difficult</button>
+                    <button class="rateButton" type="submit" name="difficultyValue" value="1">Difficult</button>
+                    <button class="rateButton" type="submit" name="difficultyValue" value="2">Medium</button>
+                    <button class="rateButton" type="submit" name="difficultyValue" value="3">Easy</button>
+                    <button class="rateButton" type="submit" name="difficultyValue" value="4">Very Easy</button>
                 </form>
             </center>
         </div>
@@ -41,11 +41,11 @@
             <center>
                 <form id="speed" action="index.php?page=submitSpeed" method="POST" target="target" onSubmit="return changeColor(this)">
                     <input type=hidden name="lecID" value=<?php echo($lectureID) ?> >    
-                    <input class="rateButton" type="submit" name="speedValue" value="0"> 
-                    <input class="rateButton" type="submit" name="speedValue" value="1"> 
-                    <input class="rateButton" type="submit" name="speedValue" value="2"> 
-                    <input class="rateButton" type="submit" name="speedValue" value="3"> 
-                    <input class="rateButton"type="submit" name="speedValue" value="4"> 
+                    <button class="rateButton" type="submit" name="speedValue" value="0">Very Slow</button>
+                    <button class="rateButton" type="submit" name="speedValue" value="1">Slow</button>
+                    <button class="rateButton" type="submit" name="speedValue" value="2">Medium</button>
+                    <button class="rateButton" type="submit" name="speedValue" value="3">Fast</button>
+                    <button class="rateButton" type="submit" name="speedValue" value="4">Very Fast</button>
                 </form>
             </center>
         </div>
@@ -55,7 +55,7 @@
                 <form id="comment" action="index.php?page=submitText" method="POST" target="target" onSubmit="return changeColor(this)">
                     <input type=hidden name="lecID" value=<?php echo($lectureID) ?>> 
                     <center>
-                    <input class="commentField" type="text" name="textFeedback" placeholder="Let everybody know what you think!"><br>
+                    <input class="commentField" type="text" name="textFeedback" placeholder="Let the lecturer know what you think!"><br>
                     <input class="aButton" type="submit" value="SEND COMMENT">
                     </center>
                 </form>
