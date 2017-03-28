@@ -52,7 +52,7 @@
                     echo('<th class="tg-yw41">');
                     echo('<div id="enter"><form id="showLectures" action="index.php?page=adminOverviewLectures" method="POST">');
                     echo('<input type="hidden" name="lecturerId" value="'.$stack[$i][0].'"/>');
-                    echo('<button class="lectureButton" name="lectureToFeedback" value="'.$lecName.'" type="submit">ENTER</button>');
+                    echo('<button class="lectureButton" name="lectureToFeedback" value="'.$lecName.'" type="submit">MORE</button>');
                     echo("</form></div></th></tr>");
                 }
             ?>
