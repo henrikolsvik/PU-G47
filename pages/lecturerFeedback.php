@@ -5,7 +5,29 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <?php 
             global $conn;
-            $lectureId = $_POST['lectureId'];
+            $lectureId = "ERROR";
+            $lectureName = "ERROR";
+
+            if ((isset($_POST['lectureName'])) && (isset($_POST['lectureDate']))) {
+                $lectureName = $_POST['lectureName'];
+                $lecturerId = $_POST['lecturerID'];
+                $lectureDate = $_POST['lectureDate'];
+
+                $sql = "INSERT INTO Lecture (lectureName, lecturerId, lectureRating, lectureAvgSpeed, lectureAvgDifficulty, lectureDate)
+                VALUES ('$lectureName', '$lecturerId', 0, 0, 0, '$lectureDate')";
+
+                if (mysqli_query($conn, $sql)) {
+                    echo('<script type="text/javascript">alert("Success");</script>');
+                    $sqlSelectLectureId = "SELECT lectureId FROM lecture WHERE lectureName='$lectureName'";
+                    $resultSelectLectureId = mysqli_query($conn, $sqlSelectLectureId);
+                    while ($rowSelectLectureId = mysqli_fetch_assoc($resultSelectLectureId)) {
+                        $lectureId = $rowSelectLectureId["lectureId"];
+                    }
+                } else {
+                    echo('<script type="text/javascript">alert("Failed");</script>');
+                }
+            }
+
             $lecturerName = $_POST['lectureToFeedback'];
             $foreleser = $lecturerName;
             $sqlFeed = "SELECT * FROM Feedback";

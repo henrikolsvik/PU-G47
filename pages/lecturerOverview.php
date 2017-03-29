@@ -30,21 +30,6 @@
                 }
             }
 
-            if ((isset($_POST['lectureName'])) && (isset($_POST['lectureDate']))) {
-                $lectureName = $_POST['lectureName'];
-                $lecturerId = $_POST['lecturerID'];
-                $lectureDate = $_POST['lectureDate'];
-
-                $sql = "INSERT INTO Lecture (lectureName, lecturerId, lectureRating, lectureAvgSpeed, lectureAvgDifficulty, lectureDate)
-                VALUES ('$lectureName', '$lecturerId', 0, 0, 0, '$lectureDate')";
-
-                if (mysqli_query($conn, $sql)) {
-                    echo('<script type="text/javascript">alert("Success, you may refresh");</script>');
-                } else {
-                    echo('<script type="text/javascript">alert("Failed");</script>');
-                }
-            }
-
 //Regner antrall dager mellom dagen i dag og dato lagret i database
         $chartData = array();
         for ($i = 0; $i < $numOfLectures; $i++) {
