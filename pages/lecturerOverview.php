@@ -34,11 +34,12 @@
         $chartData = array();
         for ($i = 0; $i < $numOfLectures; $i++) {
             date_default_timezone_set('Europe/Warsaw');
-            $from = strtotime('2017-03-17'); //TODO: Bytt ut med variabel for dato fra databsen
+            $from = strtotime($stack[$i][1]); //TODO: Bytt ut med variabel for dato fra databsen
             $today = time();
             $difference = ($today - $from)/86400; // (60 * 60 * 24)
             array_push($chartData, [$difference,$row["lectureRating"]]);
         }
+        echo("<script>console.log(" . $chartData . ");</script>");
         ?>
 
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -52,6 +53,7 @@ var limit= 7; //Hvor mange dager burker har valgt å se statistikk fra
 function drawBasic() {
 
     var jArray= <?php echo json_encode($chartData ); ?>;
+    console.log(jArray);
 
     var sub_array = [];
 
@@ -99,18 +101,14 @@ function dispOptionValue() {
         <h1>Feedback from previous lectures</h1>
         <h2>Lecturer: <?php echo ($lecName) ?> </h2>
 
-
-  <div id="chart_div"></div>
-
-      <br>
-    
-    <select id="numberOfDays" onchange="dispOptionValue()">
-        <option value="7">7 days</option>
-        <option value="14">14 days</option>
-        <option value="30">1 month</option>
-        <option value="360">1 year</option>
-    </select>
-
+        <div id="chart_div"></div>
+        <br>
+        <select id="numberOfDays" onchange="dispOptionValue()">
+            <option value="7">7 days</option>
+            <option value="14">14 days</option>
+            <option value="30">1 month</option>
+            <option value="360">1 year</option>
+        </select>
         <table class="tg" style="margin: 0px auto;">
             <tr>
                 <th class="tg-zd1f">Id</th>
@@ -126,12 +124,10 @@ function dispOptionValue() {
                     for ($j = 0; $j < 6; $j++) {
                         echo("<th class='tg-yw4l'>".$stack[$i][$j]."</th>");
                     }
-     
                     echo("</tr>");
                 }
             ?>
         </table>
-
     </body>
 </html>
 
