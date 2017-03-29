@@ -55,7 +55,7 @@ function changeColor(sender){
         color="green";
         document.body.style.background = color;
         setTimeout(function(){ 
-            color = "#67BAB2";
+            color = "#e7e7e7";
             document.body.style.background = color; 
             }, 500);
     }
