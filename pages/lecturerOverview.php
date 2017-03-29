@@ -37,7 +37,7 @@
             $from = strtotime($stack[$i][1]); //TODO: Bytt ut med variabel for dato fra databsen
             $today = time();
             $difference = ($today - $from)/86400; // (60 * 60 * 24)
-            array_push($chartData, [$difference,$stack[$i][5]]);
+            array_push($chartData, [$difference,floatval($stack[$i][5])]);
         }
         ?>
 
@@ -47,7 +47,7 @@
   google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawBasic);
 
-var limit= 50; //Hvor mange dager burker har valgt å se statistikk fra
+var limit= 7; //Hvor mange dager burker har valgt å se statistikk fra
 
 function drawBasic() {
 
