@@ -37,9 +37,8 @@
             $from = strtotime($stack[$i][1]); //TODO: Bytt ut med variabel for dato fra databsen
             $today = time();
             $difference = ($today - $from)/86400; // (60 * 60 * 24)
-            array_push($chartData, [$difference,$row["lectureRating"]]);
+            array_push($chartData, [$difference,$stack[$i][5]]);
         }
-        echo("<script>console.log(" . $chartData . ");</script>");
         ?>
 
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -48,7 +47,7 @@
   google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawBasic);
 
-var limit= 7; //Hvor mange dager burker har valgt å se statistikk fra
+var limit= 50; //Hvor mange dager burker har valgt å se statistikk fra
 
 function drawBasic() {
 
@@ -57,11 +56,12 @@ function drawBasic() {
 
     var sub_array = [];
 
-    for(var i=0;i<6;i++){
-        if (jArray[i] > limit){ //TODO: skrive index etter jArray[i][0], vet ikke hvorfor det ikke funker
+    for(var i=0;i<jArray.length;i++){
+        if (jArray[i][0] < limit){ //TODO: skrive index etter jArray[i][0], vet ikke hvorfor det ikke funker
                 sub_array.push(jArray[i]);
         }
     }
+    console.log(sub_array);
 
       var data = new google.visualization.DataTable();
       data.addColumn('number', 'X');
