@@ -50,7 +50,6 @@ google.charts.setOnLoadCallback(drawBasic);
 var limit= 7; //Hvor mange dager burker har valgt å se statistikk fra
 
 function drawBasic() {
-
     var jArray= <?php echo json_encode($chartData ); ?>;
     console.log(jArray);
 
@@ -90,6 +89,7 @@ function dispOptionValue() {
  var select = document.getElementById("numberOfDays").value;
  //alert(select.options.value);
  limit = select;
+ drawBasic();
 }
   </script>
 
