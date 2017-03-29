@@ -115,9 +115,8 @@ function drawBasic() {
 
     }
 function dispOptionValue() {
- //var select = document.getElementById('numberOfDays');
- //alert(select.options.value);
- alert("hei")
+ var select = document.getElementById('numberOfDays');
+ alert(select.options.value);
 }
   </script>
 
@@ -134,7 +133,7 @@ function dispOptionValue() {
 
       <br>
     
-    <select id="numberOfDays" onchange="dispOptionValue">
+    <select id="numberOfDays" onchange="dispOptionValue()">
         <option value="7">7 days</option>
         <option value="14">14 days</option>
         <option value="30">1 month</option>
