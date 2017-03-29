@@ -47,10 +47,9 @@
   google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawBasic);
 
-function drawBasic() {
+var limit= 7; //Hvor mange dager burker har valgt å se statistikk fra
 
-    
-    var limit= 7; //Hvor mange dager burker har valgt å se statistikk fra
+function drawBasic() {
 
     var jArray= <?php echo json_encode($chartData ); ?>;
 
@@ -61,7 +60,6 @@ function drawBasic() {
                 sub_array.push(jArray[i]);
         }
     }
-
 
       var data = new google.visualization.DataTable();
       data.addColumn('number', 'X');
@@ -102,7 +100,7 @@ function drawBasic() {
 function dispOptionValue() {
  var select = document.getElementById("numberOfDays").value;
  //alert(select.options.value);
- alert(select);
+ limit = select;
 }
   </script>
 
