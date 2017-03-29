@@ -115,8 +115,9 @@ function drawBasic() {
 
     }
 function dispOptionValue() {
- var select = document.getElementById('numberOfDays');
- alert(select.options.value);
+ var select = document.getElementById("numberOfDays").value;
+ //alert(select.options.value);
+ alert(select);
 }
   </script>
 
