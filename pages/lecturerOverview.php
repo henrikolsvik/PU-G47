@@ -107,7 +107,7 @@ function dispOptionValue() {
             <option value="7">7 days</option>
             <option value="14">14 days</option>
             <option value="30">1 month</option>
-            <option value="360">1 year</option>
+            <option value="365">1 year</option>
         </select>
         <table class="tg" style="margin: 0px auto;">
             <tr>
