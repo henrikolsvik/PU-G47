@@ -76,7 +76,7 @@ function drawBasic() {
           title: 'Rating'
         },
         
-        backgroundColor: '#ace2dd',
+        backgroundColor: '#e7e7e7',
         colors: ['#009444']
       };
 
