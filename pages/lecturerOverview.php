@@ -64,9 +64,23 @@ google.charts.setOnLoadCallback(drawBasic);
 
 function drawBasic() {
 
+    
+    var limit= 14; //Hvor mange dager burker har valgt å se statistikk fra
+
+    var jArray= <?php echo json_encode($chartData ); ?>;
+
+    var sub_array = [];
+
+    for(var i=0;i<6;i++){
+        if (jArray[i] > limit){ //TODO: skrive index etter jArray[i][0], vet ikke hvorfor det ikke funker
+                sub_array.push(jArray[i]);
+        }
+    }
+
+
       var data = new google.visualization.DataTable();
       data.addColumn('number', 'X');
-      data.addColumn('number', 'Average rating');
+      data.addColumn('number', 'Days from today');
 
       data.addRows([
         [0, 0],   [1, 10],  [2, 23],  [3, 17],  [4, 18],  [5, 9],
