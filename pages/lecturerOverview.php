@@ -65,7 +65,7 @@ google.charts.setOnLoadCallback(drawBasic);
 function drawBasic() {
 
     
-    var limit= 14; //Hvor mange dager burker har valgt å se statistikk fra
+    var limit= 7; //Hvor mange dager burker har valgt å se statistikk fra
 
     var jArray= <?php echo json_encode($chartData ); ?>;
 
@@ -80,7 +80,7 @@ function drawBasic() {
 
       var data = new google.visualization.DataTable();
       data.addColumn('number', 'X');
-      data.addColumn('number', 'Days from today');
+      data.addColumn('number', 'Rating');
 
       data.addRows([
         [0, 0],   [1, 10],  [2, 23],  [3, 17],  [4, 18],  [5, 9],
@@ -99,7 +99,7 @@ function drawBasic() {
 
       var options = {
         hAxis: {
-          title: 'Time'
+          title: 'Days from today'
         },
         vAxis: {
           title: 'Rating'
@@ -112,7 +112,13 @@ function drawBasic() {
       var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 
       chart.draw(data, options);
+
     }
+function dispOptionValue() {
+ //var select = document.getElementById('numberOfDays');
+ //alert(select.options.value);
+ alert("hei")
+}
   </script>
 
     </head>
@@ -125,7 +131,15 @@ function drawBasic() {
 
 
   <div id="chart_div"></div>
+
       <br>
+    
+    <select id="numberOfDays" onchange="dispOptionValue">
+        <option value="7">7 days</option>
+        <option value="14">14 days</option>
+        <option value="30">1 month</option>
+        <option value="360">1 year</option>
+    </select>
 
         <table class="tg" style="margin: 0px auto;">
             <tr>
