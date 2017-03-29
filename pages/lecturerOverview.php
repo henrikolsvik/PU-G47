@@ -30,21 +30,69 @@
                 }
             }
 
-            if ((isset($_POST['lectureName'])) && (isset($_POST['lectureDate']))) {
-                $lectureName = $_POST['lectureName'];
-                $lecturerId = $_POST['lecturerID'];
-                $lectureDate = $_POST['lectureDate'];
-
-                $sql = "INSERT INTO Lecture (lectureName, lecturerId, lectureRating, lectureAvgSpeed, lectureAvgDifficulty, lectureDate)
-                VALUES ('$lectureName', '$lecturerId', 0, 0, 0, '$lectureDate')";
-
-                if (mysqli_query($conn, $sql)) {
-                    echo('<script type="text/javascript">alert("Success, you may refresh");</script>');
-                } else {
-                    echo('<script type="text/javascript">alert("Failed");</script>');
-                }
-            }
+//Regner antrall dager mellom dagen i dag og dato lagret i database
+        $chartData = array();
+        for ($i = 0; $i < $numOfLectures; $i++) {
+            date_default_timezone_set('Europe/Warsaw');
+            $from = strtotime($stack[$i][1]); //TODO: Bytt ut med variabel for dato fra databsen
+            $today = time();
+            $difference = ($today - $from)/86400; // (60 * 60 * 24)
+            array_push($chartData, [$difference,floatval($stack[$i][5])]);
+        }
         ?>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+
+  google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawBasic);
+
+var limit= 7; //Hvor mange dager burker har valgt å se statistikk fra
+
+function drawBasic() {
+    var jArray= <?php echo json_encode($chartData ); ?>;
+    console.log(jArray);
+
+    var sub_array = [];
+
+    for(var i=0;i<jArray.length;i++){
+        if (jArray[i][0] < limit){ //TODO: skrive index etter jArray[i][0], vet ikke hvorfor det ikke funker
+                sub_array.push(jArray[i]);
+        }
+    }
+    console.log(sub_array);
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'X');
+      data.addColumn('number', 'Rating');
+
+      data.addRows(sub_array);
+
+      var options = {
+        hAxis: {
+          title: 'Days from today'
+        },
+        vAxis: {
+          title: 'Rating'
+        },
+        
+        backgroundColor: '#ace2dd',
+        colors: ['#009444']
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+
+    }
+function dispOptionValue() {
+ var select = document.getElementById("numberOfDays").value;
+ //alert(select.options.value);
+ limit = select;
+ drawBasic();
+}
+  </script>
+
     </head>
     <body> 
         <div class="logo">
@@ -52,6 +100,15 @@
         </div> 
         <h1>Feedback from previous lectures</h1>
         <h2>Lecturer: <?php echo ($lecName) ?> </h2>
+
+        <div id="chart_div"></div>
+        <br>
+        <select id="numberOfDays" onchange="dispOptionValue()">
+            <option value="7">7 days</option>
+            <option value="14">14 days</option>
+            <option value="30">1 month</option>
+            <option value="360">1 year</option>
+        </select>
         <table class="tg" style="margin: 0px auto;">
             <tr>
                 <th class="tg-zd1f">Id</th>
@@ -60,7 +117,6 @@
                 <th class="tg-zd1f">Average speed<br>(slow 0-5 fast)</th>
                 <th class="tg-zd1f">Average difficulty<br>(easy 0-5 hard)</th>
                 <th class="tg-zd1f">Total rating<br>(bad 0-5 good)</th>
-                <th class="tg-zd1f">Link to lecture</th>
             </tr>
             <?php
                 for ($i = 0; $i < $numOfLectures; $i++) {
@@ -68,19 +124,10 @@
                     for ($j = 0; $j < 6; $j++) {
                         echo("<th class='tg-yw4l'>".$stack[$i][$j]."</th>");
                     }
-                    echo('<th class="tg-yw41">');
-                    echo('<div id="enter"><form id="enterLecture" action="index.php?page=lecturerFeedback" method="POST">');
-                    echo('<input type="hidden" name="lectureId" value="'.$stack[$i][0].'"/>');
-                    echo('<button class="lectureButton" name="lectureToFeedback" value="'.$lecName.'" type="submit">ENTER</button>');
-                    echo("</form></div></th></tr>");
+                    echo("</tr>");
                 }
             ?>
         </table>
-        <center>
-            <form id="addLecture" action="index.php?page=lecturerAddLecture" method="POST">
-                <button class="aButton" name="lectureToFeedback" value="<?php echo($lecID) ?>" type="submit">ADD LECTURE</button>
-            </form>
-        </center>
     </body>
 </html>
 
