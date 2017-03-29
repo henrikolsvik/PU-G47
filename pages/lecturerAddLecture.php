@@ -23,10 +23,11 @@
         <h2>Lecturer: <?php echo ($lecName) ?> </h2>
         <center>
             <div id="addLecture">
-                <form id="lectureForm" action="http://localhost:8888/index.php?page=lecturerFeedback" method="POST">
+                <form id="lectureForm" action="index.php?page=lecturerFeedback" method="POST">
                     <input class="lectureField" type="text" name="lectureName" placeholder="Course name"><br>
                     <input type=hidden name="lectureToFeedback" value="<?php echo($lecName) ?>">
                     <input type=hidden name="lecturerID" value="<?php echo($lecID) ?>">
+                    <input type=hidden name="lectureDate" value="<?php echo(date("Y-m-d")) ?>">
                     <button class="aButton" type="submit" value="<?php echo($lecName) ?>">ADD LECTURE</button>
                 </form>
             </div>
