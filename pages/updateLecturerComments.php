@@ -1,7 +1,7 @@
 <?php
     //Made by Navjot on 02.03.17
 
-    include('../includes/config.php');
+    include('includes/config.php');
     global $conn;
     $lectureId = $_POST['lectureID'];
     $sqlFeed = "SELECT * FROM CommentFB";
