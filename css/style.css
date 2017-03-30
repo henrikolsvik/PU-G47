@@ -82,7 +82,7 @@ div.logo {
     margin: auto;
     font-size: 25px;
     height: 2em;
-    width: 9em;
+    width: 10em;
     margin-top: 20px;
     border: 0px solid gray;
     background-color: #a6a6a6;
@@ -130,6 +130,10 @@ div.logo {
 
 #v3 {
     background-color: #a6a6a6;
+}
+
+#lecturerFeedbackButton {
+    position: absolute;
 }
 
 #commentField {
