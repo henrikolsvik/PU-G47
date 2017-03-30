@@ -7,14 +7,16 @@
             global $conn;
             $lectureId = "ERROR";
             $lectureName = "ERROR";
+            $lecturerName = "ERROR";
 
             if ((isset($_POST['lectureName'])) && (isset($_POST['lectureDate']))) {
                 $lectureName = $_POST['lectureName'];
                 $lecturerId = $_POST['lecturerID'];
                 $lectureDate = $_POST['lectureDate'];
+                $lecturerName = $_POST['lectureToFeedback'];
 
-                $sql = "INSERT INTO Lecture (lectureName, lecturerId, lectureRating, lectureAvgSpeed, lectureAvgDifficulty, lectureDate)
-                VALUES ('$lectureName', '$lecturerId', 0, 0, 0, '$lectureDate')";
+                $sql = "INSERT INTO Lecture (lectureName, lecturerId, lectureRating, lectureAvgSpeed, lectureAvgDifficulty, lectureDate, active)
+                VALUES ('$lectureName', '$lecturerId', 0, 0, 0, '$lectureDate', 1)";
 
                 if (mysqli_query($conn, $sql)) {
                     echo('<script type="text/javascript">alert("Success");</script>');
@@ -28,7 +30,11 @@
                 }
             }
 
-            $lecturerName = $_POST['lectureToFeedback'];
+            if ((isset($_POST['lectureToFeedback'])) && (isset($_POST['lectureId']))) {
+                $lecturerName = $_POST['lectureToFeedback'];
+                $lectureId = $_POST['lectureId'];
+            }
+
             $foreleser = $lecturerName;
             $sqlFeed = "SELECT * FROM Feedback";
             $resultFeed = mysqli_query($conn, $sqlFeed);
@@ -215,18 +221,27 @@
         
         </script>
     </head>  
-    <body> 
-        <div id="info">
+    <body>
+        <div align="left" id="menuButton">
+            <form id="menu" action="index.php?page=lecturerMain" method="POST">
+                <button class="bButton" name="lectureToFeedback" value="<?php echo($lecturerName) ?>" type="submit">MENU</button>
+            </form>
+            <form id="endLecture" action="index.php?page=lecturerRating" method="POST">
+                <input type=hidden name="lectureId" value="<?php echo($lectureId) ?>">
+                <input type=hidden name="lectureName" value="<?php echo($lectureName) ?>">
+                <button class="bButton" name="lectureToFeedback" value="<?php echo($lecturerName) ?>" type="submit">END LECTURE</button>
+            </form>
+        </div>
+        <div id="info" align="center">
             <h1>Id: <?php echo ($lectureId) ?> Subject: <?php echo ($lectureName) ?> </h1>
             <h2>Lecturer: <?php echo ($foreleser) ?> </h2>
         </div>
+        
         <div id="main">
-
             <div style="display:flex;justify-content:center;align-items:center;">
                 <div id="chart_div" style="width: 400px; height: 120px;"></div>
             </div>
             <div id="chart_div" style="width: 400px; height: 120px;"></div>
-            
             <center>
                 <h2>Kommentarer:</h2>
                 <div id="commentField">

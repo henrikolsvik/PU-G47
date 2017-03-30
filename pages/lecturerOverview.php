@@ -94,7 +94,12 @@ function dispOptionValue() {
   </script>
 
     </head>
-    <body> 
+    <body>
+        <div align="left" id="menuButton">
+            <form id="menu" action="index.php?page=lecturerMain" method="POST">
+                <button class="bButton" name="lectureToFeedback" value="<?php echo($lecName) ?>" type="submit">MENU</button>
+            </form>
+        </div>
         <div class="logo">
             <img src="img/ActiFeedBack.svg">
         </div> 

@@ -22,7 +22,7 @@
         <h1>Add a new lecture</h1>
         <h2>Lecturer: <?php echo ($lecName) ?> </h2>
         <center>
-            <div id="addLecture">
+            <div id="newLecture">
                 <form id="lectureForm" action="index.php?page=lecturerFeedback" method="POST">
                     <input class="lectureField" type="text" name="lectureName" placeholder="Course name"><br>
                     <input type=hidden name="lectureToFeedback" value="<?php echo($lecName) ?>">

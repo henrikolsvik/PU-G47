@@ -82,7 +82,19 @@ div.logo {
     margin: auto;
     font-size: 25px;
     height: 2em;
-    width: 9em;
+    width: 10em;
+    margin-top: 20px;
+    border: 0px solid gray;
+    background-color: #a6a6a6;
+    border-radius: 10px;
+}
+
+/* For the top left menu buttons */
+.bButton {
+    margin: auto;
+    font-size: 15px;
+    height: 2em;
+    width: 8em;
     margin-top: 20px;
     border: 0px solid gray;
     background-color: #a6a6a6;
@@ -130,6 +142,10 @@ div.logo {
 
 #v3 {
     background-color: #a6a6a6;
+}
+
+#menuButton {
+    position: absolute;
 }
 
 #commentField {
