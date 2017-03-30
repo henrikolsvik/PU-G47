@@ -89,6 +89,18 @@ div.logo {
     border-radius: 10px;
 }
 
+/* For the top left menu buttons */
+.bButton {
+    margin: auto;
+    font-size: 15px;
+    height: 2em;
+    width: 8em;
+    margin-top: 20px;
+    border: 0px solid gray;
+    background-color: #a6a6a6;
+    border-radius: 10px;
+}
+
 /* For the text inputs */
 .textInput {
     width: 9em; 
@@ -132,7 +144,7 @@ div.logo {
     background-color: #a6a6a6;
 }
 
-#lecturerFeedbackButton {
+#menuButton {
     position: absolute;
 }
 

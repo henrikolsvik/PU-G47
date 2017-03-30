@@ -39,6 +39,11 @@
         ?>
     </head>
     <body>
+        <div align="left" id="menuButton">
+            <form id="menu" action="index.php?page=adminOverview" method="POST">
+                <button class="bButton" name="lectureToFeedback" value="<?php echo($lecName) ?>" type="submit">BACK</button>
+            </form>
+        </div>
         <div class="logo">
             <img src="img/ActiFeedBack.svg">
         </div> 

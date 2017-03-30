@@ -222,14 +222,14 @@
         </script>
     </head>  
     <body>
-        <div align="left" id="lecturerFeedbackButton">
+        <div align="left" id="menuButton">
             <form id="menu" action="index.php?page=lecturerMain" method="POST">
-                <button class="aButton" name="lectureToFeedback" value="<?php echo($lecturerName) ?>" type="submit">MENU</button>
+                <button class="bButton" name="lectureToFeedback" value="<?php echo($lecturerName) ?>" type="submit">MENU</button>
             </form>
             <form id="endLecture" action="index.php?page=lecturerRating" method="POST">
                 <input type=hidden name="lectureId" value="<?php echo($lectureId) ?>">
                 <input type=hidden name="lectureName" value="<?php echo($lectureName) ?>">
-                <button class="aButton" name="lectureToFeedback" value="<?php echo($lecturerName) ?>" type="submit">END LECTURE</button>
+                <button class="bButton" name="lectureToFeedback" value="<?php echo($lecturerName) ?>" type="submit">END LECTURE</button>
             </form>
         </div>
         <div id="info" align="center">
