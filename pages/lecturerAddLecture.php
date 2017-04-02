@@ -22,12 +22,12 @@
         <h1>Add a new lecture</h1>
         <h2>Lecturer: <?php echo ($lecName) ?> </h2>
         <center>
-            <div id="addLecture">
-                <form id="lectureForm" action="index.php?page=lecturerOverview" method="POST">
-                    <input class="lectureField" type="text" name="lectureName" placeholder="The name of your lecture"><br>
+            <div id="newLecture">
+                <form id="lectureForm" action="index.php?page=lecturerFeedback" method="POST">
+                    <input class="lectureField" type="text" name="lectureName" placeholder="Course name"><br>
                     <input type=hidden name="lectureToFeedback" value="<?php echo($lecName) ?>">
                     <input type=hidden name="lecturerID" value="<?php echo($lecID) ?>">
-                    <input class="lectureField" type="date" name="lectureDate" placeholder="When will it be"><br>
+                    <input type=hidden name="lectureDate" value="<?php echo(date("Y-m-d")) ?>">
                     <button class="aButton" type="submit" value="<?php echo($lecName) ?>">ADD LECTURE</button>
                 </form>
             </div>
