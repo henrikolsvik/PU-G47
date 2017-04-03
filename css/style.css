@@ -126,21 +126,6 @@ div.logo {
     width: 7em;
     border: 0px solid gray;
     border-radius: 10px;
-}
-
-#v1 {
-    background-color: #009444;
-}
-
-#v21 {
-    background: linear-gradient(to right, #009444 , #a6a6a6);
-}
-
-#v22 {
-    background: linear-gradient(to left, #009444 , #a6a6a6);
-}
-
-#v3 {
     background-color: #a6a6a6;
 }
 

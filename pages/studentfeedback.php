@@ -28,11 +28,11 @@
             <center>
                 <form id="difficulty" action="index.php?page=submitDifficult" onsubmit="return changeColor(this)" method="POST" target="target">
                     <input type=hidden name="lecID" value=<?php echo($lectureID) ?> > 
-                    <button class="rateButton" id="v3" type="submit" name="difficultyValue" value="0">Very Difficult</button>
-                    <button class="rateButton" id="v22" type="submit" name="difficultyValue" value="1">Difficult</button>
-                    <button class="rateButton" id="v1" type="submit" name="difficultyValue" value="2">Medium</button>
-                    <button class="rateButton" id="v21" type="submit" name="difficultyValue" value="3">Easy</button>
-                    <button class="rateButton" id="v3" type="submit" name="difficultyValue" value="4">Very Easy</button>
+                    <button class="rateButton" type="submit" name="difficultyValue" value="0">Very Difficult</button>
+                    <button class="rateButton" type="submit" name="difficultyValue" value="1">Difficult</button>
+                    <button class="rateButton" type="submit" name="difficultyValue" value="2">Medium</button>
+                    <button class="rateButton" type="submit" name="difficultyValue" value="3">Easy</button>
+                    <button class="rateButton" type="submit" name="difficultyValue" value="4">Very Easy</button>
                 </form>
             </center>
         </div>
@@ -41,11 +41,11 @@
             <center>
                 <form id="speed" action="index.php?page=submitSpeed" method="POST" target="target" onSubmit="return changeColor(this)">
                     <input type=hidden name="lecID" value=<?php echo($lectureID) ?> >    
-                    <button class="rateButton" id="v3" type="submit" name="speedValue" value="0">Too Slow</button>
-                    <button class="rateButton" id="v22" type="submit" name="speedValue" value="1">Slow</button>
-                    <button class="rateButton" id="v1" type="submit" name="speedValue" value="2">Medium</button>
-                    <button class="rateButton" id="v21" type="submit" name="speedValue" value="3">Fast</button>
-                    <button class="rateButton" id="v3" type="submit" name="speedValue" value="4">Too Fast</button>
+                    <button class="rateButton" type="submit" name="speedValue" value="0">Too Slow</button>
+                    <button class="rateButton" type="submit" name="speedValue" value="1">Slow</button>
+                    <button class="rateButton" type="submit" name="speedValue" value="2">Medium</button>
+                    <button class="rateButton" type="submit" name="speedValue" value="3">Fast</button>
+                    <button class="rateButton" type="submit" name="speedValue" value="4">Too Fast</button>
                 </form>
             </center>
         </div>
