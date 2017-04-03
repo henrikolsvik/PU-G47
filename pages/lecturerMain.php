@@ -23,7 +23,12 @@
         ?>
         
     </head>
-    <body> 
+    <body>
+        <div align="left" id="menuButton">
+            <form id="log_out" action="index.php?page=mainPage" method="POST">
+                <button class="bButton" type="submit">LOG OUT</button>
+            </form>
+        </div>
         <div class="logo">
             <img src="img/ActiFeedBack.svg">
         </div> 

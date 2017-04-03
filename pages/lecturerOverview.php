@@ -96,6 +96,9 @@ function dispOptionValue() {
     </head>
     <body>
         <div align="left" id="menuButton">
+            <form id="log_out" action="index.php?page=mainPage" method="POST">
+                <button class="bButton" type="submit">LOG OUT</button>
+            </form>
             <form id="menu" action="index.php?page=lecturerMain" method="POST">
                 <button class="bButton" name="lectureToFeedback" value="<?php echo($lecName) ?>" type="submit">MENU</button>
             </form>
