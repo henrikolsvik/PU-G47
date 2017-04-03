@@ -169,10 +169,10 @@
                         if (xhttp.status == 200) { 
                             //String pharsing using € as divider to exclude unneeded headers
                             var meterValues = xhttp.responseText.split("€");
-                            //alert(xhttp.responseText);
+                            alert(xhttp.responseText);
                             updateMeterValues(meterValues);
                         } else {
-                            //alert('There was a problem with the request.');  
+                            alert('There was a problem with the request.');  
                         }  
                     }
                 }
