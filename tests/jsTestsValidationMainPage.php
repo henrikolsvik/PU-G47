@@ -12,6 +12,10 @@
   <div id="qunit"></div>
   <div id="qunit-fixture"></div>
   <p hidden id="selectLectureID"></p>
+  <p hidden id="usernameL"> </p>
+  <p hidden id="passwordL"> </p>
+  <p hidden id="usernameA"> </p>
+  <p hidden id="passwordA"> </p>
   <script src="../js/studentFeedbackController.js"></script>
   <script src="../js/tabController.js"></script>
   <script src="../js/validationMainPage.js"></script>
