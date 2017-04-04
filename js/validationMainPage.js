@@ -1,5 +1,6 @@
 //Checking valid id for lecture for now this means not null
 function checkNullStudent(){
+
     if(document.getElementById("selectLectureID").value == ""){
         alert("You need to enter an valid id!");
         return false;
