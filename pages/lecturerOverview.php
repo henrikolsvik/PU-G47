@@ -96,7 +96,7 @@ function endLecture() {
     <?php
         $sql = "UPDATE Lecture
                 SET feedbackActive=0, ratingActive=1
-                WHERE lectureId = $lectureId";
+                WHERE lectureId = $lecID";
         if (mysqli_query($conn, $sql)) {
             echo('alert("Success");');
         } else {
