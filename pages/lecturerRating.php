@@ -10,10 +10,10 @@
             $lecturerName = $_POST['lectureToFeedback'];
         ?>
         <script>
-            function endLecture() {
+            function endRating() {
                 <?php
                     $sql = "UPDATE Lecture
-                            SET feedbackActive=0, ratingActive=1
+                            SET feedbackActive=0, ratingActive=0
                             WHERE lectureId = $lectureId";
                     if (mysqli_query($conn, $sql)) {
                         echo('alert("Success");');
@@ -21,6 +21,7 @@
                         echo('alert("Failed");');
                     }
                 ?>
+                console.log("there");
             }
         </script>
     </head>
@@ -30,7 +31,7 @@
                 <button class="bButton" type="submit">LOG OUT</button>
             </form>
             <form id="finish" action="index.php?page=lecturerMain" method="POST">
-                <button class="bButton" onclick="return endLecture()" name="lectureToFeedback" value="<?php echo($lecturerName) ?>" type="submit">FINISH</button>
+                <button class="bButton" onclick="return endRating()" name="lectureToFeedback" value="<?php echo($lecturerName) ?>" type="submit">FINISH</button>
             </form>
         </div>
         <div class="logo">

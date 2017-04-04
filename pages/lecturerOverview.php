@@ -91,6 +91,20 @@ function dispOptionValue() {
  limit = select;
  drawBasic();
 }
+
+function endLecture() {
+    <?php
+        $sql = "UPDATE Lecture
+                SET feedbackActive=0, ratingActive=1
+                WHERE lectureId = $lectureId";
+        if (mysqli_query($conn, $sql)) {
+            echo('alert("Success");');
+        } else {
+            echo('alert("Failed");');
+        }
+    ?>
+    console.log("here");
+}
   </script>
 
     </head>
@@ -100,7 +114,7 @@ function dispOptionValue() {
                 <button class="bButton" type="submit">LOG OUT</button>
             </form>
             <form id="menu" action="index.php?page=lecturerMain" method="POST">
-                <button class="bButton" name="lectureToFeedback" value="<?php echo($lecName) ?>" type="submit">MENU</button>
+                <button class="bButton" onclick="return endLecture()" name="lectureToFeedback" value="<?php echo($lecName) ?>" type="submit">MENU</button>
             </form>
         </div>
         <div class="logo">
