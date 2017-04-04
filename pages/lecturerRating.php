@@ -21,7 +21,6 @@
                         echo('alert("Failed");');
                     }
                 ?>
-                console.log("there");
             }
         </script>
     </head>

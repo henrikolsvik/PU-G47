@@ -103,7 +103,6 @@ function endLecture() {
             echo('alert("Failed");');
         }
     ?>
-    console.log("here");
 }
   </script>
 
