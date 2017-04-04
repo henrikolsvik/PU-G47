@@ -15,7 +15,7 @@
                 $lectureDate = $_POST['lectureDate'];
                 $lecturerName = $_POST['lectureToFeedback'];
 
-                $sql = "INSERT INTO Lecture (lectureName, lecturerId, lectureRating, lectureAvgSpeed, lectureAvgDifficulty, lectureDate, active)
+                $sql = "INSERT INTO Lecture (lectureName, lecturerId, lectureRating, lectureAvgSpeed, lectureAvgDifficulty, lectureDate, feedbackActive)
                 VALUES ('$lectureName', '$lecturerId', 0, 0, 0, '$lectureDate', 1)";
 
                 if (mysqli_query($conn, $sql)) {

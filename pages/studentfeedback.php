@@ -4,6 +4,8 @@
     $lectureID = $_POST['lectureToFeedback'];
     //Using this variable to show the lecture name on the feedback site
     $lectureName = "ERROR";
+    $feedbackActive = null;
+    $ratingActive = null;    
     global $conn;
     //Getting lecture name using lecture id from database
     $sql = "SELECT lectureName FROM Lecture WHERE lectureId='$lectureID'";
@@ -17,6 +19,22 @@
     <head>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <script type="text/javascript" src="js/studentFeedbackController.js"></script>
+        <script>
+            function checkFeedbackActive() {
+                <?php
+                    $sql = "SELECT feedbackActive FROM Lecture WHERE lectureId='$lectureID'";
+                    $result = mysqli_query($conn, $sql);
+                    while($row = mysqli_fetch_assoc($result)) {
+                        $feedbackActive = $row["feedbackActive"];
+                    }
+                ?>
+                var feedbackActive = "<?php echo $feedbackActive ?>";
+                if (feedbackActive == 0) {
+                    document.getElementById("activeLecture").submit();
+                }
+            }
+            window.setInterval(function(){checkFeedbackActive();}, 2000);
+        </script>
     </head>
     <body> 
         <div class="logo">  
@@ -61,6 +79,10 @@
                 </form>
             </div>
         </div>
+        <form id="activeLecture" action="index.php?page=studentRating" method="POST">
+            <input type=hidden name="lectureId" value=<?php echo($lectureID) ?>>
+            <input type=hidden name="lectureName" value=<?php echo($lectureName) ?>>
+        </form>
         <iframe style="display:none;" name="target"></iframe>
     </body>
 </html>

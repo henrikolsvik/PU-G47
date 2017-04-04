@@ -14,7 +14,7 @@
                 $lecID = $rowID["lecturerId"];
             }
             $lectureId = null;
-            $sqlLectureId = "SELECT lectureId FROM lecture WHERE lecturerId=$lecID AND active=1";
+            $sqlLectureId = "SELECT lectureId FROM lecture WHERE lecturerId=$lecID AND feedbackActive=1";
             $resultLectureId = mysqli_query($conn, $sqlLectureId);
             while($rowLectureId = mysqli_fetch_assoc($resultLectureId)){
                 $lectureId = $rowLectureId["lectureId"];

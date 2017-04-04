@@ -3,7 +3,7 @@
 <?php
     //getting valid lectureIDs from database
     global $conn;
-    $sqlLID = "SELECT lectureId FROM lecture";
+    $sqlLID = "SELECT lectureId FROM lecture WHERE feedbackActive=1 OR ratingActive=1";
     $resultLID = mysqli_query($conn, $sqlLID);
 
     //Show error if there are no data in the table

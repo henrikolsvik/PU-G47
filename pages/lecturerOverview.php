@@ -122,9 +122,9 @@ function dispOptionValue() {
                 <th class="tg-zd1f">Id</th>
                 <th class="tg-zd1f">Date</th>
                 <th class="tg-zd1f">Course name</th>
-                <th class="tg-zd1f">Average speed<br>(slow 0-5 fast)</th>
-                <th class="tg-zd1f">Average difficulty<br>(easy 0-5 hard)</th>
-                <th class="tg-zd1f">Total rating<br>(bad 0-5 good)</th>
+                <th class="tg-zd1f">Average speed<br>(slow 1-5 fast)</th>
+                <th class="tg-zd1f">Average difficulty<br>(easy 1-5 hard)</th>
+                <th class="tg-zd1f">Total rating<br>(bad 1-5 good)</th>
             </tr>
             <?php
                 for ($i = 0; $i < $numOfLectures; $i++) {

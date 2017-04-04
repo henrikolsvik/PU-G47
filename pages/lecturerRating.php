@@ -9,14 +9,28 @@
             $lectureName = $_POST['lectureName'];
             $lecturerName = $_POST['lectureToFeedback'];
         ?>
-    </head>  
+        <script>
+            function endLecture() {
+                <?php
+                    $sql = "UPDATE Lecture
+                            SET feedbackActive=0, ratingActive=1
+                            WHERE lectureId = $lectureId";
+                    if (mysqli_query($conn, $sql)) {
+                        echo('alert("Success");');
+                    } else {
+                        echo('alert("Failed");');
+                    }
+                ?>
+            }
+        </script>
+    </head>
     <body>
         <div align="left" id="menuButton">
             <form id="log_out" action="index.php?page=mainPage" method="POST">
                 <button class="bButton" type="submit">LOG OUT</button>
             </form>
-            <form id="menu" action="index.php?page=lecturerMain" method="POST">
-                <button class="bButton" name="lectureToFeedback" value="<?php echo($lecturerName) ?>" type="submit">MENU</button>
+            <form id="finish" action="index.php?page=lecturerMain" method="POST">
+                <button class="bButton" onclick="return endLecture()" name="lectureToFeedback" value="<?php echo($lecturerName) ?>" type="submit">FINISH</button>
             </form>
         </div>
         <div class="logo">
@@ -26,6 +40,9 @@
             <h1>Id: <?php echo ($lectureId) ?> Subject: <?php echo ($lectureName) ?> </h1>
             <h2>Lecturer: <?php echo ($lecturerName) ?> </h2>
         </div>
-
+        <!-- Rating chart here -->
+        <form id="toMenu" action="index.php?page=lecturerMain" method="POST">
+            <input type=hidden name="lectureToFeedback" value=<?php echo($lecturerName) ?>>
+        </form>
     </body>
 </html>
