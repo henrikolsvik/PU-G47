@@ -48,6 +48,25 @@
 
 ?>
 <script>
+    /*function updateActiveLectures() {
+        <?php
+        $sqlLID = "SELECT lectureId FROM lecture WHERE feedbackActive=1 OR ratingActive=1";
+        $resultLID = mysqli_query($conn, $sqlLID);
+
+        //Show error if there are no data in the table
+        if (!$resultLID) {
+            echo(mysqli_error($conn));
+        } else {
+            //Print out data using while loop
+            $stackLID = array();
+            while($row = mysqli_fetch_assoc($resultLID)) {
+                array_push($stackLID, $row["lectureId"]);
+            }
+        }
+        ?>
+        console.log("running");
+    }
+    window.setInterval(function(){updateActiveLectures();}, 2000);*/
     <?php
         //php array to javascript array
         $js_arrayLID = json_encode($stackLID);
