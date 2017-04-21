@@ -21,14 +21,17 @@
         <script type="text/javascript" src="js/studentFeedbackController.js"></script>
         <script>
             function checkFeedbackActive() {
+                console.log("Checking...");
                 <?php
                     $sql = "SELECT feedbackActive FROM Lecture WHERE lectureId='$lectureID'";
                     $result = mysqli_query($conn, $sql);
                     while($row = mysqli_fetch_assoc($result)) {
                         $feedbackActive = $row["feedbackActive"];
                     }
+                    echo("console.log('test');");
                 ?>
                 var feedbackActive = "<?php echo $feedbackActive ?>";
+                console.log(feedbackActive);
                 if (feedbackActive == 0) {
                     document.getElementById("activeLecture").submit();
                 }

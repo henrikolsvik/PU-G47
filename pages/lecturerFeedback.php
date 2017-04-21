@@ -15,8 +15,8 @@
                 $lectureDate = $_POST['lectureDate'];
                 $lecturerName = $_POST['lectureToFeedback'];
 
-                $sql = "INSERT INTO Lecture (lectureName, lecturerId, lectureRating, lectureAvgSpeed, lectureAvgDifficulty, lectureDate, feedbackActive)
-                VALUES ('$lectureName', '$lecturerId', 0, 0, 0, '$lectureDate', 1)";
+                $sql = "INSERT INTO Lecture (lectureName, lecturerId, lectureRating, lectureAvgSpeed, lectureAvgDifficulty, lectureDate, feedbackActive, ratingActive)
+                VALUES ('$lectureName', '$lecturerId', 0, 0, 0, '$lectureDate', 1, 0)";
 
                 if (mysqli_query($conn, $sql)) {
                     echo('<script type="text/javascript">alert("Success");</script>');
@@ -232,7 +232,7 @@
             <form id="endLecture" action="index.php?page=lecturerRating" method="POST">
                 <input type=hidden name="lectureId" value="<?php echo($lectureId) ?>">
                 <input type=hidden name="lectureName" value="<?php echo($lectureName) ?>">
-                <button class="bButton" name="lectureToFeedback" value="<?php echo($lecturerName) ?>" type="submit">END LECTURE</button>
+                <button class="bButton" onclick="return endLecture()" name="lectureToFeedback" value="<?php echo($lecturerName) ?>" type="submit">END LECTURE</button>
             </form>
         </div>
         <div id="info" align="center">
