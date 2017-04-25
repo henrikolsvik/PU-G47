@@ -23,6 +23,8 @@
     $speedCount = 0;
     $difficultyScore = 0;
     $difficultyCount = 0;
+    $rateScore = 0;
+    $rateCount = 0;
 
     //Getting results from individual row, ignoring empty ones and adding together valid ones
     if (!$resultFeed) {
@@ -50,6 +52,15 @@
                             $difficultyCount = $difficultyCount + (1*$weight);
                         } 
                     }
+                    else if (!($row["rating"] == NULL)) {
+                        $thisTime = strtotime($row["time"]);
+                        if($thisTime > $timeToCheck){
+                            //Gives percentage weighting based on timeperiod
+                            $weight = ((60*$minutesToInclude - ($currentTime - $thisTime))/(60*$minutesToInclude));
+                            $rateScore = $rateScore + ($row["rating"]*$weight);
+                            $rateCount = $rateCount + (1*$weight);
+                        } 
+                    }
                 }
             }
         }
@@ -60,4 +71,6 @@
     echo "€".$speedCount;
     echo "€".$difficultyScore;
     echo "€".$difficultyCount;
+    echo "€".$rateScore;
+    echo "€".$rateCount;
 ?>

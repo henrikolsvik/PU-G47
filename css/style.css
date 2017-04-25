@@ -113,10 +113,35 @@ div.logo {
 }
 
 /* Questions on the studentFeedback site */
-.divQuestion {
+#divQuestion {
+    visibility: visible;
+}
+
+#main {
+    padding-left: 9.5%;
+}
+
+#feedback {
     padding-bottom: 10px;
     width: 80%;
     margin: auto;
+    position: absolute;
+}
+
+/* Rating on the studentFeedback site */
+#divRating {
+    width: 80%;
+    margin: auto;
+    visibility: hidden;
+    position: absolute;
+}
+
+#end {
+    visibility: visible;
+}
+
+#finishForm {
+    visibility: hidden;
 }
 
 /* The buttons you rate with */

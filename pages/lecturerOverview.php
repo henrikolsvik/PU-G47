@@ -85,25 +85,13 @@ function drawBasic() {
       chart.draw(data, options);
 
     }
-function dispOptionValue() {
- var select = document.getElementById("numberOfDays").value;
- //alert(select.options.value);
- limit = select;
- drawBasic();
-}
+    function dispOptionValue() {
+    var select = document.getElementById("numberOfDays").value;
+    //alert(select.options.value);
+    limit = select;
+    drawBasic();
+    }
 
-function endLecture() {
-    <?php
-        $sql = "UPDATE Lecture
-                SET feedbackActive=0, ratingActive=1
-                WHERE lectureId = $lecID";
-        if (mysqli_query($conn, $sql)) {
-            echo('alert("Success");');
-        } else {
-            echo('alert("Failed");');
-        }
-    ?>
-}
   </script>
 
     </head>
