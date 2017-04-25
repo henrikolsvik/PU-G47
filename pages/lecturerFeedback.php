@@ -15,8 +15,8 @@
                 $lectureDate = $_POST['lectureDate'];
                 $lecturerName = $_POST['lectureToFeedback'];
 
-                $sql = "INSERT INTO Lecture (lectureName, lecturerId, lectureRating, lectureAvgSpeed, lectureAvgDifficulty, lectureDate, active)
-                VALUES ('$lectureName', '$lecturerId', 0, 0, 0, '$lectureDate', 1)";
+                $sql = "INSERT INTO Lecture (lectureName, lecturerId, lectureRating, lectureAvgSpeed, lectureAvgDifficulty, lectureDate, feedbackActive, ratingActive)
+                VALUES ('$lectureName', '$lecturerId', 0, 0, 0, '$lectureDate', 1, 0)";
 
                 if (mysqli_query($conn, $sql)) {
                     echo('<script type="text/javascript">alert("Success");</script>');
@@ -171,7 +171,7 @@
                             var meterValues = xhttp.responseText.split("€");
                             updateMeterValues(meterValues);
                         } else {
-                            alert('There was a problem with the request.');  
+                            //alert('There was a problem with the request.');  
                         }  
                     }
                 }
