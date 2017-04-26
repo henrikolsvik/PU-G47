@@ -90,7 +90,7 @@
                             <input type=hidden name="lecID" value=<?php echo($lectureID) ?>> 
                             <center>
                             <input class="commentField" type="text" name="textFeedback" placeholder="Let the lecturer know what you think!"><br>
-                            <input class="aButton" type="submit" value="SEND COMMENT">
+                            <input class="aButton" id="comment" type="submit" value="SEND COMMENT">
                             </center>
                         </form>
                     </div>

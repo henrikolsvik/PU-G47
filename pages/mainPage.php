@@ -81,7 +81,7 @@
                 <div id="Student" class="tabcontent">
                     <form id="formToValidS" action="" onsubmit="return checkNullStudent()" method="POST">
                         <div id="formStudent"> 
-                            <input class="textInput" id="selectLectureID" type="number" name="lectureToFeedback" value="" placeholder="Lecture ID"/> 
+                            <input class="textInput" id="selectLectureID" type="number" name="lectureToFeedback" value="" placeholder="ID"/> 
                             </br> 
                             <input class="aButton" type="submit" onclick="return setGotoStudent(this)" name="studentIS" value="ENTER"/> 
                         </div> 

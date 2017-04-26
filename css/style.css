@@ -89,6 +89,10 @@ div.logo {
     border-radius: 10px;
 }
 
+#comment {
+    margin-top: 0px;
+}
+
 /* For the top left menu buttons */
 .bButton {
     margin: auto;
