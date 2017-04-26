@@ -62,7 +62,7 @@
             </tr>
             <?php
                 $old = "";
-                for ($i = $numOfLectures-1; $i > 0; $i--) {
+                for ($i = $numOfLectures-1; $i > -1; $i--) {
                     echo("<tr>");
                     for ($j = 0; $j < 5; $j++) {
                         echo("<th class='tg-yw4l'>".$stack[$i][$j]."</th>");
