@@ -16,7 +16,6 @@
         $sql = "UPDATE Lecture
                 SET lectureAvgSpeed=$avgSpeed, lectureAvgDifficulty=$avgDifficulty, feedbackActive=0, ratingActive=1
                 WHERE lectureId=$lectureIDToSet";
-        echo($sql);
         
         if (mysqli_query($conn, $sql)) {
             echo("<br><br>New record created successfully");

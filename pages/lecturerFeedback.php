@@ -10,6 +10,7 @@
             $lectureName = "ERROR";
             $lecturerName = "ERROR";
 
+            //Adds a new unfinished lecture to the database
             if ((isset($_POST['lectureName'])) && (isset($_POST['lectureDate']))) {
                 $lectureName = $_POST['lectureName'];
                 $lecturerId = $_POST['lecturerID'];
@@ -48,18 +49,19 @@
             }
 
             //variabler for å ha oversikt over verdiene på lecture
+            //variables for the charts
             $speedScore = 2;
             $speedCount = 1;
             $difficultyScore = 2;
             $difficultyCount = 1;
             $rateScore = 2;
             $rateCount = 1;
-            //sjekker at innholdet er der
+            //check if there is any output
             if (!$resultFeed) {
                 echo(mysqli_error($conn));
             } else {
                 if (mysqli_fetch_assoc($resultFeed) > 0) {
-                    //itererer gjennom Feedback-entiteten etter lecturer med id 2 og samler speed- og difficultyverdier
+                    //iterating through the Feedback-entity to collect speed and difficulty data for a chosen lecturer
                     while ($row = mysqli_fetch_assoc($resultFeed)) {
                         if ($row["lectureId"] == $lectureId) {
                             if (!($row["speed"] == NULL)) {
@@ -79,32 +81,33 @@
                 }
             }
             
-            //regner ut gjennomsnittsscorene
+            //calculating the average ratings
             $speedScore = $speedScore / $speedCount;
             $difficultyScore = $difficultyScore / $difficultyCount;
             $rateScore = $rateScore / $rateCount;
 
             echo("<script>console.log('speed ".$speedScore."');</script>");
 
-            //keep track of latest comment
+            //keeping track of latest comment
             $oldComment = "";
         ?>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
 
+            //these variables are used for the charts
             var fart;
             var vanskelig;
             var rate;
-            //keep track of latest comment
+            //keeping track of latest comment
             var oldComment;
 
             google.charts.load('current', {'packages':['gauge']});
             google.charts.setOnLoadCallback(drawChart);
 
-            //Function for å oppdatere metere
+            //Function to update the meters
             function drawChart() {
 
-                //Grafikk og verdi beskrivelser
+                //Description of graphics and values
                 var data = google.visualization.arrayToDataTable([
                     ['Label', 'Value'],
                     ['Speed', 50],
@@ -129,15 +132,10 @@
 
                 updatesMeters();
 
-                //Oppsett av verdier
-                //fart = ( <?php echo( $speedScore ) ?> /4)*100; //regner ut verdien til farten
-                //vanskelig = (<?php echo( $difficultyScore ) ?> /4)*100; //regner ut verdien til vanskelighetsgraden
-                //rate = ( <?php echo( $rateScore ) ?> /4)*100; //regner ut verdien til raten
-
                 chart.draw(data, options);
                 chart2.draw(data2, options);
 
-                //Regelmessig oppdatering av metere
+                //Updating the values regularly
                 setInterval(function() {
                     data.setValue(0, 1, fart);
                     chart.draw(data, options);
@@ -152,7 +150,7 @@
                 }, 1000);
             }
 
-            //Oppdaterer verdiene som meterene settes til
+            //Updating the meter values
             function updateMeterValues(meterValues) {
 
                 var fartNum = (parseFloat(meterValues[1]) + 2);
@@ -186,11 +184,8 @@
                         if (xhttp.status == 200) { 
                             //String pharsing using € as divider to exclude unneeded headers
                             var meterValues = xhttp.responseText.split("€");
-                            //alert(xhttp.responseText);
                             updateMeterValues(meterValues);
-                        } else {
-                            //alert('There was a problem with the request.');  
-                        }  
+                        }
                     }
                 }
                 document.getElementById("speed").value = (fart/100)*4+1;
@@ -229,10 +224,7 @@
                             var comments = xhttp.responseText.split("€");
                             //Updating comment field
                             updateCommentfield(comments);
-                        } else {  
-                            //Commented this away. This will show up everytime because of the comment refresh speed  
-                            //alert('There was a problem with the request.');  
-                        }  
+                        }
                     }
                 }
             }
@@ -249,7 +241,6 @@
             <form id="menu" action="index.php?page=lecturerMain" method="POST">
                 <button class="bButton" name="lectureToFeedback" value="<?php echo($lecturerName) ?>" type="submit">MENU</button>
             </form>
-
             <form id="endForm" action="index.php?page=saveFeedback" method="POST" target="target">
                 <input id="speed" type=hidden name="avgSpeed" value="">
                 <input id="difficulty" type=hidden name="avgDifficulty" value="">
@@ -261,7 +252,6 @@
                 <button id="finish" class="bButton" name="lectureId" value="<?php echo($lectureId) ?>" type="submit">FINISH</button>
             </form>
             <iframe style="display:none;" name="target"></iframe>
-
         </div>
         <div id="info" align="center">
             <h1>Id: <?php echo ($lectureId) ?> Subject: <?php echo ($lectureName) ?> </h1>
@@ -269,49 +259,49 @@
         </div>
         <div id="main">
             <div id="feedback">
-            <div id="divQuestion">
-                <div style="display:flex;justify-content:center;align-items:center;">
+                <div id="divQuestion">
+                    <div style="display:flex;justify-content:center;align-items:center;">
+                        <div id="chart_div1" style="width: 400px; height: 120px;"></div>
+                    </div>
                     <div id="chart_div1" style="width: 400px; height: 120px;"></div>
-                </div>
-                <div id="chart_div1" style="width: 400px; height: 120px;"></div>
-                <center>
-                    <h2>Kommentarer:</h2>
-                    <div id="commentField">
-                        <?php 
-                            //Connecting to the database and getting the comments
-                            global $conn;
-                            $sqlComm = "SELECT * FROM CommentFB";
-                            $resultComm = mysqli_query($conn, $sqlComm);
-                            if (!$resultComm) {
-                                echo(mysqli_error($conn));
-                            } else {
-                                if (mysqli_fetch_assoc($resultComm) > 0) {
-                                    while ($row = mysqli_fetch_assoc($resultComm)) {
-                                        if ($row["lectureId"] == $lectureId) {
-                                            //Printing out the comments in separate alert divs
-                                            $onclick = "this.parentElement.style.display='none';";
-                                            echo ("<div class='alert'>
-                                                <span class='closebtn' onclick=" . $onclick . ">&times;</span> " .
-                                                $row["comment"] . "<br>"
-                                                . "</div>"
-                                            );
-                                            //Saving latest comment
-                                            $oldComment = $row["comment"];
+                    <center>
+                        <h2>Kommentarer:</h2>
+                        <div id="commentField">
+                            <?php 
+                                //Connecting to the database and getting the comments
+                                global $conn;
+                                $sqlComm = "SELECT * FROM CommentFB";
+                                $resultComm = mysqli_query($conn, $sqlComm);
+                                if (!$resultComm) {
+                                    echo(mysqli_error($conn));
+                                } else {
+                                    if (mysqli_fetch_assoc($resultComm) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultComm)) {
+                                            if ($row["lectureId"] == $lectureId) {
+                                                //Printing out the comments in separate alert divs
+                                                $onclick = "this.parentElement.style.display='none';";
+                                                echo ("<div class='alert'>
+                                                    <span class='closebtn' onclick=" . $onclick . ">&times;</span> " .
+                                                    $row["comment"] . "<br>"
+                                                    . "</div>"
+                                                );
+                                                //Saving latest comment
+                                                $oldComment = $row["comment"];
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        ?>
-                        <!-- Transfers the latest comment from PHP to JavaScript -->
-                        <script> oldComment = "<?php echo($oldComment) ?>" </script>
-                    </div>
-                </center>
-            </div>
+                            ?>
+                            <!-- Transfers the latest comment from PHP to JavaScript -->
+                            <script> oldComment = "<?php echo($oldComment) ?>" </script>
+                        </div>
+                    </center>
+                </div>
             </div>
             <center>
-            <div id="divRating" style="display:flex;justify-content:center;align-items:center;">
-                <div id="chart_div2" style="width: 400px; height: 120px;"></div>
-            </div>
+                <div id="divRating" style="display:flex;justify-content:center;align-items:center;">
+                    <div id="chart_div2" style="width: 400px; height: 120px;"></div>
+                </div>
             </center>
         </div>
     </body>

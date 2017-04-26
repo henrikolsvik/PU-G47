@@ -20,7 +20,6 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <script type="text/javascript" src="js/studentFeedbackController.js"></script>
         <script>
-
             //Function to update the comments
             function checkActive() {
                 //Obtaining Lecture ID to pass on
@@ -48,7 +47,6 @@
                 }
             }
             window.setInterval(function(){checkActive();}, 2000);
-
         </script>
     </head>
     <body>

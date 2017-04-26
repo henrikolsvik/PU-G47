@@ -30,70 +30,52 @@
                 }
             }
 
-//Regner antrall dager mellom dagen i dag og dato lagret i database
-        $chartData = array();
-        for ($i = 0; $i < $numOfLectures; $i++) {
-            date_default_timezone_set('Europe/Warsaw');
-            $from = strtotime($stack[$i][1]); //TODO: Bytt ut med variabel for dato fra databsen
-            $today = time();
-            $difference = ($today - $from)/86400; // (60 * 60 * 24)
-            array_push($chartData, [$difference,floatval($stack[$i][5])]);
-        }
+            //Regner antrall dager mellom dagen i dag og dato lagret i database
+            $chartData = array();
+            for ($i = 0; $i < $numOfLectures; $i++) {
+                date_default_timezone_set('Europe/Warsaw');
+                $from = strtotime($stack[$i][1]);
+                $today = time();
+                $difference = ($today - $from)/86400; // (60 * 60 * 24)
+                array_push($chartData, [$difference,floatval($stack[$i][5])]);
+            }
         ?>
-
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
-
-  google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(drawBasic);
-
-var limit= 7; //Hvor mange dager burker har valgt å se statistikk fra
-
-function drawBasic() {
-    var jArray= <?php echo json_encode($chartData ); ?>;
-    console.log(jArray);
-
-    var sub_array = [];
-
-    for(var i=0;i<jArray.length;i++){
-        if (jArray[i][0] < limit){ //TODO: skrive index etter jArray[i][0], vet ikke hvorfor det ikke funker
-                sub_array.push(jArray[i]);
-        }
-    }
-    console.log(sub_array);
-
-      var data = new google.visualization.DataTable();
-      data.addColumn('number', 'X');
-      data.addColumn('number', 'Rating');
-
-      data.addRows(sub_array);
-
-      var options = {
-        hAxis: {
-          title: 'Days from today'
-        },
-        vAxis: {
-          title: 'Rating'
-        },
-        
-        backgroundColor: '#e7e7e7',
-        colors: ['#009444']
-      };
-
-      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-
-      chart.draw(data, options);
-
-    }
-    function dispOptionValue() {
-    var select = document.getElementById("numberOfDays").value;
-    //alert(select.options.value);
-    limit = select;
-    drawBasic();
-    }
-
-  </script>
-
+            google.charts.load('current', {packages: ['corechart', 'line']});
+            google.charts.setOnLoadCallback(drawBasic);
+            var limit= 7; //Hvor mange dager burker har valgt å se statistikk fra
+            function drawBasic() {
+                var jArray= <?php echo json_encode($chartData ); ?>;
+                var sub_array = [];
+                for (var i = 0; i < jArray.length; i++){
+                    if (jArray[i][0] < limit) {
+                        sub_array.push(jArray[i]);
+                    }
+                }
+                var data = new google.visualization.DataTable();
+                data.addColumn('number', 'X');
+                data.addColumn('number', 'Rating');
+                data.addRows(sub_array);
+                var options = {
+                    hAxis: {
+                        title: 'Days from today'
+                    },
+                    vAxis: {
+                        title: 'Rating'
+                    },
+                    backgroundColor: '#e7e7e7',
+                    colors: ['#009444']
+                };
+                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+            }
+            function dispOptionValue() {
+                var select = document.getElementById("numberOfDays").value;
+                limit = select;
+                drawBasic();
+            }
+        </script>
     </head>
     <body>
         <div align="left" id="menuButton">
@@ -109,7 +91,6 @@ function drawBasic() {
         </div> 
         <h1>Feedback from previous lectures</h1>
         <h2>Lecturer: <?php echo ($lecName) ?> </h2>
-
         <div id="chart_div"></div>
         <br>
         <select id="numberOfDays" onchange="dispOptionValue()">
