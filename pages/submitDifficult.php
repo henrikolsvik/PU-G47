@@ -13,8 +13,8 @@
         
         //Getting the table from the DB
         global $conn;
-        $sql = "INSERT INTO Feedback (speed, difficulty, time, lectureId)
-                VALUES (NULL, $valueToSend,NOW(),$lectureIDToSet)";
+        $sql = "INSERT INTO Feedback (speed, difficulty, rating, time, lectureId)
+                VALUES (NULL,$valueToSend,NULL,NOW(),$lectureIDToSet)";
         echo($sql);
         
         if (mysqli_query($conn, $sql)) {

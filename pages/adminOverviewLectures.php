@@ -21,7 +21,7 @@
                 $lecID = $rowID["lecturerId"];
             }
             
-            $sql = "SELECT lectureDate, lectureName, lectureRating FROM Lecturer JOIN Lecture ON Lecturer.lecturerId = Lecture.lecturerId WHERE Lecturer.lecturerId=$lecturerId";
+            $sql = "SELECT lectureDate, lectureName, lectureRating, lectureAvgSpeed, lectureAvgDifficulty FROM Lecturer JOIN Lecture ON Lecturer.lecturerId = Lecture.lecturerId WHERE Lecturer.lecturerId=$lecturerId";
             $result = mysqli_query($conn, $sql);
             $numOfLectures = 0;
             
@@ -33,7 +33,7 @@
                 $stack = array();
                 while($row = mysqli_fetch_assoc($result)) {
                     $numOfLectures++;
-                    array_push($stack, [$row["lectureDate"],$row["lectureName"],$row["lectureRating"]]);
+                    array_push($stack, [$row["lectureDate"],$row["lectureName"],$row["lectureRating"],$row["lectureAvgSpeed"],$row["lectureAvgDifficulty"]]);
                 }
             }
         ?>
@@ -57,12 +57,14 @@
                 <th class="tg-zd1f">Lecture date</th>
                 <th class="tg-zd1f">Lecture name</th>
                 <th class="tg-zd1f">Lecture rating</th>
+                <th class="tg-zd1f">Lecture avg speed</th>
+                <th class="tg-zd1f">Lecture avg difficulty</th>
             </tr>
             <?php
                 $old = "";
-                for ($i = 0; $i < $numOfLectures; $i++) {
+                for ($i = $numOfLectures-1; $i > -1; $i--) {
                     echo("<tr>");
-                    for ($j = 0; $j < 3; $j++) {
+                    for ($j = 0; $j < 5; $j++) {
                         echo("<th class='tg-yw4l'>".$stack[$i][$j]."</th>");
                     }
                     echo("</tr>");

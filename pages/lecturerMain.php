@@ -4,6 +4,18 @@
     <head>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <?php
+            if (isset($_POST['avgRating'])) {
+                $avgRating = (int)($_POST['avgRating']);
+                $lectureIDToSet = ($_POST['lectureId']);
+                
+                //Getting the table from the DB
+                global $conn;
+                $sql = "UPDATE Lecture
+                        SET lectureRating=$avgRating, ratingActive=0
+                        WHERE lectureId=$lectureIDToSet";
+                mysqli_query($conn, $sql);
+            }
+
             global $conn;
             //getting valid lectureIDs from database
             $lecID = null;
@@ -14,7 +26,7 @@
                 $lecID = $rowID["lecturerId"];
             }
             $lectureId = null;
-            $sqlLectureId = "SELECT lectureId FROM lecture WHERE lecturerId=$lecID AND active=1";
+            $sqlLectureId = "SELECT lectureId FROM lecture WHERE lecturerId=$lecID AND (feedbackActive=1 OR ratingActive=1)";
             $resultLectureId = mysqli_query($conn, $sqlLectureId);
             while($rowLectureId = mysqli_fetch_assoc($resultLectureId)){
                 $lectureId = $rowLectureId["lectureId"];
