@@ -1,6 +1,7 @@
 <!-- Made by Henrik on 16.02.17 --> 
 
 <?php 
+    //this submits the comment of the lecture so that the lecturer can get the comment on their page
     if (isset($_POST['textFeedback'])) {
         // Check connection
         if (!$conn) {

@@ -1,6 +1,5 @@
-
-//Switching the page from feedback mode to rating mode
-function endFeedback(){
+//Switching the lecturerFeedback page from feedback-mode to rating-mode
+function endFeedback() {
     document.getElementById("divQuestion").style.visibility = "hidden";
     document.getElementById("divRating").style.visibility = "visible";
     document.getElementById("log_out").style.visibility = "hidden";

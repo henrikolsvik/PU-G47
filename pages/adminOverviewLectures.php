@@ -5,20 +5,13 @@
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
         <?php
             global $conn;
-            //getting valid lectureIDs from database
+            //getting currently logged in lecturerID
             $lecturerId = $_POST["lecturerId"];
-
-            $lecID = null;
-            $lecName = $_POST["lectureToFeedback"]; //Få tilsendt foreleser id fra innloggingssiden;
+            $lecName = $_POST["lectureToFeedback"];
             $sqlLID = "SELECT lecturerId FROM lecturer WHERE lecturerName='$lecturerId'";
             $resultLID = mysqli_query($conn, $sqlLID);
             while($rowLID = mysqli_fetch_assoc($resultLID)){
                 $lecturerId = $rowLID["lecturerId"];
-            }
-            $sqlID = "SELECT lecturerId FROM lecturer WHERE lecturerName='$lecName'";
-            $resultID = mysqli_query($conn, $sqlID);
-            while($rowID = mysqli_fetch_assoc($resultID)){
-                $lecID = $rowID["lecturerId"];
             }
             
             $sql = "SELECT lectureDate, lectureName, lectureRating, lectureAvgSpeed, lectureAvgDifficulty FROM Lecturer JOIN Lecture ON Lecturer.lecturerId = Lecture.lecturerId WHERE Lecturer.lecturerId=$lecturerId";
@@ -29,7 +22,7 @@
             if (!$result) {
                 echo(mysqli_error($conn));
             } else {
-                //Print out data using while loop
+                //Save lectures to an array using while loop
                 $stack = array();
                 while($row = mysqli_fetch_assoc($result)) {
                     $numOfLectures++;
@@ -61,7 +54,6 @@
                 <th class="tg-zd1f">Lecture avg difficulty</th>
             </tr>
             <?php
-                $old = "";
                 for ($i = $numOfLectures-1; $i > -1; $i--) {
                     echo("<tr>");
                     for ($j = 0; $j < 5; $j++) {

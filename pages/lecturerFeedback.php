@@ -6,6 +6,7 @@
         <script type="text/javascript" src="js/feedbackToRatingSwitch.js"></script>
         <?php 
             global $conn;
+            //keeping track of lecture and lecturer names and id
             $lectureId = "ERROR";
             $lectureName = "ERROR";
             $lecturerName = "ERROR";
@@ -36,7 +37,6 @@
                 $lectureId = $_POST['lectureId'];
             }
 
-            $foreleser = $lecturerName;
             $sqlFeed = "SELECT * FROM Feedback";
             $resultFeed = mysqli_query($conn, $sqlFeed);
             $sqlLect = "SELECT * FROM Lecture";
@@ -48,7 +48,6 @@
                 }
             }
 
-            //variabler for å ha oversikt over verdiene på lecture
             //variables for the charts
             $speedScore = 2;
             $speedCount = 1;
@@ -230,7 +229,6 @@
             }
             //Updates very fast, it's called LIVE COMMENTING
             window.setInterval(function(){checkComments();}, 500);
-        
         </script>
     </head>  
     <body>
@@ -255,7 +253,7 @@
         </div>
         <div id="info" align="center">
             <h1>Id: <?php echo ($lectureId) ?> Subject: <?php echo ($lectureName) ?> </h1>
-            <h2>Lecturer: <?php echo ($foreleser) ?> </h2>
+            <h2>Lecturer: <?php echo ($lecturerName) ?> </h2>
         </div>
         <div id="main">
             <div id="feedback">

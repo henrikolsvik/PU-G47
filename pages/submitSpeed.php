@@ -1,6 +1,7 @@
 <!-- Made by Henrik on 15.02.17 --> 
 
 <?php
+    //this submits the speed of the lecture so that the lecturer can get the feedback on their page
     if (isset($_POST['speedValue'])) {
         // Check connection
         if (!$conn) {

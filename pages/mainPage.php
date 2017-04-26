@@ -1,16 +1,15 @@
 <!-- Made by Henrik on 22.02.17 --> 
 
 <?php
-    //getting valid lectureIDs from database
+    //getting active lectures from database
     global $conn;
     $sqlLID = "SELECT lectureId FROM lecture WHERE feedbackActive=1 OR ratingActive=1";
     $resultLID = mysqli_query($conn, $sqlLID);
-
     //Show error if there are no data in the table
     if (!$resultLID) {
         echo(mysqli_error($conn));
     } else {
-        //Print out data using while loop
+        //saves active lectures in an array, later used for entering a lecture
         $stackLID = array();
         while($row = mysqli_fetch_assoc($resultLID)) {
             array_push($stackLID, $row["lectureId"]);
@@ -20,26 +19,25 @@
     //getting valid lecturer names from database
     $sqlLName = "SELECT lecturerName FROM lecturer";
     $resultLName = mysqli_query($conn, $sqlLName);
-
     //Show error if there are no data in the table
     if (!$resultLName) {
         echo(mysqli_error($conn));
     } else {
-        //Print out data using while loop
+        //saves valid lecturers in an array, later used for lecturer login
         $stackLName = array();
         while($row = mysqli_fetch_assoc($resultLName)) {
             array_push($stackLName, $row["lecturerName"]);
         }
     }
 
-    $sqlAName = "SELECT lecturerName FROM lecturer";
+    //getting valid admin names from database
+    $sqlAName = "SELECT lecturerName FROM lecturer WHERE admin=1";
     $resultAName = mysqli_query($conn, $sqlAName);
-
     //Show error if there are no data in the table
     if (!$resultAName) {
         echo(mysqli_error($conn));
     } else {
-        //Print out data using while loop
+        //saves valid admins in an array, later used for admin login
         $stackAName = array();
         while($row = mysqli_fetch_assoc($resultAName)) {
             array_push($stackAName, $row["lecturerName"]);
@@ -118,6 +116,7 @@
 <script> document.getElementById("defaultOpen").click(); </script>
 
 <?php
+    //checks if password is valid for the lecturer without any way of getting the password from the database
     if ((isset($_POST['lectureToFeedback']) != "") && (isset($_POST['passwordL']) != "")) {
         $inN = $_POST['lectureToFeedback'];
         $inP = $_POST['passwordL'];
@@ -143,6 +142,7 @@
         }
     }
 
+    //checks if password is valid for the admin without any way of getting the password from the database
     if ((isset($_POST['lectureToFeedback']) != "") && (isset($_POST['passwordA']) != "")) {
         $inN = $_POST['lectureToFeedback'];
         $inP = $_POST['passwordA'];

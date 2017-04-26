@@ -89,6 +89,7 @@ div.logo {
     border-radius: 10px;
 }
 
+/** For the send comment button **/
 #comment {
     margin-top: 0px;
 }
@@ -121,6 +122,7 @@ div.logo {
     visibility: visible;
 }
 
+/** For the rating and feedback system **/
 #main {
     padding-left: 9.5%;
 }
@@ -140,6 +142,7 @@ div.logo {
     position: absolute;
 }
 
+/** For the end lecture and finish buttons **/
 #end {
     visibility: visible;
 }
@@ -272,7 +275,7 @@ img{
     height: 40px;
 }
 
-/* remove arrows in id field */
+/* for removing the number arrows in id field */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;

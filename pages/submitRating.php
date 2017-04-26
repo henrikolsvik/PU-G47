@@ -1,6 +1,7 @@
 <!-- Made by Navjot on 21.04.17 --> 
 
 <?php
+    //this submits the rating of the lecture so that the lecturer can get the feedback on their page
     if (isset($_POST['ratingValue'])) {
         // Check connection
         if (!$conn) {

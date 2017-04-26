@@ -5,9 +5,9 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <?php
             global $conn;
-            //getting valid lectureIDs from database
+            //getting currently logged in lecturerID
             $lecID = null;
-            $lecName = $_POST["lectureToFeedback"]; //Få tilsendt foreleser id fra innloggingssiden;
+            $lecName = $_POST["lectureToFeedback"];
             $sqlID = "SELECT lecturerId FROM lecturer WHERE lecturerName='$lecName'";
             $resultID = mysqli_query($conn, $sqlID);
             while($rowID = mysqli_fetch_assoc($resultID)){
@@ -30,7 +30,7 @@
                 }
             }
 
-            //Regner antrall dager mellom dagen i dag og dato lagret i database
+            //calcuates the number of days between today and the date the lecture was made
             $chartData = array();
             for ($i = 0; $i < $numOfLectures; $i++) {
                 date_default_timezone_set('Europe/Warsaw');
@@ -44,7 +44,8 @@
         <script type="text/javascript">
             google.charts.load('current', {packages: ['corechart', 'line']});
             google.charts.setOnLoadCallback(drawBasic);
-            var limit= 7; //Hvor mange dager burker har valgt å se statistikk fra
+            //the number of days the user have chosen to look at in the diagram
+            var limit= 7;
             function drawBasic() {
                 var jArray= <?php echo json_encode($chartData ); ?>;
                 var sub_array = [];
@@ -109,6 +110,7 @@
                 <th class="tg-zd1f">Total rating<br>(bad 1-5 good)</th>
             </tr>
             <?php
+                //printing the currently logged in lecturers lectures
                 for ($i = 0; $i < $numOfLectures; $i++) {
                     echo("<tr>" );
                     for ($j = 0; $j < 6; $j++) {

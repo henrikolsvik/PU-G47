@@ -1,6 +1,7 @@
 <!-- Made by Henrik on 16.02.17 --> 
 
 <?php
+    //this submits the difficulty of the lecture so that the lecturer can get the feedback on their page
     if (isset($_POST['difficultyValue'])) {
         // Check connection
         if (!$conn) {

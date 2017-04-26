@@ -46,10 +46,9 @@ function feedbackControl(feedbackType){
     return 0;
 }  
 
-
+//used for the studentfeedback page response mechanism
 function changeColor(sender){
     var i = feedbackControl(sender);
-
     //skips effect to signal lack of success
     if(i == 0){
         color="green";
@@ -60,19 +59,4 @@ function changeColor(sender){
             }, 500);
     }
     return true;
-}
-
-function textEffect(sender){
-    var i = feedbackControl(sender);
-    
-    //skips effect to signal lack of success
-    if(i == 0){
-        document.getElementById('statusSend').innerHTML = 'Feedback Sent!';
-        document.getElementById('statusSend').style.color = 'green';
-        setTimeout(function(){ 
-            document.getElementById('statusSend').innerHTML = 'Please submit your feedback for lecture: <?php echo($lectureName) ?>';
-            document.getElementById('statusSend').style.color = 'black';
-        }, 500);
-    }
-    return true; 
 }

@@ -4,10 +4,10 @@
     <head>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <?php
+            //updates the rating of this lecture, this is run when a lecture is finished
             if (isset($_POST['avgRating'])) {
                 $avgRating = (int)($_POST['avgRating']);
                 $lectureIDToSet = ($_POST['lectureId']);
-                
                 //Getting the table from the DB
                 global $conn;
                 $sql = "UPDATE Lecture
@@ -17,15 +17,16 @@
             }
 
             global $conn;
-            //getting valid lectureIDs from database
+            //getting currently logged in lecturerID
             $lecID = null;
-            $lecName = $_POST["lectureToFeedback"]; //Få tilsendt foreleser id fra innloggingssiden;
+            $lecName = $_POST["lectureToFeedback"];
             $sqlID = "SELECT lecturerId FROM lecturer WHERE lecturerName='$lecName'";
             $resultID = mysqli_query($conn, $sqlID);
             while($rowID = mysqli_fetch_assoc($resultID)){
                 $lecID = $rowID["lecturerId"];
             }
             $lectureId = null;
+            //selects only active lectures which the students can enter
             $sqlLectureId = "SELECT lectureId FROM lecture WHERE lecturerId=$lecID AND (feedbackActive=1 OR ratingActive=1)";
             $resultLectureId = mysqli_query($conn, $sqlLectureId);
             while($rowLectureId = mysqli_fetch_assoc($resultLectureId)){
@@ -33,7 +34,6 @@
             }
             if ($lectureId == null) { $lectureId = -1; }
         ?>
-        
     </head>
     <body>
         <div align="left" id="menuButton">
@@ -58,9 +58,9 @@
             </form>
         </center>
         <script>
+            //the lecturer can only have one active lecture at a given time
             var lectureId = null;
             lectureId = <?php echo($lectureId); ?>;
-            console.log(lectureId);
             if (lectureId > -1) {
                 document.getElementById('newButton').disabled = true;
             } else {

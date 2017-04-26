@@ -7,7 +7,8 @@
     $sql = "SELECT lectureId, feedbackActive, ratingActive FROM Lecture WHERE lectureId=$lectureId";
     $result = mysqli_query($conn, $sql);
 
-    //Getting results from individual row, ignoring empty ones and adding together valid ones
+    //Getting information about if the lecture is in feedback-mode or rating-mode
+    //or if the lecture has ended
     if (!$result) {
         echo(mysqli_error($conn));
     } else {

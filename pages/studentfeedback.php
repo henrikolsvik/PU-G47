@@ -20,7 +20,8 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <script type="text/javascript" src="js/studentFeedbackController.js"></script>
         <script>
-            //Function to update the comments
+            //This function is used to check if the lecturer has ended the lecture so that the students can give a rating
+            //or to check if the lecturer has finished the lecture completely, the student will be thrown out of the lecture and redirected to the mainPage
             function checkActive() {
                 //Obtaining Lecture ID to pass on
                 var lectureID = "<?php echo $lectureID ?>";
@@ -35,7 +36,7 @@
                         if (xhttp.status == 200) { 
                             //String pharsing using € as divider to exclude unneeded headers
                             var active = xhttp.responseText.split("€");
-    
+                            //this is the css logic
                             if (active[1] == 0 && active[2] == 1) {
                                 document.getElementById("divQuestion").style.visibility = "hidden";
                                 document.getElementById("divRating").style.visibility = "visible";
@@ -58,7 +59,7 @@
         <div class="logo">  
             <img src="img/ActiFeedBack.svg"> 
         </div> 
-        <h1 id="statusSend">Lecture: <?php echo($lectureName) ?></h1>
+        <h1>Lecture: <?php echo($lectureName) ?></h1>
         <div id="main">
             <div id="feedback">
                 <div id="divQuestion" > 

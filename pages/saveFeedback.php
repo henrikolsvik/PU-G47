@@ -1,6 +1,7 @@
 <!-- Made by Navjot on 25.04.17 --> 
 
 <?php
+    //saves the average speed and difficulty of the feedbacks of the current lecture that has ended but not finished completely
     if (isset($_POST['avgSpeed']) && isset($_POST['avgDifficulty'])) {
         // Check connection
         if (!$conn) {

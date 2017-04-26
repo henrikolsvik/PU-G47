@@ -8,6 +8,7 @@
     $resultFeed = mysqli_query($conn, $sqlFeed);
 
     //Getting results from individual row, ignoring empty ones and adding together valid ones
+    //getting all the comments for this current lecturer and his lecture
     if (!$resultFeed) {
         echo(mysqli_error($conn));
     } else {

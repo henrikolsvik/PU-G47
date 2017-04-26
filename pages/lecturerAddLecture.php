@@ -5,9 +5,9 @@
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
         <?php
             global $conn;
-            //getting valid lectureIDs from database
+            //getting currently logged in lecturerID
             $lecID = $_POST["lectureToFeedback"];
-            $lecName = null; //Få tilsendt foreleser id fra innloggingssiden;
+            $lecName = null;
             $sql = "SELECT lecturerName FROM lecturer WHERE lecturerId='$lecID'";
             $result = mysqli_query($conn, $sql);
             while($row = mysqli_fetch_assoc($result)){
