@@ -20,17 +20,36 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <script type="text/javascript" src="js/studentFeedbackController.js"></script>
         <script>
+
+            //Function to update the comments
             function checkActive() {
-                <?php
-                    $sql = "SELECT feedbackActive, ratingActive FROM Lecture WHERE lectureId='$lectureID'";
-                    $result = mysqli_query($conn, $sql);
-                    while($row = mysqli_fetch_assoc($result)) {
-                        $feedbackActive = $row["feedbackActive"];
-                        $ratingActive = $row["ratingActive"];
+                //Obtaining Lecture ID to pass on
+                var lectureID = "<?php echo $lectureID ?>";
+                var xhttp;
+                xhttp = new XMLHttpRequest();
+                var data = "lectureID=" + lectureID;
+                xhttp.open("POST", "index.php?page=updateStudentFeedback", true);
+                xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhttp.send(data);
+                xhttp.onreadystatechange = function(){
+                    if (xhttp.readyState == 4) {  
+                        if (xhttp.status == 200) { 
+                            //String pharsing using € as divider to exclude unneeded headers
+                            var active = xhttp.responseText.split("€");
+    
+                            if (active[1] == 0 && active[2] == 1) {
+                                document.getElementById("divQuestion").style.visibility = "hidden";
+                                document.getElementById("divRating").style.visibility = "visible";
+                            } else if (active[1] == 0 && active[2] == 0) {
+                                document.getElementById("exit").submit();
+                            }
+                        }
                     }
-                ?>
-                var feedbackActive = "<?php echo $feedbackActive ?>";
-                var ratingActive = "<?php echo $ratingActive ?>";
+                }
+            }
+            window.setInterval(function(){checkActive();}, 2000);
+
+            /*function checkActiveOld() {
                 if (feedbackActive == 0) {
                     document.getElementById("divQuestion").style.visibility = "hidden";
                     document.getElementById("divRating").style.visibility = "visible";
@@ -39,7 +58,7 @@
                     document.getElementById("exit").submit();
                 }
             }
-            window.setInterval(function(){checkActive();}, 2000);
+            window.setInterval(function(){checkActiveOld();}, 2000);*/
         </script>
     </head>
     <body>

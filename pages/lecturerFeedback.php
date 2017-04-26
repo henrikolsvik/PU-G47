@@ -237,7 +237,7 @@
                 }
             }
             //Updates very fast, it's called LIVE COMMENTING
-            window.setInterval(function(){checkComments();}, 300);
+            window.setInterval(function(){checkComments();}, 500);
         
         </script>
     </head>  
