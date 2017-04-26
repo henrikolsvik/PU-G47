@@ -250,8 +250,6 @@
                 <button class="bButton" name="lectureToFeedback" value="<?php echo($lecturerName) ?>" type="submit">MENU</button>
             </form>
 
-            <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
-
             <form id="endForm" action="index.php?page=saveFeedback" method="POST" target="target">
                 <input id="speed" type=hidden name="avgSpeed" value="">
                 <input id="difficulty" type=hidden name="avgDifficulty" value="">
@@ -263,7 +261,6 @@
                 <button id="finish" class="bButton" name="lectureId" value="<?php echo($lectureId) ?>" type="submit">FINISH</button>
             </form>
             <iframe style="display:none;" name="target"></iframe>
-            <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
 
         </div>
         <div id="info" align="center">

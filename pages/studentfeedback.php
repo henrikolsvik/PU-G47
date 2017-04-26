@@ -49,16 +49,6 @@
             }
             window.setInterval(function(){checkActive();}, 2000);
 
-            /*function checkActiveOld() {
-                if (feedbackActive == 0) {
-                    document.getElementById("divQuestion").style.visibility = "hidden";
-                    document.getElementById("divRating").style.visibility = "visible";
-                }
-                if(feedbackActive == 0 && ratingActive == 0) {
-                    document.getElementById("exit").submit();
-                }
-            }
-            window.setInterval(function(){checkActiveOld();}, 2000);*/
         </script>
     </head>
     <body>
